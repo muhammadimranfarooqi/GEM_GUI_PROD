@@ -1,0 +1,18 @@
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(CONNECT_DATA=(SERVICE_NAME=int8r.cern.ch)(CID=(PROGRAM=httpd)(HOST=webafs601.cern.ch)(USER=apache)))(ADDRESS=(PROTOCOL=TCP)(HOST=128.142.200.176)(PORT=10654)))
+
+  VERSION INFORMATION:
+	TNS for Linux: Version 11.2.0.4.0 - Production
+	TCP/IP NT Protocol Adapter for Linux: Version 11.2.0.4.0 - Production
+  Time: 04-OCT-2017 15:59:37
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: Message 12564 not found; No message file for product=network, facility=TNS
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0

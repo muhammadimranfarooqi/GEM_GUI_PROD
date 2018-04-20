@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<ROOT>
+  <PARTS>
+    <PART>
+      <SERIAL_NUMBER>GE1/1-X-L-CERN-0005</SERIAL_NUMBER>
+      <NAME_LABEL>GE1/1-X-L-CERN-0005</NAME_LABEL>
+      <LOCATION>CERN</LOCATION>
+      <COMMENT_DESCRIPTION>==============================================&#xD;
+         GE11-X-L-CERN-0005&#xD;
+ Post Assembly Detector Information	&#xD;
+==============================================&#xD;
+&#xD;
+Assembly Date: 13/09/2017&#xD;
+&#xD;
+-------------------------------&#xD;
+List of components:&#xD;
+-------------------------------&#xD;
+&#xD;
+**Drift PCB	L-013&#xD;
+**RO   PCB	L-007&#xD;
+**External Frame	L-013&#xD;
+**GEM1	204/16&#xD;
+**GEM2	196/16&#xD;
+**GEM3	187/15&#xD;
+&#xD;
+&#xD;
+&#xD;
+--------------------------------------&#xD;
+GEM-foil Leakage Currents			&#xD;
+--------------------------------------&#xD;
+**GEM1	30,(5) nA&#xD;
+**GEM2	45,8(3) nA&#xD;
+**GEM3	34,375 nA&#xD;
+&#xD;
+-----------------------------------&#xD;
+Gap Leakage Currents			&#xD;
+-----------------------------------&#xD;
+&#xD;
+&#xD;
+**Drift Gap	                5.5 nA&#xD;
+**Transfer 1 Gap	        5.5 nA&#xD;
+**Transfer 2 Gap	        5.5 nA&#xD;
+**Induction Gap	        Sparks central connector&#xD;
+&#xD;
+----------------------------------&#xD;
+Comment Remarks&#xD;
+----------------------------------&#xD;
+&#xD;
+RO PCB removed and backed in Rui oven to fix gas leak on the PCB edges&#xD;
+&#xD;
+&#xD;
+----------------------------------&#xD;
+Assembly Crew			&#xD;
+----------------------------------&#xD;
+&#xD;
+M.Bianco,&#xD;
+M. Abbas,&#xD;
+C. Roskas,&#xD;
+H. Keller,&#xD;
+P.Van Auwegem,&#xD;
+P. Sennesael</COMMENT_DESCRIPTION>
+      <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
+      <RECORD_INSERTION_USER>jmerlin</RECORD_INSERTION_USER>
+      <CHILDREN>
+        <PART>
+          <SERIAL_NUMBER>PCB-VIII-RO-L-0007</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Readout PCB</KIND_OF_PART>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>GE1/1-ExtFrame-B1-L-0013</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM External Frame</KIND_OF_PART>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>PCB-VIII-DR-L-0013</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Drift PCB</KIND_OF_PART>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>FOIL-B16-L-0204</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
+          <PREDEFINED_ATTRIBUTES>
+            <ATTRIBUTE>
+              <NAME>Foil Position</NAME>
+              <VALUE>GEM1</VALUE>
+            </ATTRIBUTE>
+          </PREDEFINED_ATTRIBUTES>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>FOIL-B16-L-0196</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
+          <PREDEFINED_ATTRIBUTES>
+            <ATTRIBUTE>
+              <NAME>Foil Position</NAME>
+              <VALUE>GEM2</VALUE>
+            </ATTRIBUTE>
+          </PREDEFINED_ATTRIBUTES>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>FOIL-B15-L-0187</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
+          <PREDEFINED_ATTRIBUTES>
+            <ATTRIBUTE>
+              <NAME>Foil Position</NAME>
+              <VALUE>GEM3</VALUE>
+            </ATTRIBUTE>
+          </PREDEFINED_ATTRIBUTES>
+        </PART>
+      </CHILDREN>
+    </PART>
+  </PARTS>
+</ROOT>
