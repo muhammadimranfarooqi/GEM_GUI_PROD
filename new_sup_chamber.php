@@ -104,7 +104,7 @@ include "head.php";
       <strong>Well done!</strong> You successfully Generated XML for GEM Super Chamber <strong>ID:</strong> ' . $_POST['serial'] .
                     '</div>';
                     // redirect to confirm page
-                    header('Location: https://gemdb-p5.web.cern.ch/gemdb-p5/confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
+                    header('Location: confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
                         die();
                 }
             } 
@@ -321,7 +321,7 @@ include "head.php";
 
                                         </div>
                                     </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-16 col-xs-36">  <img style="width: 100%;" src="images/superChamber-singles.png"></div>
+                                    <div class="col-lg-8 col-md-8 col-sm-16 col-xs-36">  <img style="width: 100%;" src="images/chambers.jpg"></div>
                                 </div>
 
 

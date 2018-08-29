@@ -2,19 +2,19 @@
 from datetime import datetime,date,time
 from time import sleep
 from xml.etree.ElementTree import Element, SubElement, Comment, tostring
-import serial
+#import serial
 import time
 import xlrd
 from xlrd import xldate
 import re
 import sys
-import statistics
+#import statistics
 from xmlConversion import generateXMLHeader, generateDataSet, writeToFile,writeToFile1
 from xmlConversion import generateXMLDatafastamb,generateXMLDatafast,generateXMLDatalongamb,generateXMLDatalong, generateXMLData3,generateXMLData3a,generateXMLData4,generateXMLData4a,generateXMLData5a,generateXMLData5,generateXMLData4s
-from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine, MetaData, Table, and_
-from sqlalchemy.sql import select
+#from flask import Flask, render_template
+#from flask_sqlalchemy import SQLAlchemy
+#from sqlalchemy import create_engine, MetaData, Table, and_
+#from sqlalchemy.sql import select
 #import cx_Oracle
 #import json
 def xml_from_excel4(excel_file):
@@ -76,7 +76,7 @@ def xml_from_excel4(excel_file):
 	#Comment=sys.argv[11]
 	root = generateXMLHeader("QC4_HVTEST_SUMRY","GEM Chamber QC4 HVTEST Summary",str(location) + " GEM QC4 HV Test",Run,Start,Stop,comment,location,user)
 	dataSet = generateDataSet(root,Comment,"1","GEM Chamber",chamber)
-	generateXMLData4s(dataSet,test_date,str(v_max),str(i_max),str(v_drift),str(r_euq), str(r_err), str(r_diff),str(spr_signal),str(Filename),str(Elog),str(Comment))
+	generateXMLData4s(dataSet,test_date,str(v_max),str(i_max),str(v_drift),str(r_euq), str(r_err), str(r_diff),str(spr_signal),str(Filename),str(Elog),str(Comment),str(spr_error))
 	writeToFile(testfile, tostring(root))
 
 #_result = {}

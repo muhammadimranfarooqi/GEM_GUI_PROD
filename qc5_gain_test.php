@@ -242,7 +242,7 @@ include "head.php";
 				      <input class="runinput" name='File_Name' >
 				      </div>
 			      <div class="form-group">
-				  <label for="comment"> Leave your comment:</label>
+				  <label for="comment"> Leave your comments (Maximum 4000 characters):</label>
 				  <textarea class="form-control" rows="5" id="comment" name="comment" > Please Make Summary of Your Detector: </textarea>
 			      </div>
 			  </div>

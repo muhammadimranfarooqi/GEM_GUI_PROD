@@ -42,7 +42,7 @@ $outs = trim($out);
 $output=shell_exec("/afs/cern.ch/user/m/mimran/www/prod/my_env_new/bin/python QC3_Leak_Data.py '$FileName'  '$outs' '$LOCATION' '$INITIATED_BY_USER' '$COMMENT_DESCRIPTION' '$RUN_BEGIN_TIMESTAMP' '$RUN_END_TIMESTAMP' '$Elog' '$Files' '$comments' '$CHAMBER'");
 
 $LocalFilePATH =  $FileName .".xml";
-$LocalFilePATH_3 =  $FileName ."_summry.xml";
+$LocalFilePATH_2 =  $FileName ."_summry.xml";
 $check = shell_exec ("zip  archive-$(date +'%Y-%m-%d-%H-%M-%S').zip $LocalFilePATH $LocalFilePATH_2");
 
 {

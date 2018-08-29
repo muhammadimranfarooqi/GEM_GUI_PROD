@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<ROOT>
+  <PARTS>
+    <PART>
+      <SERIAL_NUMBER>GE1/1-X-L-CERN-0024</SERIAL_NUMBER>
+      <NAME_LABEL>GE1/1-X-L-CERN-0024</NAME_LABEL>
+      <LOCATION>CERN</LOCATION>
+      <COMMENT_DESCRIPTION></COMMENT_DESCRIPTION>
+      <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
+      <RECORD_INSERTION_USER>mgruchal</RECORD_INSERTION_USER>
+      <CHILDREN>
+        <PART>
+          <SERIAL_NUMBER>PCB-VIII-RO-L-0034</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Readout PCB</KIND_OF_PART>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>GE1/1-ExtFrame-B1-L-0097</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM External Frame</KIND_OF_PART>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>PCB-VIII-DR-L-0056</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Drift PCB</KIND_OF_PART>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>FOIL-B21-L-0271</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
+          <PREDEFINED_ATTRIBUTES>
+            <ATTRIBUTE>
+              <NAME>Foil Position</NAME>
+              <VALUE>GEM1</VALUE>
+            </ATTRIBUTE>
+          </PREDEFINED_ATTRIBUTES>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>FOIL-B21-L-0237</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
+          <PREDEFINED_ATTRIBUTES>
+            <ATTRIBUTE>
+              <NAME>Foil Position</NAME>
+              <VALUE>GEM2</VALUE>
+            </ATTRIBUTE>
+          </PREDEFINED_ATTRIBUTES>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>FOIL-B20-L-0270</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
+          <PREDEFINED_ATTRIBUTES>
+            <ATTRIBUTE>
+              <NAME>Foil Position</NAME>
+              <VALUE>GEM3</VALUE>
+            </ATTRIBUTE>
+          </PREDEFINED_ATTRIBUTES>
+        </PART>
+      </CHILDREN>
+    </PART>
+  </PARTS>
+</ROOT>

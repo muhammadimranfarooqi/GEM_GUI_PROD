@@ -153,7 +153,7 @@ include "head.php";
                                         </div>
                                         <div class="panel-body">
                                             <ul class="list-group">
-                                                <?php get_attached_parts($data[0]['PART_ID']); ?>
+                                                <?php get_attached_parts_show($data[0]['PART_ID']); ?>
                                             </ul>
                                         </div>
                                     </div></div>

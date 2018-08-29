@@ -38,31 +38,33 @@ def xml_from_excel3(excel_file):
 			pre= sh.row_values(row)[2]
 			temp =sh.row_values(row)[3]
 			ambp= sh.row_values(row)[4]
+			increment_hr= sh.row_values(row)[5]
+			temp_k = sh.row_values(row)[6]	
 			times = xlrd.xldate_as_tuple(sh.row_values(row)[0], wb.datemode)
 			times=str(times).replace(",",":")
 			times = str(times).replace(")","")
 			times = str(times).replace("("," ")
-			generateXMLData3(dataSet,Date +str(times[9:]),str(seconds),str(pre), str(ambp), str(temp))
+			generateXMLData3(dataSet,Date +str(times[9:]),str(seconds),str(pre), str(ambp), str(temp), str(increment_hr), str(temp_k))
 			writeToFile(fileName, tostring(root))
 	#test_date=sh.cell(0,7).value
 	test_date=Start
-	avgtemp=sh.cell(32,7).value
-	stdtemp=sh.cell(32,8).value
-	avgpre=sh.cell(33,7).value
-	stdpre=sh.cell(33,8).value
-	initpre = sh.cell(34,7).value
-	finalpre = sh.cell(35,7).value
-	duration = sh.cell(36,7).value
-	leakrate = sh.cell(37,7).value
-	expofitp0=sh.cell(38,7).value 
-	expofitp1=sh.cell(39,7).value 
-	expofitR2=sh.cell(40,7).value
+	avgtemp=sh.cell(32,10).value
+	stdtemp=sh.cell(32,11).value
+	avgpre=sh.cell(33,10).value
+	stdpre=sh.cell(33,11).value
+	initpre = sh.cell(34,10).value
+	finalpre = sh.cell(35,10).value
+	duration = sh.cell(36,10).value
+	leakrate = sh.cell(37,10).value
+	expofitp0=sh.cell(38,10).value 
+	expofitp1=sh.cell(39,10).value 
+	time_constant=sh.cell(40,10).value
 	elog=sys.argv[8]
 	File=sys.argv[9]
 	#Comments=sys.argv[10]
 	root = generateXMLHeader("QC3_GAS_LEAK_DATA_SUMRY","GEM Chamber QC3 Gas Leak Data Summary",str(location) + " GEM QC3 Gas Leak Data",Run,Start,Stop,comment, location,user)
 	dataSet = generateDataSet(root,Comments,"1","GEM Chamber",chamber)
-	generateXMLData3a(dataSet, str(test_date) ,str(avgtemp),str(stdtemp),str(avgpre),str(stdpre),str(initpre),str(finalpre),str(duration),str(leakrate),str(expofitp0),str(expofitp1),str(expofitR2),str(elog),str(File),str(Comments))
+	generateXMLData3a(dataSet, str(test_date) ,str(avgtemp),str(stdtemp),str(avgpre),str(stdpre),str(initpre),str(finalpre),str(duration),str(leakrate),str(expofitp0),str(expofitp1),str(elog),str(File),str(Comments),str(time_constant))
 	writeToFile1(testfile, tostring(root))
 
 

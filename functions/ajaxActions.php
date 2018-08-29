@@ -43,6 +43,8 @@ if (isset($_GET['detach']) && isset($_GET['partid']) && isset($_GET['kind'])) {
 //    ini_set('display_errors', 1);
     $_SESSION['user'] = $_GET['user'];
     generateDetachXml($_GET['partid'], $_GET['kind']);
+            location.reload();    // to reload the same page again
+
 }
 
 if(isset($_GET['validateserial']) && isset($_GET['partid']) ){

@@ -71,8 +71,11 @@ function get_list_part_ID($part_id) {
 
     // Database connection 
     $conn = database_connection();
+	
 
-    $sql = "SELECT PART_ID,SERIAL_NUMBER,RECORD_INSERTION_USER  FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $part_id . "' AND IS_RECORD_DELETED = 'F'"; //select data or insert data
+	$insertion = "INSERTION_DATE";
+
+    $sql = "SELECT PART_ID,SERIAL_NUMBER,RECORD_INSERTION_USER, TO_CHAR(RECORD_INSERTION_TIME, 'YYYY/MM/DD hh:mm:ss') as " .$insertion. " FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $part_id . "' AND IS_RECORD_DELETED = 'F' ORDER BY RECORD_INSERTION_TIME DESC"; //select data or insert data
     // Execute query  
     $query = oci_parse($conn, $sql);
     //Oci_bind_by_name($query,':bind_name',$bind_para); //if needed
@@ -297,6 +300,32 @@ function get_kinds() {
     return 1;
 }
 
+
+
+function get_attribute_position($part_id, $relationship_id) {
+    $conn = database_connection();
+
+//echo $relationship_id; 
+
+    $sql = "select ar.name as position  from  CMS_GEM_CORE_ATTRIBUTE.POSITION_SCHEMAS ar inner join CMS_GEM_CORE_CONSTRUCT.part_attr_lists pr on pr.ATTRIBUTE_ID = ar.attribute_id where pr.part_id = '" . $part_id . "' and pr.IS_RECORD_DELETED = 'F' and pr.RELATIONSHIP_ID = '" . $relationship_id . "'";
+
+    $query = oci_parse($conn, $sql);
+
+
+
+$query = oci_parse($conn, $sql);
+    //Oci_bind_by_name($query,':bind_name',$bind_para); //if needed
+    $arr = oci_execute($query);
+    $result = array();
+    while ($row = oci_fetch_array($query, OCI_ASSOC + OCI_RETURN_NULLS)) {
+        $result[] = $row;
+    }
+    return $result;
+}
+
+
+
+
 /*
  * Name: get_available_parts (parts with no parent)
  * Description: Get list of parts ( Foil,Drift,Readout, chamber) not attached to chambers according to v (L or S) and kind
@@ -304,11 +333,14 @@ function get_kinds() {
  * Autor: Ola Aboamer [o.aboamer@cern.ch]
  */
 
-function get_available_parts($part_id, $version) {
-    // Database connection 
+function get_available_parts($part_id, $version) { 
+
+global $ROOT_PART_ID;
+   
+// Database connection 
     $conn = database_connection();
 
-    $sql = "SELECT SERIAL_NUMBER FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $part_id . "' AND SERIAL_NUMBER LIKE '%" . $version . "%' AND IS_RECORD_DELETED = 'F' AND PART_ID not in (select PART_ID from CMS_GEM_CORE_CONSTRUCT.PHYSICAL_PARTS_TREE) ORDER BY SUBSTR(SERIAL_NUMBER, -4)  asc"; //select data or insert data 
+    $sql = "SELECT SERIAL_NUMBER FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $part_id . "' AND SERIAL_NUMBER LIKE '%" . $version . "%' AND IS_RECORD_DELETED = 'F' AND PART_ID not in (select PART_ID from CMS_GEM_CORE_CONSTRUCT.PHYSICAL_PARTS_TREE  WHERE PART_PARENT_ID != '".$ROOT_PART_ID."') ORDER BY SUBSTR(SERIAL_NUMBER, -4)  asc"; //select data or insert data 
 
 
     $query = oci_parse($conn, $sql);
@@ -318,7 +350,7 @@ function get_available_parts($part_id, $version) {
     $result_arr = array();
     while ($row = oci_fetch_array($query, OCI_ASSOC + OCI_RETURN_NULLS)) {
         echo '<li><a href="#" class="availablepart" >' . $row['SERIAL_NUMBER'] . '</a></li>';
-
+//echo $ROOT_PART_ID;
 //                $temp['man_id']= $row['MANUFACTURER_ID'];
 //                $temp['man_name']= $row['MANUFACTURER_NAME'];
 //            $result_arr[] = $temp;
@@ -442,6 +474,147 @@ function get_available_parts_nochild($part_id, $version, $relationID = "NA") {
  * Autor: Ola Aboamer [o.aboamer@cern.ch]
  */
 
+
+function get_attached_parts_show($part_id) {
+
+    global $VFAT2_TO_GEB;
+    global $OPTOHYBRID_TO_GEB;
+    global $GEB_TO_READOUT;
+    global $READOUT_TO_CHAMBER;
+    global $FRAME_TO_CHAMBER;
+    global $DRIFT_TO_CHAMBER;
+    global $FOIL_TO_CHAMBER;
+    global $CHAMBER_KIND_OF_PART_NAME;
+    global $DRIFT_KIND_OF_PART_NAME;
+    global $FOIL_KIND_OF_PART_NAME;
+    global $READOUT_KIND_OF_PART_NAME;
+    global $FRAME_KIND_OF_PART_NAME;
+    global $VFAT_KIND_OF_PART_NAME;
+    global $OPTOHYBRID_KIND_OF_PART_NAME;
+    global $GEB_KIND_OF_PART_NAME;
+    global $CHAMBER_TO_SUPER_CHAMBER;
+
+    // Database connection
+    $conn = database_connection();
+
+    $sql = "select PART_ID, RELATIONSHIP_ID from CMS_GEM_CORE_CONSTRUCT.PHYSICAL_PARTS_TREE where PART_PARENT_ID='" . $part_id . "' AND IS_RECORD_DELETED = 'F'"; //select data or insert data
+
+
+    $query = oci_parse($conn, $sql);
+    //Oci_bind_by_name($query,':bind_name',$bind_para); //if needed
+    $arr = oci_execute($query);
+
+    $result_arr = array();
+ $sqltemp = "select RELATIONSHIP_ID from CMS_GEM_CORE_CONSTRUCT.PART_TO_ATTR_RLTNSHPS  where DISPLAY_NAME = 'GEM Foil to Foil Position' AND IS_RECORD_DELETED = 'F'"; //sel
+
+ $querytemp = oci_parse($conn, $sqltemp);
+    //Oci_bind_by_name($query,':bind_name',$bind_para); //if needed
+    $arrtemp = oci_execute($querytemp);
+
+        $relationship_id_foil_position = 0;
+    $result_arrtemp = array();
+    while ($rowtemp = oci_fetch_array($querytemp, OCI_ASSOC + OCI_RETURN_NULLS)) {
+        $relationship_id_foil_position =        $rowtemp['RELATIONSHIP_ID'];
+//echo $relationship_id_foil_position;
+}
+
+//echo $relationship_id_foil_position;
+
+    while ($row = oci_fetch_array($query, OCI_ASSOC + OCI_RETURN_NULLS)) {
+
+        // foil -> chamber
+        if ($row['RELATIONSHIP_ID'] === $FOIL_TO_CHAMBER) {
+            $serialarr = getSerialById($row['PART_ID']);
+            $serial = $serialarr[0]['SERIAL_NUMBER'];
+
+
+//echo $relationship_id_foil_position;
+           $positionarr = get_attribute_position($row['PART_ID'], $relationship_id_foil_position);
+            $position = $positionarr[0]['POSITION'];
+//echo "test". $position;
+ echo '<li class="list-group-item" style="white-space:nowrap"><label> Foil '. $position .':</label> <a href="show_gem.php?id=' . $serial . '">' . $serial . '</a>  </li>';
+        }
+        // Drift -> chamber
+        else if ($row['RELATIONSHIP_ID'] === $DRIFT_TO_CHAMBER) {
+            $serialarr = getSerialById($row['PART_ID']);
+            $serial = $serialarr[0]['SERIAL_NUMBER'];
+            echo '<li class="list-group-item" style="white-space:nowrap"><label> Drift:</label> <a href="show_drift.php?id=' . $serial . '">' . $serial . '</a> </li>';
+        }
+        // Frame -> chamber
+        else if ($row['RELATIONSHIP_ID'] === $FRAME_TO_CHAMBER) {
+            $serialarr = getSerialById($row['PART_ID']);
+            $serial = $serialarr[0]['SERIAL_NUMBER'];
+            echo '<li class="list-group-item" style="white-space:nowrap"><label> Frame:</label> <br> <a href="show_frame.php?id=' . $serial . '">' . $serial . '</a> </li>';
+       }
+         // Readout -> chamber
+        else if ($row['RELATIONSHIP_ID'] === $READOUT_TO_CHAMBER) {
+            $serialarr = getSerialById($row['PART_ID']);
+            $serial = $serialarr[0]['SERIAL_NUMBER'];
+            echo '<li class="list-group-item" style="white-space:nowrap"><label> Readout:</label> <br> <a href="show_readout.php?id=' . $serial . '">' . $serial . '</a> </li>';
+        }
+ // geb -> readout
+        else if ($row['RELATIONSHIP_ID'] === $GEB_TO_READOUT) {
+            $serialarr = getSerialById($row['PART_ID']);
+            $serial = $serialarr[0]['SERIAL_NUMBER'];
+            echo '<li class="list-group-item" style="white-space:nowrap"><label> GEB:</label> <a href="show_geb.php?id=' . $serial . '">' . $serial . '</a>  </li>';
+        }
+        // optohybrid -> geb
+        else if ($row['RELATIONSHIP_ID'] === $OPTOHYBRID_TO_GEB) {
+            $serialarr = getSerialById($row['PART_ID']);
+            $serial = $serialarr[0]['SERIAL_NUMBER'];
+            echo '<li class="list-group-item" style="white-space:nowrap"><label> Optohybrid:</label> <a href="show_opto.php?id=' . $serial . '">' . $serial . '</a> </li>';
+        }
+        // vfat -> geb
+        else if ($row['RELATIONSHIP_ID'] === $VFAT2_TO_GEB) {
+            $serialarr = getSerialById($row['PART_ID']);
+            $serial = $serialarr[0]['SERIAL_NUMBER'];
+            echo '<li class="list-group-item" style="white-space:nowrap"><label> VFAT:</label> <a href="show_vfat.php?id=' . $serial . '">' . $serial . '</a> </li>';
+        }
+        // Chamber -> Super Chamber
+        else if($row['RELATIONSHIP_ID'] === $CHAMBER_TO_SUPER_CHAMBER){
+            $serialarr = getSerialById($row['PART_ID']);
+            $serial = $serialarr[0]['SERIAL_NUMBER'];
+
+	    $result_arr = array();
+
+
+            $sqltemp = "select RELATIONSHIP_ID from CMS_GEM_CORE_CONSTRUCT.PART_TO_ATTR_RLTNSHPS  where DISPLAY_NAME = 'GEM Chamber to Depth' AND IS_RECORD_DELETED = 'F'"; //sel
+
+            $querytemp = oci_parse($conn, $sqltemp);
+    //Oci_bind_by_name($query,':bind_name',$bind_para); //if needed
+            $arrtemp = oci_execute($querytemp);
+
+            $relationship_id_foil_position = 0;
+            $result_arrtemp = array();
+            while ($rowtemp = oci_fetch_array($querytemp, OCI_ASSOC + OCI_RETURN_NULLS)) {
+                $relationship_id_foil_position =        $rowtemp['RELATIONSHIP_ID'];
+                //echo $relationship_id_foil_position;
+            }
+
+
+
+//echo $relationship_id_foil_position;
+           $positionarr = get_attribute_position($row['PART_ID'], $relationship_id_foil_position);
+            $position = $positionarr[0]['POSITION'];
+
+
+
+
+
+
+
+
+
+
+            echo '<li class="list-group-item" style="white-space:nowrap"><label> Chamber '. $position .' :</label> <a href="show_chamber.php?id=' . $serial . '">' . $serial . '</a>  </li>';
+        }
+    }
+return 1;
+                                          
+
+}
+
+
 function get_attached_parts($part_id) {
 
     global $VFAT2_TO_GEB;
@@ -471,7 +644,7 @@ function get_attached_parts($part_id) {
     //Oci_bind_by_name($query,':bind_name',$bind_para); //if needed
     $arr = oci_execute($query);
 
-    $result_arr = array();
+
 
     while ($row = oci_fetch_array($query, OCI_ASSOC + OCI_RETURN_NULLS)) {
 
@@ -479,7 +652,33 @@ function get_attached_parts($part_id) {
         if ($row['RELATIONSHIP_ID'] === $FOIL_TO_CHAMBER) {
             $serialarr = getSerialById($row['PART_ID']);
             $serial = $serialarr[0]['SERIAL_NUMBER'];
-            echo '<li class="list-group-item" style="white-space:nowrap"><label> GEM Foil:</label> <a href="show_gem.php?id=' . $serial . '">' . $serial . '</a> <a style="color: red; padding-left:4em " href="javascript:void(0);" class="detach" id="' . $serial . '" kind="' . $FOIL_KIND_OF_PART_NAME . '"><span aria-hidden="true" class="glyphicon glyphicon-resize-full"></span> Detach <span aria-hidden="true" class="glyphicon glyphicon-remove"></span></a> </li>';
+     
+
+
+
+	    $result_arr = array();
+
+
+	    $sqltemp = "select RELATIONSHIP_ID from CMS_GEM_CORE_CONSTRUCT.PART_TO_ATTR_RLTNSHPS  where DISPLAY_NAME = 'GEM Foil to Foil Position' AND IS_RECORD_DELETED = 'F'"; //sel
+
+	    $querytemp = oci_parse($conn, $sqltemp);
+    //Oci_bind_by_name($query,':bind_name',$bind_para); //if needed
+	    $arrtemp = oci_execute($querytemp);
+
+	    $relationship_id_foil_position = 0;
+    	    $result_arrtemp = array();
+    	    while ($rowtemp = oci_fetch_array($querytemp, OCI_ASSOC + OCI_RETURN_NULLS)) {
+        	$relationship_id_foil_position =        $rowtemp['RELATIONSHIP_ID'];
+		//echo $relationship_id_foil_position;
+	    }	
+
+ 
+
+//echo $relationship_id_foil_position;
+	   $positionarr = get_attribute_position($row['PART_ID'], $relationship_id_foil_position);
+            $position = $positionarr[0]['POSITION'];
+//echo "test". $position;
+   echo '<li class="list-group-item" style="white-space:nowrap"><label> Foil '. $position .':</label> <a href="show_gem.php?id=' . $serial . '">' . $serial . '</a> <a style="color: red; padding-left:4em " href="javascript:void(0);" class="detach" id="' . $serial . '" kind="' . $FOIL_KIND_OF_PART_NAME . '"><span aria-hidden="true" class="glyphicon glyphicon-resize-full"></span> Detach <span aria-hidden="true" class="glyphicon glyphicon-remove"></span></a> </li>';
         }
         // Drift -> chamber
         else if ($row['RELATIONSHIP_ID'] === $DRIFT_TO_CHAMBER) {
@@ -521,10 +720,44 @@ function get_attached_parts($part_id) {
         else if($row['RELATIONSHIP_ID'] === $CHAMBER_TO_SUPER_CHAMBER){
             $serialarr = getSerialById($row['PART_ID']);
             $serial = $serialarr[0]['SERIAL_NUMBER'];
-            echo '<li class="list-group-item" style="white-space:nowrap"><label> Chamber:</label> <a href="show_chamber.php?id=' . $serial . '">' . $serial . '</a> <a style="color: red; padding-left:4em " href="javascript:void(0);" class="detach" id="' . $serial . '" kind="' . $CHAMBER_KIND_OF_PART_NAME . '"><span aria-hidden="true" class="glyphicon glyphicon-resize-full"></span> Detach <span aria-hidden="true" class="glyphicon glyphicon-remove"></span></a> </li>';
+
+
+
+
+
+
+	    $result_arr = array();
+
+
+            $sqltemp = "select RELATIONSHIP_ID from CMS_GEM_CORE_CONSTRUCT.PART_TO_ATTR_RLTNSHPS  where DISPLAY_NAME = 'GEM Chamber to Depth' AND IS_RECORD_DELETED = 'F'"; //sel
+
+            $querytemp = oci_parse($conn, $sqltemp);
+    //Oci_bind_by_name($query,':bind_name',$bind_para); //if needed
+            $arrtemp = oci_execute($querytemp);
+
+            $relationship_id_foil_position = 0;
+            $result_arrtemp = array();
+            while ($rowtemp = oci_fetch_array($querytemp, OCI_ASSOC + OCI_RETURN_NULLS)) {
+                $relationship_id_foil_position =        $rowtemp['RELATIONSHIP_ID'];
+                //echo $relationship_id_foil_position;
+            }
+
+
+
+//echo $relationship_id_foil_position;
+           $positionarr = get_attribute_position($row['PART_ID'], $relationship_id_foil_position);
+            $position = $positionarr[0]['POSITION'];
+
+
+
+
+
+            echo '<li class="list-group-item" style="white-space:nowrap"><label> Chamber '. $position .':</label> <a href="show_chamber.php?id=' . $serial . '">' . $serial . '</a> <a style="color: red; padding-left:4em " href="javascript:void(0);" class="detach" id="' . $serial . '" kind="' . $CHAMBER_KIND_OF_PART_NAME . '"><span aria-hidden="true" class="glyphicon glyphicon-resize-full"></span> Detach <span aria-hidden="true" class="glyphicon glyphicon-remove"></span></a> </li>';
         }
     }
-    return 1;
+    
+
+return 1;
 }
 
 /*
@@ -817,6 +1050,4 @@ function get_tracking_info($serial) {
     }
 
 
-
-    return $result2;
 }

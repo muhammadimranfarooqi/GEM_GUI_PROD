@@ -46,11 +46,19 @@ include "head.php";
                                                 <th>Serial Number:</th>
                                                 <td><?= $data[0]['SERIAL_NUMBER'] ?></td>
                                             </tr> <?php
+$serial_num = $data[0]['SERIAL_NUMBER'];
+$check_long = '-L-';
+if (strpos($serial_num, '-S-') !== false) {
+  //  echo 'true';
+    $check_long = '-S-';
+//	echo $check_long;
+}
                                     }
+
                                     if (!empty($data[0]['NAME_LABEL'])) {
                                         ?> 
                                             <tr>
-                                                <th>Name:</th>
+                                                <th>Name Label:</th>
                                                 <td><?= $data[0]['NAME_LABEL'] ?></td>
                                             </tr>
                                             <?php
@@ -166,70 +174,33 @@ include "head.php";
                         <div class="col-md-4"><img alt="200x200" class="img-thumbnail" data-src="holder.js/200x200" style="width: 200px; height: 200px;" src="uploads/GEM.png" data-holder-rendered="true"></div>
                     </div>-->
                    <div class="row">
-                                <div class="col-md-4"><div class="panel panel-info">
+                                <div class="col-md-6"><div class="panel panel-info">
                                         <div class="panel-heading">
-                                            <h3 class="panel-title">Detector parts:</h3>
+                                            <h3 class="panel-title">Current Detector parts:</h3>
                                         </div>
                                         <div class="panel-body">
                                             <ul class="list-group">
-                                                <?php get_attached_parts($data[0]['PART_ID']); ?>
-<!--                                                <li class="list-group-item"><label> GEM Foil 1:</label> <a href="show_gem.php?id=FOIL-VI-L-CERN-0001">FOIL-VI-L-CERN-0001</a> </li>
-                                                <li class="list-group-item"><label> GEM Foil 2:</label> <a href="show_gem.php?id=FOIL-VI-L-CERN-0004">FOIL-VI-L-CERN-0004</a></li>
-                                                <li class="list-group-item"><label> GEM Foil 3:</label> <a href="show_gem.php?id=FOIL-VI-L-CERN-0007">FOIL-VI-L-CERN-0007</a></li>
-                                                <li class="list-group-item"><label> Readout:</label> <br> <a href="show_readout.php?id=PCB-RO-VI-L-CERN-0001">PCB-RO-VI-L-CERN-0001</a></li>
-                                                <li class="list-group-item"><label> Drift:</label> <a href="show_drift.php?id=PCB-DR-VI-L-CERN-0001">PCB-DR-VI-L-CERN-0001</a></li>-->
+                                                <?php get_attached_parts_show($data[0]['PART_ID']); ?>
                                             </ul>
                                         </div>
                                     </div></div>
-                               <!-- <div class="col-md-4"><div class="panel panel-info">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">Electronics parts:</h3>
-                                        </div>
-                                        <div class="panel-body">
-                                            <ul class="list-group">
-                                                <li class="list-group-item"><label> GEB:</label> <a href="show_geb.php?id=PCB-GEB-VI-L-CERN-0001">PCB-GEB-VI-L-CERN-0001</a> </li>
-                                                <li class="list-group-item"><label> VFAT(s):</label> 
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br><a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br><a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br><a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0012</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0015</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0123</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0126</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                    <br> <a href="show_vfat.php?id=VFAT-VI-2-CERN-0001">VFAT-VI-2-CERN-0001</a>
-                                                </li>
-                                                
-                                            </ul>
-                                        </div>
-                                    </div></div>-->
-                       <!-- <div class="col-md-4"><div class="panel panel-info">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">QC performed:</h3>
-                                        </div>
-                                        <div class="panel-body">
-                                            <ul class="list-group">
-                                                
-                                                <li class="list-group-item"><label> IV:</label> <a href="show_qc_iv.php?id=qc1-inspxn-000001"><span aria-hidden="true" class="glyphicon glyphicon-ok" style="color: green;"></span> 23-08-2015</a> </li>
-                                                
-                                            </ul>
-                                        </div>
-                                    </div></div>-->
-                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
             </div>
         </div>

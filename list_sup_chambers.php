@@ -23,12 +23,15 @@ include "head.php";
             <table id="example" class="table table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
                   <th>Serial</th>
 <!--                  <th>Status</th>-->
                   <th>User responsible</th>
+		<th>Record Insertion Date / Time</th>
+
                   <th>Show</th>
-                </tr>
+		 <th>Edit</th>
+ 
+               </tr>
               </thead>
               <tbody>
                   <?php $drifts=  get_list_part_ID($SUPER_CHAMBER_KIND_OF_PART_ID);
@@ -36,12 +39,19 @@ include "head.php";
           foreach( $drifts as $drift){
                
               echo '<tr>
-                  <td>'.$drift['PART_ID'].'</td>
+            <!--      <td>'.$drift['PART_ID'].'</td> -->
                   <td>'.$drift['SERIAL_NUMBER'].'</td>
                   
                   <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['RECORD_INSERTION_USER'].' </span></td>
-                  <td><a href="show_sup_chamber.php?id='.$drift['SERIAL_NUMBER'].'"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Show</button></a></td>
-                </tr>';
+           <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['INSERTION_DATE'].' </span></td>
+ 
+
+       <td><a href="show_sup_chamber.php?id='.$drift['SERIAL_NUMBER'].'"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Show</button></a></td>
+
+ <td><a href="edit_sup_chamber.php?id='.$drift['SERIAL_NUMBER'].'"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Edit</button></a></td>
+            
+
+    </tr>';
           }
           
           ?>

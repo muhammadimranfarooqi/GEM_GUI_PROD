@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<ROOT>
+  <PARTS>
+    <PART>
+      <SERIAL_NUMBER>GE1/1-X-L-CERN-0015</SERIAL_NUMBER>
+      <NAME_LABEL>GE1/1-X-L-CERN-0015</NAME_LABEL>
+      <LOCATION>CERN</LOCATION>
+      <COMMENT_DESCRIPTION>==============================================&#xD;
+         GE11-X-L-CERN-0015&#xD;
+ Post Assembly Detector Information	&#xD;
+==============================================&#xD;
+&#xD;
+Assembly Date: 05/12/2017&#xD;
+&#xD;
+-------------------------------&#xD;
+List of components:&#xD;
+-------------------------------&#xD;
+  &#xD;
+**Drift PCB	L-029&#xD;
+**RO   PCB	L-021&#xD;
+**External Frame	L-046&#xD;
+**GEM1	160/13&#xD;
+**GEM2	162/13&#xD;
+**GEM3	166/14&#xD;
+&#xD;
+&#xD;
+&#xD;
+--------------------------------------&#xD;
+GEM-foil Leakage Currents			&#xD;
+--------------------------------------&#xD;
+**GEM1	25 nA&#xD;
+**GEM2	22 nA&#xD;
+**GEM3	22 nA&#xD;
+&#xD;
+-----------------------------------&#xD;
+Gap Leakage Currents			&#xD;
+-----------------------------------&#xD;
+&#xD;
+&#xD;
+**Drift Gap	                5.5 nA&#xD;
+**Transfer 1 Gap	        5.5 nA &#xD;
+**Transfer 2 Gap	        5.5 nA&#xD;
+**Induction Gap	        5.5 nA&#xD;
+&#xD;
+----------------------------------&#xD;
+Comment Remarks&#xD;
+----------------------------------&#xD;
+&#xD;
+NONE&#xD;
+ &#xD;
+----------------------------------&#xD;
+Assembly Crew			&#xD;
+----------------------------------&#xD;
+&#xD;
+M.Bianco,&#xD;
+M. Abbas,&#xD;
+J.A. Merlin</COMMENT_DESCRIPTION>
+      <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
+      <RECORD_INSERTION_USER>jmerlin</RECORD_INSERTION_USER>
+      <CHILDREN>
+        <PART>
+          <SERIAL_NUMBER>PCB-VIII-RO-L-0021</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Readout PCB</KIND_OF_PART>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>GE1/1-ExtFrame-B1-L-0046</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM External Frame</KIND_OF_PART>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>PCB-VIII-DR-L-0029</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Drift PCB</KIND_OF_PART>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>FOIL-B13-L-0160</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
+          <PREDEFINED_ATTRIBUTES>
+            <ATTRIBUTE>
+              <NAME>Foil Position</NAME>
+              <VALUE>GEM1</VALUE>
+            </ATTRIBUTE>
+          </PREDEFINED_ATTRIBUTES>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>FOIL-B13-L-0162</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
+          <PREDEFINED_ATTRIBUTES>
+            <ATTRIBUTE>
+              <NAME>Foil Position</NAME>
+              <VALUE>GEM2</VALUE>
+            </ATTRIBUTE>
+          </PREDEFINED_ATTRIBUTES>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>FOIL-B14-L-0166</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
+          <PREDEFINED_ATTRIBUTES>
+            <ATTRIBUTE>
+              <NAME>Foil Position</NAME>
+              <VALUE>GEM3</VALUE>
+            </ATTRIBUTE>
+          </PREDEFINED_ATTRIBUTES>
+        </PART>
+      </CHILDREN>
+    </PART>
+  </PARTS>
+</ROOT>

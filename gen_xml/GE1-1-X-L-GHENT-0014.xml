@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<ROOT>
+  <PARTS>
+    <PART>
+      <SERIAL_NUMBER>GE1/1-X-L-GHENT-0014</SERIAL_NUMBER>
+      <NAME_LABEL>GE1/1-X-L-GHENT-0014</NAME_LABEL>
+      <LOCATION>GHENT</LOCATION>
+      <COMMENT_DESCRIPTION>==============================================&#xD;
+         GE11-X-L-GHENT-0014&#xD;
+ Post Assembly Detector Information	&#xD;
+==============================================&#xD;
+&#xD;
+Assembly Date: 16/05/2018&#xD;
+&#xD;
+-------------------------------&#xD;
+List of components:&#xD;
+-------------------------------&#xD;
+&#xD;
+**GEM1: s/n FOIL 257/20;&#xD;
+&#xD;
+**GEM2: s/n FOIL 135/11;&#xD;
+&#xD;
+**GEM3: s/n FOIL 169/15;&#xD;
+&#xD;
+**Drift PCB: s/n L-050;&#xD;
+&#xD;
+**RO PCB: s/n L-048;&#xD;
+&#xD;
+**External Frame L-089;&#xD;
+&#xD;
+----------------------------------&#xD;
+Assembly Crew			&#xD;
+----------------------------------&#xD;
+&#xD;
+M. Tytgat, P. van Auwegem, P. Sennesael, C. Schuerens&#xD;
+&#xD;
+----------------------------------&#xD;
+Comments&#xD;
+----------------------------------&#xD;
+GEM3 had another yellow sticker on it, saying s/n 183/15</COMMENT_DESCRIPTION>
+      <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
+      <RECORD_INSERTION_USER>croskas</RECORD_INSERTION_USER>
+      <CHILDREN>
+        <PART>
+          <SERIAL_NUMBER>PCB-VIII-RO-L-0048</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Readout PCB</KIND_OF_PART>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>GE1/1-ExtFrame-B1-L-0089</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM External Frame</KIND_OF_PART>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>PCB-VIII-DR-L-0050</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Drift PCB</KIND_OF_PART>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>FOIL-B20-L-0257</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
+          <PREDEFINED_ATTRIBUTES>
+            <ATTRIBUTE>
+              <NAME>Foil Position</NAME>
+              <VALUE>GEM1</VALUE>
+            </ATTRIBUTE>
+          </PREDEFINED_ATTRIBUTES>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>FOIL-B11-L-0135</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
+          <PREDEFINED_ATTRIBUTES>
+            <ATTRIBUTE>
+              <NAME>Foil Position</NAME>
+              <VALUE>GEM2</VALUE>
+            </ATTRIBUTE>
+          </PREDEFINED_ATTRIBUTES>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>FOIL-B15-L-0169</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
+          <PREDEFINED_ATTRIBUTES>
+            <ATTRIBUTE>
+              <NAME>Foil Position</NAME>
+              <VALUE>GEM3</VALUE>
+            </ATTRIBUTE>
+          </PREDEFINED_ATTRIBUTES>
+        </PART>
+      </CHILDREN>
+    </PART>
+  </PARTS>
+</ROOT>

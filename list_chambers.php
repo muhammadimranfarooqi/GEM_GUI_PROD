@@ -24,11 +24,12 @@ include "head.php";
             <table id="example" class="table table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
+<!--                  <th>#</th>-->
                   <th>Serial</th>
 <!--                  <th>Status</th>-->
                   <th>User responsible</th>
-                  <th>Show</th>
+                <th> Record Insertion Date / Time</th> 
+		 <th>Show</th>
                   <th>Edit</th>
                 </tr>
               </thead>
@@ -38,12 +39,13 @@ include "head.php";
           foreach( $chambers as $chamber){
                
               echo '<tr>
-                  <td>'.$chamber['PART_ID'].'</td>
+             <!--  <td>'.$chamber['PART_ID'].'</td> -->
                   <td>'.$chamber['SERIAL_NUMBER'].'</td>
                   
                   <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$chamber['RECORD_INSERTION_USER'].' </span></td>
-                  <td><a href="show_chamber.php?id='.$chamber['SERIAL_NUMBER'].'"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Show</button></a></td>
-                  <td><a href="edit_chamber.php?id='.$chamber['SERIAL_NUMBER'].'"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Edit</button></a></td>
+ <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$chamber['INSERTION_DATE'].' </span></td>           
+       <td><a href="show_chamber.php?id='.$chamber['SERIAL_NUMBER'].'"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Show</button></a></td>
+                  <td><a href="edit_chamber_new.php?id='.$chamber['SERIAL_NUMBER'].'"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Edit</button></a></td>
                 </tr>';
           }
           
