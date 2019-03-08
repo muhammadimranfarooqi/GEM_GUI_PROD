@@ -11,7 +11,7 @@ include "head.php";
                     $temp =array();
                     $arr = array();
                     $temp[$SERIAL_NUMBER] = $_POST['serial'];
-                    $temp[$NAME_LABEL] = $_POST['serial'];
+//                    $temp[$NAME_LABEL] = $_POST['serial'];
                     if (isset($_POST['location']) && !empty($_POST['location'])) {
                         //echo $_POST['location'];
                         $temp[$LOCATION] = $_POST['location'];
@@ -50,7 +50,7 @@ include "head.php";
       <strong>Well done!</strong> You successfully created XML file for GEM External Frame <strong>ID:</strong> ' . $_POST['serial'] .
                     '</div>';
                     // redirect to confirm page
-                    header('Location: https://gemdb-p5.web.cern.ch/gemdb-p5/confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
+                    header('Location: confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
                         die();
                 }
             } else {

@@ -11,7 +11,7 @@ include "head.php";
                     $temp =array();
                     $arr = array();
                     $temp[$SERIAL_NUMBER] = $_POST['serial'];
-                    $temp[$NAME_LABEL] = $_POST['serial'];
+//                    $temp[$NAME_LABEL] = $_POST['serial'];
                     if (isset($_POST['location']) && !empty($_POST['location'])) {
                         //echo $_POST['location'];
                         $temp[$LOCATION] = $_POST['location'];
@@ -25,10 +25,15 @@ include "head.php";
                         $temp[$BARCODE] = $_POST['barcode'];
                     }
                     
-                        $kindOfPart = $AMC13_KIND_OF_PART_NAME;
+                //        $kindOfPart = $AMC13_KIND_OF_PART_NAME;
                         //echo  $kindOfPart;
-                        $temp[$KIND_OF_PART] = $kindOfPart;
-                    
+                  //      $temp[$KIND_OF_PART] = $kindOfPart;
+                     if (isset($_POST['amctype']) && !empty($_POST['amctype'])) {
+
+                      $temp[$KIND_OF_PART] = $_POST['amctype'];
+
+                   }
+
                     
                     //if (isset($logName)) {
                         //echo $logName;
@@ -50,7 +55,7 @@ include "head.php";
       <strong>Well done!</strong> You successfully created XML file  for AMC <strong>ID:</strong> ' . $_POST['serial'] .
                     '</div>';
                     // redirect to confirm page
-                    header('Location: https://gemdb-p5.web.cern.ch/gemdb-p5/confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
+                    header('Location: confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
                         die();
                 }
             } else {
@@ -118,6 +123,16 @@ if ($serial_num_of_newest_part) {    print_r($serial_num_of_newest_part);
                                         </ul>
                                     </div><br>
                                      <div class="dropdown">
+<label> Select AMC Type:</label><br>
+                                <select name="amctype" class="form-group">
+        <option value = "GEM AMC" > GEM AMC</option>
+        <option value = "GEM AMC13 Board" > GEM AMC13 Board</option>
+        <option value = "GEM AMC Gigabit Link Interface Board" > GEM AMC Gigabit Link Interface Board</option>
+
+
+</select><br>
+
+
                                         <label> 4 digits Serial </label><br>
                                     <input placeholder="XXXX" class="serialValidation">
                                     <i class="ace-icon fa fa-times-circle alert-danger exist" style="display: none">Already in  Database</i>
@@ -357,7 +372,7 @@ include "foot.php";
  jQuery(document).ready(function($) {
  
  $("#partslist").show();
-$("#<?= $AMC13_ID; ?>").attr("class","active");
+$("#<?= $AMC_ID; ?>").attr("class","active");
 
  })   
 

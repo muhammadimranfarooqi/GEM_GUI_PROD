@@ -2,35 +2,35 @@
 from datetime import datetime,date,time
 from time import sleep
 from xml.etree.ElementTree import Element, SubElement, Comment, tostring
-import serial
+#import serial
 import time
 import xlrd
 from xlrd import xldate
 import re
 import sys
-import statistics
+#import statistics
 from xmlConversion import generateXMLHeader, generateDataSet, writeToFile,writeToFile1
-from xmlConversion import generateXMLDatafastamb,generateXMLDatafast,generateXMLDatalongamb,generateXMLDatalong, generateXMLData3,generateXMLData3a,generateXMLData4,generateXMLData4a,generateXMLData5a,generateXMLData5,generateXMLData4s
-from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine, MetaData, Table, and_
-from sqlalchemy.sql import select
+from xmlConversion import generateXMLDatafastamb,generateXMLDatafast,generateXMLDatalongamb,generateXMLDatalong, generateXMLData3,generateXMLData3a,generateXMLData4,generateXMLData4a,generateXMLData5a,generateXMLData5,generateXMLData4s,generateXMLData6a,generateXMLData6b,generateXMLData6c
+#from flask import Flask, render_template
+#from flask_sqlalchemy import SQLAlchemy
+#from sqlalchemy import create_engine, MetaData, Table, and_
+#from sqlalchemy.sql import select
 #import cx_Oracle
 #import json
 def xml_from_excel4(excel_file):
 	wb = xlrd.open_workbook(excel_file)
 	sh = wb.sheet_by_index(0)
-	req = sh.cell(1,16).value
-	pre = sh.cell(5,16).value
-	amp = sh.cell(8,16).value
-	coa = sh.cell(9,16).value
-	fine = sh.cell(10,16).value
-	itime = sh.cell(12,16).value
-	dtime = sh.cell(13,16).value
-	disc = sh.cell(16,16).value
-	thrs = sh.cell(17,16).value
-	scal = sh.cell(20,16).value
-	daq = sh.cell(21,16).value
+	req = sh.cell(1,33).value
+#	pre = sh.cell(5,16).value
+#	amp = sh.cell(8,16).value
+#	coa = sh.cell(9,16).value
+#	fine = sh.cell(10,16).value
+#	itime = sh.cell(12,16).value
+#	dtime = sh.cell(13,16).value
+#	disc = sh.cell(16,16).value
+#	thrs = sh.cell(17,16).value
+#	scal = sh.cell(20,16).value
+#	daq = sh.cell(21,16).value
 	Start=sys.argv[7]
 	Stop=sys.argv[8]
 	chamber=sys.argv[2]
@@ -43,40 +43,39 @@ def xml_from_excel4(excel_file):
 	Run=sys.argv[3]
 	root = generateXMLHeader("QC6_HVTEST_CONFIG","GEM Chamber QC6 HVTEST Config",str(location) + " GEM QC6 HV Test",Run,Start,Stop,comment,location,user)
 	dataSet = generateDataSet(root,Comment,"1","GEM Chamber",chamber)
-	generateXMLData4a(dataSet,str(req), str(pre),str(amp),str(coa), str(fine), str(itime),str(dtime),str(disc),str(thrs),str(scal),str(daq))
+	generateXMLData6a(dataSet,str(req))
 	writeToFile(fileName, tostring(root))
 	root = generateXMLHeader("QC6_HVTEST_DATA","GEM Chamber QC6 HVTEST Data",str(location) + " GEM QC6 HV Test",Run,Start,Stop,comment,location,user)
 	dataSet = generateDataSet(root,Comment,"1","GEM Chamber",chamber)
-	for row in range(3, sh.nrows):
+	for row in range(2, sh.nrows):
 		if sh.row_values(row)[0]=='':
 			break
-		vset = sh.row_values(row)[0]
-		vmon= sh.row_values(row)[1]
-		iset =sh.row_values(row)[2]
-		imon= sh.row_values(row)[3]
-		rcal =sh.row_values(row)[4]
-		rnorm=sh.row_values(row)[5]
-		count=sh.row_values(row)[6]
-		rate= sh.row_values(row)[7]
-		error=sh.row_values(row)[8]
-		generateXMLData4(dataSet,str(vset), str(vmon),str(iset),str(imon), str(rcal), str(rnorm),str(count),str(rate),str(error))
+		vmon_equ_vlt = sh.row_values(row)[0]
+		imon_equ_ua= sh.row_values(row)[1]
+		vmon_g3b_vlt =sh.row_values(row)[3]
+		imon_g3b_ua = sh.row_values(row)[4]
+		vmon_g3t_vlt =sh.row_values(row)[6]
+		imon_g3t_ua=sh.row_values(row)[7]
+		vmon_g2b_vlt =sh.row_values(row)[9]
+                imon_g2b_ua = sh.row_values(row)[10]
+                vmon_g2t_vlt =sh.row_values(row)[12]
+                imon_g2t_ua=sh.row_values(row)[13]
+                vmon_g1b_vlt =sh.row_values(row)[15]
+                imon_g1b_ua = sh.row_values(row)[16]
+                vmon_g1t_vlt =sh.row_values(row)[18]
+                imon_g1t_ua=sh.row_values(row)[19]
+               	vmon_drift_vlt = sh.row_values(row)[21]
+                imon_drift_ua= sh.row_values(row)[22]
+		generateXMLData6b(dataSet,str(vmon_equ_vlt), str(imon_equ_ua),str(vmon_g3b_vlt),str(imon_g3b_ua), str(vmon_g3t_vlt), str(imon_g3t_ua),str(vmon_g2b_vlt),str(imon_g2b_ua),str(vmon_g2t_vlt),str(imon_g2t_ua),str(vmon_g1b_vlt),str(imon_g1b_ua),str(vmon_g1t_vlt),str(imon_g1t_ua),str(vmon_drift_vlt),str(imon_drift_ua))
 		writeToFile(datafile, tostring(root))
 		
-	v_max = sh.cell(25,16).value
 	test_date=Start
-	v_drift = sh.cell(26,16).value
-	i_max = sh.cell(27,16).value
-	r_euq = sh.cell(28,16).value
-	r_err= sh.cell(29,16).value
-	r_diff = sh.cell(30,16).value
-	spr_signal = sh.cell(31,16).value
-	spr_error = sh.cell(32,16).value
 	Filename= sys.argv[10]
 	Elog=sys.argv[9]
-	#Comment=sys.argv[11]
+	Comment=sys.argv[11]
 	root = generateXMLHeader("QC6_HVTEST_SUMRY","GEM Chamber QC6 HVTEST Summary",str(location) + " GEM QC6 HV Test",Run,Start,Stop,comment,location,user)
 	dataSet = generateDataSet(root,Comment,"1","GEM Chamber",chamber)
-	generateXMLData4s(dataSet,test_date,str(v_max),str(i_max),str(v_drift),str(r_euq), str(r_err), str(r_diff),str(spr_signal),str(Filename),str(Elog),str(Comment))
+	generateXMLData6c(dataSet,test_date,str(Filename),str(Elog),str(Comment))
 	writeToFile(testfile, tostring(root))
 
 #_result = {}

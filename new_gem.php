@@ -11,7 +11,7 @@ include "head.php";
                     $temp =array();
                     $arr = array();
                     $temp[$SERIAL_NUMBER] = $_POST['serial'];
-                    $temp[$NAME_LABEL] = $_POST['serial'];
+//                    $temp[$NAME_LABEL] = $_POST['serial'];
                     if (isset($_POST['location']) && !empty($_POST['location'])) {
                         //echo $_POST['location'];
                         $temp[$LOCATION] = $_POST['location'];
@@ -51,7 +51,7 @@ include "head.php";
                     '</div>';
                     //print_r($_SESSION);
                     // redirect to confirm page
-                    header('Location: https://gemdb-p5.web.cern.ch/gemdb-p5/confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
+                    header('Location: confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
                         die();
                 }
             } else {
@@ -143,7 +143,7 @@ include "head.php";
                             <!-- <span class="text-muted">List single chambers</span> -->
                                 <div class="form-group">
                                     <label for="exampleInputEmail1" style="float: left;">Serial Number:&nbsp;</label>
-                                    <div class="serial"><span class="name">FOIL-B<span class="batch">1</span>-</span><span id="vers" class="version" >VERSION</span><span class="id">-XXXX<?php /*str_pad($serial_num[3] + 1, 4, 0, STR_PAD_LEFT);*/ ?></span></div>
+                                    <div class="serial"><span class="name">FOIL-<span class="batch">1</span>-</span><span id="vers" class="version" >VERSION</span><span class="id">-XXXX<?php /*str_pad($serial_num[3] + 1, 4, 0, STR_PAD_LEFT);*/ ?></span></div>
                                     <input class="serialInput" name="serial" value="" hidden>
                                 </div>
                                 <div class="form-group">
@@ -164,45 +164,47 @@ include "head.php";
                                             <span class="caret"></span>
                                         </button> 
                                         <ul class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenu1">
-                                            <li><a href="#" class="batchnum">1</a></li>
-                                            <li><a href="#" class="batchnum">2</a></li>
-                                            <li><a href="#" class="batchnum">3</a></li>
-                                            <li><a href="#" class="batchnum">4</a></li>
-                                            <li><a href="#" class="batchnum">5</a></li>
-                                            <li><a href="#" class="batchnum">6</a></li>
-                                            <li><a href="#" class="batchnum">7</a></li>
-                                            <li><a href="#" class="batchnum">8</a></li>
-                                            <li><a href="#" class="batchnum">9</a></li>
-                                            <li><a href="#" class="batchnum">10</a></li>
-                                            <li><a href="#" class="batchnum">11</a></li>
-                                            <li><a href="#" class="batchnum">12</a></li>
-                                            <li><a href="#" class="batchnum">13</a></li>
-                                            <li><a href="#" class="batchnum">14</a></li>
-                                            <li><a href="#" class="batchnum">15</a></li>
-                                            <li><a href="#" class="batchnum">16</a></li>
-                                            <li><a href="#" class="batchnum">17</a></li>
-                                            <li><a href="#" class="batchnum">18</a></li>
-                                            <li><a href="#" class="batchnum">19</a></li>
-                                            <li><a href="#" class="batchnum">20</a></li>
-                                            <li><a href="#" class="batchnum">21</a></li>
-                                            <li><a href="#" class="batchnum">22</a></li>
-                                            <li><a href="#" class="batchnum">23</a></li>
-                                            <li><a href="#" class="batchnum">24</a></li>
-                                            <li><a href="#" class="batchnum">25</a></li>
-                                            <li><a href="#" class="batchnum">26</a></li>
-                                            <li><a href="#" class="batchnum">27</a></li>
-                                            <li><a href="#" class="batchnum">28</a></li>
-                                            <li><a href="#" class="batchnum">29</a></li>
-                                            <li><a href="#" class="batchnum">30</a></li>
-                                            <li><a href="#" class="batchnum">31</a></li>
-                                            <li><a href="#" class="batchnum">32</a></li>
-                                            <li><a href="#" class="batchnum">33</a></li>
-                                            <li><a href="#" class="batchnum">34</a></li>
-                                            <li><a href="#" class="batchnum">35</a></li>
-                                            <li><a href="#" class="batchnum">36</a></li>
-                                            <li><a href="#" class="batchnum">37</a></li>
-                                            <li><a href="#" class="batchnum">38</a></li>
-                                        </ul>
+                                            <li><a href="#" class="batchnum">B1</a></li>
+                                            <li><a href="#" class="batchnum">B2</a></li>
+                                            <li><a href="#" class="batchnum">B3</a></li>
+                                            <li><a href="#" class="batchnum">B4</a></li>
+                                            <li><a href="#" class="batchnum">B5</a></li>
+                                            <li><a href="#" class="batchnum">B6</a></li>
+                                            <li><a href="#" class="batchnum">B7</a></li>
+                                            <li><a href="#" class="batchnum">B8</a></li>
+                                            <li><a href="#" class="batchnum">B9</a></li>
+                                            <li><a href="#" class="batchnum">B10</a></li>
+                                            <li><a href="#" class="batchnum">B11</a></li>
+                                            <li><a href="#" class="batchnum">B12</a></li>
+                                            <li><a href="#" class="batchnum">B13</a></li>
+                                            <li><a href="#" class="batchnum">B14</a></li>
+                                            <li><a href="#" class="batchnum">B15</a></li>
+                                            <li><a href="#" class="batchnum">B16</a></li>
+                                            <li><a href="#" class="batchnum">B17</a></li>
+                                            <li><a href="#" class="batchnum">B18</a></li>
+                                            <li><a href="#" class="batchnum">B19</a></li>
+                                            <li><a href="#" class="batchnum">B20</a></li>
+                                            <li><a href="#" class="batchnum">B21</a></li>
+                                            <li><a href="#" class="batchnum">B22</a></li>
+                                            <li><a href="#" class="batchnum">B23</a></li>
+                                            <li><a href="#" class="batchnum">B24</a></li>
+                                            <li><a href="#" class="batchnum">B25</a></li>
+                                            <li><a href="#" class="batchnum">B26</a></li>
+                                            <li><a href="#" class="batchnum">B27</a></li>
+                                            <li><a href="#" class="batchnum">B28</a></li>
+                                            <li><a href="#" class="batchnum">B29</a></li>
+                                            <li><a href="#" class="batchnum">B30</a></li>
+                                            <li><a href="#" class="batchnum">B31</a></li>
+                                            <li><a href="#" class="batchnum">B32</a></li>
+                                            <li><a href="#" class="batchnum">B33</a></li>
+                                            <li><a href="#" class="batchnum">B34</a></li>
+                                            <li><a href="#" class="batchnum">B35</a></li>
+                                            <li><a href="#" class="batchnum">B36</a></li>
+                                            <li><a href="#" class="batchnum">B37</a></li>
+                                            <li><a href="#" class="batchnum">B38</a></li>
+					    <li><a href="#" class="batchnum">PK</a></li>
+                    
+                    </ul>
                                     </div><br>
                                     <div class="dropdown">
                                         <label> 4 digits Serial </label><br>

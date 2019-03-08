@@ -42,7 +42,7 @@ include "head.php";
             </div>
             </a>
           </div>
-          
+<!--          
           <div class="row placeholders">
               <a href="track_parts_step1.php">
             <div class="col-xs-6 col-sm-3 placeholder">
@@ -66,6 +66,7 @@ include "head.php";
             </div>
             
           </div>
+-->
 <!--
           <h2 class="sub-header">Section title</h2>
           <div class="table-responsive">

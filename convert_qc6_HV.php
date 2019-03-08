@@ -1,5 +1,4 @@
 <?php
-
 if(isset($_POST["submited"])){
 include_once "functions/functions.php";
 include_once "functions/generate_xml.php";
@@ -36,23 +35,27 @@ if (!$FileTmp){
 ?>
 <?php
   include "head.php";
-  ?>
-<?php include "head_panel.php"; ?>
-<?php
-$out = shell_exec("python QC5_test.py '$CHAMBER' " );
+$out = shell_exec("python QC6_test.py '$CHAMBER' " );
 $outs = trim($out);
 //$test=null;
-$output=shell_exec("/afs/cern.ch/user/m/mimran/www/prod/my_env_new/bin/python QC5_Gain_Data.py $FileName '$CHAMBER' $outs $LOCATION $INITIATED_BY_USER '$COMMENT_DESCRIPTION' '$RUN_BEGIN_TIMESTAMP' '$RUN_END_TIMESTAMP' '$Elog' '$Files' '$comments'");
-
+$output=shell_exec("my_env_new/bin/python QC6_HV_Data.py '$FileName' '$CHAMBER' '$outs' '$LOCATION' '$INITIATED_BY_USER' '$COMMENT_DESCRIPTION' '$RUN_BEGIN_TIMESTAMP' '$RUN_END_TIMESTAMP' '$Elog' '$Files' '$comments'");
 $LocalFilePATH =  $FileName .".xml";
 $LocalFilePATH_2 =  $FileName ."_Data.xml";
 $LocalFilePATH_3 =  $FileName ."_summry.xml";
 //$check = shell_exec ("zip  archive-$(date +'%Y-%m-%d-%H-%M-%S').zip -r . -i $LocalFilePATH $LocalFilePATH_2 $LocalFilePATH_3");
 $check = shell_exec ("zip  archive-$(date +'%Y-%m-%d-%H-%M-%S').zip $LocalFilePATH $LocalFilePATH_2 $LocalFilePATH_3");
-echo $check;
-{
+//echo $check;
 //foreach (glob("images/*.jpg") as $large) 
-foreach (glob("*.zip") as $filename) { 
+//foreach (glob("*.zip") as $filename) { 
+//echo "$filename\n";
+//echo str_replace("","","$filename\n");
+//echo str_replace("","","<a href='$filename'>$filename</a>\n");
+//}
+// Send the file to the spool area
+
+{
+//foreach (glob("images/*.jpg") as $large)
+foreach (glob("*.zip") as $filename) {
 
 //echo "$filename\n";
 //echo str_replace("","","$filename\n");
@@ -61,15 +64,12 @@ echo str_replace("","","<a href='$filename'>$filename</a>\n");
 
 }
 }
-// Send the file to the spool area
+
 $res_arr = SendXML($filename);
 //echo $res_arr;
-echo var_dump($res_arr) ;
+//echo var_dump($res_arr) ;
 
 }
-
-?>
-<?php
 function unlinkr($dir, $pattern = "*") {
     // find all files and folders matching pattern
     $files = glob($dir . "/$pattern"); 
@@ -96,6 +96,14 @@ unlinkr ($dir, "*.xml");
 unlinkr ($dir, "*.xls");
 unlinkr ($dir, "*.xlsm");
 unlinkr ($dir, "*.zip");
+unlinkr ($dir, "*.xlsx");
+ $_SESSION['post_return'] = $res_arr;
+                    $_SESSION['new_chamber_ntfy'] = '<div role="alert" class="alert alert-success">
+      <strong>Well done!</strong> You successfully created zip file QC6 Data.  <strong>ID:</strong> ' . $filename .
+                    '</div>';
+                    // redirect to confirm page
+                    header('Location: confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
+                        die();
 ?>
 <//?php include "side.php"; ?>
 <?php

@@ -56,6 +56,13 @@ def generateDataSet(Set,descriptionText,versionText,kindText,serialText):
     serial = SubElement(part,"SERIAL_NUMBER")
     serial.text = serialText
     return dataSet
+def generateDataSetMultipleParts(Set,descriptionText,versionText):
+    dataSet = SubElement(Set, 'DATA_SET')
+    description = SubElement(dataSet, 'COMMENT_DESCRIPTION')
+    description.text = descriptionText
+    version = SubElement(dataSet,'VERSION')
+    version.text = versionText
+    return dataSet
 #QC2
 def generateXMLDatafastamb(dataSetTag,HumidityText):
     data = SubElement(dataSetTag, 'DATA')
@@ -348,6 +355,106 @@ def generateXMLData6s(dataSetTag,testperformText,VmaxText,CurrVmaxText,VdrftText
     Sprsgl.text=SprsglText
     trip= SubElement(data,'TRIP_TIME_SEC')
     trip.text=tripText
+    filename=SubElement(data,'FILE_NAME')
+    filename.text=filenameText
+    elog=SubElement(data,'ELOG_LINK')
+    elog.text=elogText
+    comment=SubElement(data,'COMMENTS')
+    comment.text=commentText
+def generateXMLDataStrips(dataSetTag,sectorText,depthText,positionText,chText,hot_chText,fit_failedText,dead_chText,high_noiseText,high_effText):
+    data = SubElement(dataSetTag, 'DATA')
+    sector = SubElement(data, 'SECTOR')
+    sector.text = sectorText
+    depth = SubElement(data, 'DEPTH')
+    depth.text=depthText
+    position = SubElement(data, 'VFAT_POSN')
+    position.text = positionText
+    ch = SubElement(data, 'VFAT_CHAN')
+    ch.text=chText
+    hot_ch=SubElement(data,'HOT_CHAN')
+    hot_ch.text=hot_chText
+    fit_failed=SubElement(data, 'FIT_FAILED')
+    fit_failed.text=fit_failedText
+    dead_ch=SubElement(data,'DEAD_CHAN')
+    dead_ch.text=dead_chText
+    high_noise=SubElement(data,'HIGH_NOISE')
+    high_noise.text=high_noiseText
+    high_eff= SubElement(data,'HIGH_EFF_PED')
+    high_eff.text=high_effText
+def generateXMLDataAlignment(dataSetTag,positionText,dxText,dyText,dzText,rxText,ryText,rzText):
+    data = SubElement(dataSetTag, 'DATA')
+    position = SubElement(data, 'POSITION')
+    position.text = positionText
+    dx = SubElement(data, 'DX')
+    dx.text=dxText
+    dy = SubElement(data, 'DY')
+    dy.text = dyText
+    dz = SubElement(data, 'DZ')
+    dz.text=dzText
+    rx=SubElement(data,'RX')
+    rx.text=rxText
+    ry=SubElement(data, 'RY')
+    ry.text=ryText
+    rz=SubElement(data,'RZ')
+    rz.text=rzText
+def generateXMLDataChVfatEfficiency(dataSetTag,vfat_posnText,efficiencyText,efficiency_errorText):
+    data = SubElement(dataSetTag, 'DATA')
+    vfat_posn = SubElement(data, 'VFAT_POSN')
+    vfat_posn.text = vfat_posnText
+    efficiency = SubElement(data, 'EFFICIENCY')
+    efficiency.text=efficiencyText
+    efficiency_error = SubElement(data, 'EFFICIENCY_ERROR')
+    efficiency_error.text = efficiency_errorText
+def generateXMLDataStandGeoConf(dataSetTag,ch_serialText,positionText,flowmeterText):
+    data = SubElement(dataSetTag, 'DATA')
+    ch_serial_number = SubElement(data, 'CH_SERIAL_NUMBER')
+    ch_serial_number.text = ch_serialText
+    position = SubElement(data, 'POSITION')
+    position.text=positionText
+    flowmeter = SubElement(data, 'FLOW_METER')
+    flowmeter.text = flowmeterText
+def generateXMLData6a(dataSetTag,reqText):
+    data = SubElement(dataSetTag, 'DATA')
+    req = SubElement(data, 'REQUIV_MOHM_MSRD')
+    req.text=reqText
+def generateXMLData6b(dataSetTag,vmon_equ_vltText, imon_equ_uaText,vmon_g3b_vltText,imon_g3b_uaText, vmon_g3t_vltText, imon_g3t_uaText,vmon_g2b_vltText,imon_g2b_uaText,vmon_g2t_vltText,imon_g2t_uaText,vmon_g1b_vltText,imon_g1b_uaText,vmon_g1t_vltText,imon_g1t_uaText,vmon_drift_vltText,imon_drift_uaText):
+    data = SubElement(dataSetTag, 'DATA')
+    VMON_EQU_VLT = SubElement(data, 'VMON_EQU_VLT')
+    VMON_EQU_VLT.text = vmon_equ_vltText
+    IMON_EQU_UA = SubElement(data, 'IMON_EQU_UA')
+    IMON_EQU_UA.text=imon_equ_uaText
+    VMON_G3B_VLT = SubElement(data, 'VMON_G3B_VLT')
+    VMON_G3B_VLT.text = vmon_g3b_vltText
+    IMON_G3B_UA = SubElement(data, 'IMON_G3B_UA')
+    IMON_G3B_UA.text = imon_g3b_uaText
+    VMON_G3T_VLT=SubElement(data,'VMON_G3T_VLT')
+    VMON_G3T_VLT.text= vmon_g3t_vltText
+    IMON_G3T_UA=SubElement(data, 'IMON_G3T_UA')
+    IMON_G3T_UA.text= imon_g3t_uaText
+    VMON_G2B_VLT=SubElement(data,'VMON_G2B_VLT')
+    VMON_G2B_VLT.text= vmon_g2b_vltText
+    IMON_G2B_UA=SubElement(data,'IMON_G2B_UA')
+    IMON_G2B_UA.text=imon_g2b_uaText
+    VMON_G2T_VLT= SubElement(data,'VMON_G2T_VLT')
+    VMON_G2T_VLT.text=vmon_g2t_vltText
+    IMON_G2T_UA=SubElement(data,'IMON_G2T_UA')
+    IMON_G2T_UA.text=imon_g2t_uaText
+    VMON_G1B_VLT=SubElement(data,'VMON_G1B_VLT')
+    VMON_G1B_VLT.text=vmon_g1b_vltText
+    IMON_G1B_UA=SubElement(data,'IMON_G1B_UA')
+    IMON_G1B_UA.text=imon_g1b_uaText
+    VMON_G1T_VLT= SubElement(data,'VMON_G1T_VLT')
+    VMON_G1T_VLT.text=vmon_g1t_vltText
+    IMON_G1T_UA=SubElement(data,'IMON_G1T_UA')
+    IMON_G1T_UA.text=imon_g1t_uaText
+    VMON_DRIFT_VLT=SubElement(data,'VMON_DRIFT_VLT')
+    VMON_DRIFT_VLT.text=vmon_drift_vltText
+    IMON_DRIFT_UA=SubElement(data,'IMON_DRIFT_UA')
+    IMON_DRIFT_UA.text=imon_drift_uaText
+def generateXMLData6c(dataSetTag,test_dateText,filenameText,elogText,commentText):
+    data = SubElement(dataSetTag, 'DATA')
+    test_date = SubElement(data, 'TEST_DATE')
+    test_date.text = test_dateText
     filename=SubElement(data,'FILE_NAME')
     filename.text=filenameText
     elog=SubElement(data,'ELOG_LINK')

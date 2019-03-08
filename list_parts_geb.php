@@ -20,15 +20,22 @@ include "head.php";
           <h2 class="sub-header">List</h2>
           
           <div class="table-responsive">
-            <table id="example" class="table table-striped">
+            <table id="example"  class="table table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
                   <th>Serial</th>
 <!--                  <th>Status</th>-->
                   <th>User responsible</th>
-                  <th>Show</th>
-                </tr>
+                  <th>GEB TYPE</th>
+                  <th>Insertion Date</th>
+                  
+<th>Show</th>
+             
+<th>Edit</th>
+
+
+
+   </tr>
               </thead>
               <tbody>
                   <?php $drifts=  get_list_part_ID($GEB_KIND_OF_PART_ID);
@@ -36,16 +43,78 @@ include "head.php";
           foreach( $drifts as $drift){
                
               echo '<tr>
-                  <td>'.$drift['PART_ID'].'</td>
                   <td>'.$drift['SERIAL_NUMBER'].'</td>
                   
                   <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['RECORD_INSERTION_USER'].' </span></td>
-                  <td><a href="show_geb.php?id='.$drift['SERIAL_NUMBER'].'"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Show</button></a></td>
-                </tr>';
+                   <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['DISPLAY_NAME'].' </span></td>
+ <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['INSERTION_DATE'].' </span></td>
+
+ 
+ <td><a href="show_geb.php?id='.$drift['SERIAL_NUMBER'].'&type='.$drift['DISPLAY_NAME'].'"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Show</button></a></td>
+ 
+ <td><a href="edit_geb.php?id='.$drift['SERIAL_NUMBER'].'&type='.$drift['DISPLAY_NAME'].'"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Edit</button></a></td>
+
+
+
+               </tr>';
           }
           
           ?>
-                
+
+
+
+ <?php $drifts=  get_list_part_ID($GEB_NARROW_KIND_OF_PART_ID);
+          //print_r($drifts);
+          foreach( $drifts as $drift){
+
+              echo '<tr>
+                  <td>'.$drift['SERIAL_NUMBER'].'</td>
+
+                  <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['RECORD_INSERTION_USER'].' </span></td>
+                   <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['DISPLAY_NAME'].' </span></td>
+ <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['INSERTION_DATE'].' </span></td>
+
+
+<td><a href="show_geb.php?id='.$drift['SERIAL_NUMBER'].'&type='.$drift['DISPLAY_NAME'].'"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Show</button></a></td>
+
+
+ <td><a href="edit_geb.php?id='.$drift['SERIAL_NUMBER'].'&type='.$drift['DISPLAY_NAME'].'"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Edit</button></a></td>
+                </tr>';
+          }
+
+          ?>
+
+
+
+
+
+
+
+
+ <?php $drifts=  get_list_part_ID($GEB_WIDE_KIND_OF_PART_ID);
+          //print_r($drifts);
+          foreach( $drifts as $drift){
+
+              echo '<tr>
+                  <td>'.$drift['SERIAL_NUMBER'].'</td>
+
+                  <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['RECORD_INSERTION_USER'].' </span></td>
+                   <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['DISPLAY_NAME'].' </span></td>
+ <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['INSERTION_DATE'].' </span></td>
+
+<td><a href="show_geb.php?id='.$drift['SERIAL_NUMBER'].'&type='.$drift['DISPLAY_NAME'].'"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Show</button></a></td>
+
+ <td><a href="edit_geb.php?id='.$drift['SERIAL_NUMBER'].'&type='.$drift['DISPLAY_NAME'].'"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Edit</button></a></td>
+                </tr>';
+          }
+
+          ?>
+
+
+
+
+
+
 <!--                <tr>
                   <td>2</td>
                   <td>PCB-DR-VI-S-CERN-0002</td>

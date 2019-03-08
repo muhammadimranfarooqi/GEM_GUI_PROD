@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ROOT>
+  <PARTS>
+    <PART>
+      <SERIAL_NUMBER>GE1/1-X-L-PAK-0003</SERIAL_NUMBER>
+      <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
+      <CHILDREN>
+        <PART>
+          <SERIAL_NUMBER>PCB-VIII-RO-L-0030</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Readout PCB</KIND_OF_PART>
+        </PART>
+      </CHILDREN>
+    </PART>
+  </PARTS>
+</ROOT>

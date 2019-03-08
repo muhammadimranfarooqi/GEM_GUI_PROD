@@ -22,7 +22,7 @@ include "head.php";
                 </div>
                 <div class="panel-body">
                                                            <?php
-                                $data = get_part_by_ID($_GET["id"]);
+                                $data = get_part_by_ID_KIND($_GET["id"],$_GET["type"]);
                                 if (!empty($data)) {
                                     ?>
                     <!-- Panel content -->
@@ -79,6 +79,15 @@ include "head.php";
                                             </tr>
                                             <?php
                                     }
+				    if (!empty($data[0]['DISPLAY_NAME'])) {
+                                        ?>
+                                            <tr>
+                                                <th>GEB TYPE:</th>
+                                                <td> <?= $data[0]['DISPLAY_NAME']; ?></td>
+                                            </tr>
+                                            <?php
+                                    }
+
                                     if (!empty($data[0]['MANUFACTURER_ID'])) {
                                         ?> 
                                             <tr>
@@ -108,21 +117,6 @@ include "head.php";
                     
                                            
                                             
-<!--                                            <tr>
-                                                <td>Status</td>
-                                                <td><span class="label label-success">Accepted</span></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>Parent Chamber </td>
-                                                <td><a href="show_chamber.php?id=GE1/1-VI-L-CERN-0012"><span class="label label-default">GE1/1-VI-L-CERN-0012</span></a></td>
-                                            </tr>
-
-                                            <tr>
-                                            <tr>
-                                                <td>equipped with diodes?</td>
-                                                <td><span aria-hidden="true" class="glyphicon glyphicon-ok"></span></td>
-                                            </tr>-->
                                             
                                             
 
@@ -130,29 +124,10 @@ include "head.php";
                                         </tbody>
                                     </table>
 
-                                    <!-- <a href="#" class="btn btn-primary">My Sales Performance</a>
-                                     <a href="#" class="btn btn-primary">Team Sales Performance</a>-->
                                 </div>
                             </div>
                         </div>
-<!--                        <div class="col-md-4"><img alt="200x200" class="img-thumbnail" data-src="holder.js/200x200" style="width: 200px; height: 200px;" src="uploads/RO.png" data-holder-rendered="true"></div>-->
                     </div>
-<!--                    <div class="row">
-
-
-                        <div class="col-md-4"><div class="panel panel-info">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">QC performed:</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <ul class="list-group">
-                                        <li class="list-group-item"><label> visual inspection:</label> <a href="show_qc.php?id=qc1-inspxn-000001"><span aria-hidden="true" class="glyphicon glyphicon-remove" style="color: red;"></span> 22-08-2015</a> </li>
-                                        <li class="list-group-item"><label> visual inspection:</label> <a href="show_qc.php?id=qc1-inspxn-000001"><span aria-hidden="true" class="glyphicon glyphicon-ok" style="color: green;"></span> 23-08-2015</a> </li>
-
-                                    </ul>
-                                </div>
-                            </div></div>
-                    </div>-->
                     <?php
                                 } else {
                                     echo "No Item found for this ID";
@@ -160,18 +135,23 @@ include "head.php";
                                 ?>
 
                    <div class="row">
-                                <div class="col-md-4"><div class="panel panel-info">
+                                <div class="col-md-6"><div class="panel panel-info">
                                         <div class="panel-heading">
                                             <h3 class="panel-title">Child parts:</h3>
                                         </div>
                                         <div class="panel-body">
                                             <ul class="list-group">
-                                                <?php get_attached_parts($data[0]['PART_ID']); ?>
+                                                <?php get_attached_parts_show($data[0]['PART_ID']); ?>
 
                                             </ul>
                                         </div>
                                     </div></div>
-              
+  
+
+
+
+
+            
                             </div>
                 </div>
             </div>

@@ -12,13 +12,13 @@ include "head.php";
         <?php include "side.php"; ?>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header"><img src="images/foil2.png" width="4%"> Show GEM  </h1>
+            <h1 class="page-header"><img src="images/foil2.png" width="4%"> Show GEM Foil  </h1>
 
             <!--<a href="edit_gem.php?id=<?php /*echo $_GET["id"];*/ ?>"><button class="btn btn-success" type="button">Edit</button></a>-->
             <a href="list_parts_gem.php"><button class="btn btn-warning" type="button"><span aria-hidden="true" class="glyphicon glyphicon-backward"></span>Back to list</button></a>
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">GEM [<?php echo $_GET["id"]; ?>] </h3>
+                    <h3 class="panel-title">GEM Foil[<?php echo $_GET["id"]; ?>] </h3>
                 </div>
                 <div class="panel-body">
                                                            <?php

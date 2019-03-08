@@ -206,8 +206,20 @@ if (strpos($serial_num, '-S-') !== false) {
 
 	global $VFAT2_TO_GEB;
     global $OPTOHYBRID_TO_GEB;
-    global $GEB_TO_READOUT;
+    global $OPTOHYBRID_TO_CHAMBER;
+ 
+    global $COOLING_PLATE_TO_CHAMBER;
+    global $TEMP_SENSOR_TO_CHAMBER;
+    global $RADMON_SENSOR_TO_CHAMBER;
+
+
+   global $GEB_TO_READOUT;
+    global $GEB_NARROW_TO_CHAMBER;
+
+    global $GEB_WIDE_TO_CHAMBER;
+
     global $READOUT_TO_CHAMBER;
+
     global $FRAME_TO_CHAMBER;
     global $DRIFT_TO_CHAMBER;
     global $FOIL_TO_CHAMBER;
@@ -219,7 +231,18 @@ if (strpos($serial_num, '-S-') !== false) {
     global $VFAT_KIND_OF_PART_NAME;
     global $OPTOHYBRID_KIND_OF_PART_NAME;
     global $GEB_KIND_OF_PART_NAME;
+    global $GEB_NARROW_KIND_OF_PART_NAME;
+    global $GEB_WIDE_KIND_OF_PART_NAME;
+//    global $GEB_NARROW_KIND_OF_PART_ID
     global $CHAMBER_TO_SUPER_CHAMBER;
+    global $GEB_NARROW_KIND_OF_PART_ID;
+    global $GEB_WIDE_KIND_OF_PART_ID;
+
+
+    global $COOLING_PLATE_KIND_OF_PART_NAME;
+    global $TEMP_SENSOR_KIND_OF_PART_NAME;
+    global $RADMON_SENSOR_KIND_OF_PART_NAME;
+
 
     // Database connection
     $conn = database_connection();
@@ -254,6 +277,13 @@ $positionarrp =  array();
 $driftcheck = "";
 $framecheck = "";
 $readoutcheck = "";
+$gebnarrowcheck = "";
+$gebwidecheck = "";
+$ohcheck = "";
+$coolingplatecheck = "";
+$tempsensorcheck = "";
+$redmonsensorcheck = "";
+
 $count = 0;
     while ($row = oci_fetch_array($query, OCI_ASSOC + OCI_RETURN_NULLS)) {
 
@@ -293,13 +323,51 @@ $count = 0;
  //           $count++;
 
 }
+   else if ($row['RELATIONSHIP_ID'] === $GEB_NARROW_TO_CHAMBER) {
+            $serialarr = getSerialById($row['PART_ID']);
+            $serial = $serialarr[0]['SERIAL_NUMBER'];
+            $gebnarrowcheck = $serial;
+//           $count++;
+}
+ else if ($row['RELATIONSHIP_ID'] === $GEB_WIDE_TO_CHAMBER) {
+           $serialarr = getSerialById($row['PART_ID']);
+           $serial = $serialarr[0]['SERIAL_NUMBER'];
+          $gebwidecheck = $serial;
+ //           $count++;
+}
 
 
 
+ else if ($row['RELATIONSHIP_ID'] === $OPTOHYBRID_TO_CHAMBER) {
+           $serialarr = getSerialById($row['PART_ID']);
+           $serial = $serialarr[0]['SERIAL_NUMBER'];
+          $ohcheck = $serial;
+ //           $count++;
+}
 
 
+ else if ($row['RELATIONSHIP_ID'] === $COOLING_PLATE_TO_CHAMBER) {
+           $serialarr = getSerialById($row['PART_ID']);
+           $serial = $serialarr[0]['SERIAL_NUMBER'];
+          $coolingplatecheck = $serial;
+ //           $count++;
+}
+else if ($row['RELATIONSHIP_ID'] === $TEMP_SENSOR_TO_CHAMBER) {
+           $serialarr = getSerialById($row['PART_ID']);
+           $serial = $serialarr[0]['SERIAL_NUMBER'];
+          $tempsensorcheck = $serial;
+ //           $count++;
+}
+else if ($row['RELATIONSHIP_ID'] === $RADMON_SENSOR_TO_CHAMBER) {
+           $serialarr = getSerialById($row['PART_ID']);
+           $serial = $serialarr[0]['SERIAL_NUMBER'];
+          $redmonsensorcheck = $serial;
+ //           $count++;
+}
 
-    }
+//echo "test". $ohceck;
+
+   }
 //print_r($positionarrp);
 
 if (in_array("GEM1", $positionarrp)){
@@ -320,7 +388,6 @@ else {
                <label > Select Foil 1: </label>
 
 </div>
-
 <div class="col-sm-8">
 
 <select name="foil1" class="form-control">
@@ -329,12 +396,11 @@ else {
 foreach($parts_available_list as $key => $value) {
    echo "<option value = ". $value['SERIAL_NUMBER'] . " > " . $value['SERIAL_NUMBER'] ."</option>";
 }
-}
 echo '</select>';
 ?>
 </div>
 <?php
-}
+}}
 ?>
 
 <?php 
@@ -366,7 +432,7 @@ $parts_available_list = get_available_parts_nohtml($FOIL_KIND_OF_PART_ID, $check
 <?php
 foreach($parts_available_list as $key => $value) {
    echo "<option value = ". $value['SERIAL_NUMBER'] . " > " . $value['SERIAL_NUMBER'] ."</option>";
-}
+
 }
 echo '</select>';
 
@@ -374,7 +440,7 @@ echo '</select>';
 </div>
 
 <?php
-}
+}}
 ?>
 
 
@@ -406,14 +472,14 @@ else {
 foreach($parts_available_list as $key => $value) {
    echo "<option value = ". $value['SERIAL_NUMBER'] . " > " . $value['SERIAL_NUMBER'] ."</option>";
 }
-}
+
 echo '</select>';
 
 ?>
 </div>
 
 <?php
-}
+}}
 ?>
 
 <?php
@@ -441,14 +507,14 @@ if(empty($driftcheck)){
 foreach($parts_available_list as $key => $value) {
    echo "<option value = ". $value['SERIAL_NUMBER'] . " > " . $value['SERIAL_NUMBER'] ."</option>";
 }
-}
+
 echo '</select>';
 
 ?>
 </div>
 
 <?php
-}
+}}
 ?>
 
 
@@ -475,14 +541,14 @@ $parts_available_list = get_available_parts_nohtml($FRAME_KIND_OF_PART_ID, $chec
 foreach($parts_available_list as $key => $value) {
    echo "<option value = ". $value['SERIAL_NUMBER'] . " > " . $value['SERIAL_NUMBER'] ."</option>";
 }
-}
+
 echo '</select>';
 
 ?>
 </div>
 
 <?php
-
+}
 }
 ?>
 
@@ -513,6 +579,40 @@ if(empty($readoutcheck)){
 foreach($parts_available_list as $key => $value) {
    echo "<option value = ". $value['SERIAL_NUMBER'] . " > " . $value['SERIAL_NUMBER'] ."</option>";
 }
+
+echo '</select>';
+
+?>
+</div>
+
+<?php
+}}?>
+
+
+<?php
+if(empty($gebnarrowcheck)){
+
+
+ $parts_available_list = get_available_parts_nohtml($GEB_NARROW_KIND_OF_PART_ID, $check_long);
+                                if (!empty($parts_available_list)) {
+ $count++;
+
+//print_r ($parts_available_list);
+?>
+
+<div class="col-sm-4">
+               <label > Select GEB Narrow: </label>
+
+</div>
+
+<div class="col-sm-8">
+
+<select name="gebnarrow" class="form-control">
+
+<?php
+foreach($parts_available_list as $key => $value) {
+   echo "<option value = ". $value['SERIAL_NUMBER'] . " > " . $value['SERIAL_NUMBER'] ."</option>";
+
 }
 echo '</select>';
 
@@ -520,15 +620,181 @@ echo '</select>';
 </div>
 
 <?php
-}?>
+}}?>
 
-<div class="col-sm-12">
+<?php
+if(empty($gebwidecheck)){
+
+
+ $parts_available_list = get_available_parts_nohtml($GEB_WIDE_KIND_OF_PART_ID, $check_long);
+                                if (!empty($parts_available_list)) {
+ $count++;
+
+//print_r ($parts_available_list);
+?>
+
+<div class="col-sm-4">
+               <label > Select GEB Wide: </label>
 
 </div>
+
+<div class="col-sm-8">
+
+<select name="gebwide" class="form-control">
+
+<?php
+foreach($parts_available_list as $key => $value) {
+   echo "<option value = ". $value['SERIAL_NUMBER'] . " > " . $value['SERIAL_NUMBER'] ."</option>";
+}
+
+echo '</select>';
+
+?>
+</div>
+
+<?php
+}}?>
+
+
+
+<?php
+if(empty($ohcheck)){
+
+$parts_available_list = get_available_parts_nohtml($OPTOHYBRID_KIND_OF_PART_ID, $check_long);
+                                if (!empty($parts_available_list)) {
+ $count++;
+//print_r ($parts_available_list);
+?>
+
+<div class="col-sm-4">
+               <label > Select Opto Hybrid: </label>
+
+</div>
+
+<div class="col-sm-8">
+
+<select name="oh" class="form-control">
+
+<?php
+foreach($parts_available_list as $key => $value) {
+   echo "<option value = ". $value['SERIAL_NUMBER'] . " > " . $value['SERIAL_NUMBER'] ."</option>";
+}
+echo '</select>';
+
+?>
+</div>
+
+<?php
+}}?>
+
+
+<?php
+if(empty($coolingplatecheck)){
+
+
+ $parts_available_list = get_available_parts_nohtml($COOLING_PLATE_KIND_OF_PART_ID, $check_long);
+                                if (!empty($parts_available_list)) {
+ $count++;
+
+//print_r ($parts_available_list);
+?>
+
+<div class="col-sm-5">
+               <label > Select Cooling Plate: </label>
+
+</div>
+
+<div class="col-sm-7">
+
+<select name="cooling_plate" class="form-control">
+
+<?php
+foreach($parts_available_list as $key => $value) {
+   echo "<option value = ". $value['SERIAL_NUMBER'] . " > " . $value['SERIAL_NUMBER'] ."</option>";
+}
+echo '</select>';
+
+?>
+</div>
+
+<?php
+}}?>
+
+<?php
+if(empty($tempsensorcheck)){
+
+
+ $parts_available_list = get_available_parts_nohtml_noversion($TEMP_SENSOR_KIND_OF_PART_ID);
+                                if (!empty($parts_available_list)) {
+ $count++;
+
+//print_r ($parts_available_list);
+?>
+
+<div class="col-sm-5">
+               <label > Select Temp Sensor:</label>
+
+</div>
+
+<div class="col-sm-7">
+
+<select name="temp_sensor" class="form-control">
+<option  > </option>
+<?php
+foreach($parts_available_list as $key => $value) {
+   echo "<option value = ". $value['SERIAL_NUMBER'] . " > " . $value['SERIAL_NUMBER'] ."</option>";
+}
+
+echo '</select>';
+
+?>
+</div>
+
+<?php
+}}?>
+
+
+<?php
+if(empty($redmonsensorcheck)){
+
+
+ $parts_available_list = get_available_parts_nohtml_noversion($RADMON_SENSOR_KIND_OF_PART_ID);
+                                if (!empty($parts_available_list)) {
+ $count++;
+
+//print_r ($parts_available_list);
+?>
+
+<div class="col-sm-5">
+               <label > Select Redmon Sensor:</label>
+
+</div>
+
+<div class="col-sm-7">
+
+<select name="redmon_sensor" class="form-control">
+<option  > </option>
+<?php
+foreach($parts_available_list as $key => $value) {
+   echo "<option value = ". $value['SERIAL_NUMBER'] . " > " . $value['SERIAL_NUMBER'] ."</option>";
+
+}
+echo '</select>';
+
+?>
+</div>
+
+<?php
+}}?>
+
+
+
 <?php 
 
 //echo $count;
 if ($count!=0){
+
+//echo $count;
 ?>
 <div class="btn-group" class="col-sm-12" >	      
 	<button  class="btn  btn-primary" type="submit"  >Attach</button>

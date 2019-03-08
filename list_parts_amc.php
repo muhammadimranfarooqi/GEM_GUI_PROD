@@ -23,9 +23,12 @@ include "head.php";
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Serial</th>
-<!--                  <th>Status</th>-->
-                  <th>User responsible</th>
+
+  <th>AMC Type</th>
+<th>User responsible</th>
+<th>Record Insertion Date</th>
+
+
                   <th>Show</th>
                 </tr>
               </thead>
@@ -35,14 +38,60 @@ include "head.php";
           foreach( $drifts as $drift){
                
               echo '<tr>
-                  <td>'.$drift['PART_ID'].'</td>
                   <td>'.$drift['SERIAL_NUMBER'].'</td>
-                  
+                
+                   <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['DISPLAY_NAME'].' </span></td>
+
                   <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['RECORD_INSERTION_USER'].' </span></td>
+
+ <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['INSERTION_DATE'].' </span></td>
+
+  
                   <td><a href="show_readout.php?id='.$drift['SERIAL_NUMBER'].'"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Show</button></a></td>
                 </tr>';
           }
           
+          ?>
+
+<?php $drifts=  get_list_part_ID($AMC_KIND_OF_PART_ID);
+          //print_r($drifts);
+          foreach( $drifts as $drift){
+
+              echo '<tr>
+                  <td>'.$drift['SERIAL_NUMBER'].'</td>
+
+                   <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['DISPLAY_NAME'].' </span></td>
+
+                  <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['RECORD_INSERTION_USER'].' </span></td>
+
+ <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['INSERTION_DATE'].' </span></td>
+
+
+                  <td><a href="show_readout.php?id='.$drift['SERIAL_NUMBER'].'"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Show</button></a></td>
+                </tr>';
+          }
+
+          ?>
+
+
+<?php $drifts=  get_list_part_ID($GEM_AMC_KIND_OF_PART_ID);
+          //print_r($drifts);
+          foreach( $drifts as $drift){
+
+              echo '<tr>
+                  <td>'.$drift['SERIAL_NUMBER'].'</td>
+
+                   <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['DISPLAY_NAME'].' </span></td>
+
+                  <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['RECORD_INSERTION_USER'].' </span></td>
+
+ <td><span aria-hidden="true" class="glyphicon glyphicon-user"> '.$drift['INSERTION_DATE'].' </span></td>
+
+
+                  <td><a href="show_readout.php?id='.$drift['SERIAL_NUMBER'].'"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Show</button></a></td>
+                </tr>';
+          }
+
           ?>
                 
 <!--                <tr>
@@ -124,7 +173,7 @@ include "foot.php";
 <script>
                  jQuery(document).ready(function($) {
         $("#partslist").show();
-$("#<?= $AMC13_ID; ?>").attr("class","active");
+$("#<?= $AMC_ID; ?>").attr("class","active");
 })
 $(document).ready(function() { $('#example').DataTable(); } );
 

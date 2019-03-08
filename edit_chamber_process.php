@@ -53,6 +53,22 @@
                         $child['KIND_OF_PART'] = $READOUT_KIND_OF_PART_NAME;
                         $childs[] = $child;
                     }
+		    if (!empty($_POST['gebnarrow'])) {
+                        $child['SERIAL_NUMBER'] = $_POST['gebnarrow'];
+                        $child['KIND_OF_PART'] = $GEB_NARROW_KIND_OF_PART_NAME;
+                        $childs[] = $child;
+                    }
+		    if (!empty($_POST['gebwide'])) {
+                        $child['SERIAL_NUMBER'] = $_POST['gebwide'];
+                        $child['KIND_OF_PART'] = $GEB_WIDE_KIND_OF_PART_NAME;
+                        $childs[] = $child;
+                    }
+
+ 		    if (!empty($_POST['oh'])) {
+                        $child['SERIAL_NUMBER'] = $_POST['oh'];
+                        $child['KIND_OF_PART'] = $OPTOHYBRID_KIND_OF_PART_NAME;
+                        $childs[] = $child;
+                    }
                     if (!empty($_POST['frame'])) {
                         $child['SERIAL_NUMBER'] = $_POST['frame'];
                         $child['KIND_OF_PART'] = $FRAME_KIND_OF_PART_NAME;
@@ -85,6 +101,23 @@
                         $subchild['NAME'] = "Foil Position";
                         $subchild['VALUE'] = "GEM3";
                         $child ['attr'] = $subchild;
+                        $childs[] = $child;
+                    }
+
+ 		   if (!empty($_POST['cooling_plate'])) {
+                        $child['SERIAL_NUMBER'] = $_POST['cooling_plate'];
+                        $child['KIND_OF_PART'] = $COOLING_PLATE_KIND_OF_PART_NAME;
+                        $childs[] = $child;
+                    }
+
+		 if (!empty($_POST['temp_sensor'])) {
+                        $child['SERIAL_NUMBER'] = $_POST['temp_sensor'];
+                        $child['KIND_OF_PART'] = $TEMP_SENSOR_KIND_OF_PART_NAME;
+                        $childs[] = $child;
+                    }
+		 if (!empty($_POST['redmon_sensor'])) {
+                        $child['SERIAL_NUMBER'] = $_POST['redmon_sensor'];
+                        $child['KIND_OF_PART'] = $RADMON_SENSOR_KIND_OF_PART_NAME;
                         $childs[] = $child;
                     }
 

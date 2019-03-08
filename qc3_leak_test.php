@@ -66,7 +66,7 @@
     <strong>Well done!</strong> You successfully generated XML file for a list of GEM FOIL(s) data 
 		  </div>';
 		  // redirect to confirm page
-		  header('Location: https://gemdb-p5.web.cern.ch/gemdb-p5/confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
+		  header('Location: https://gemdb.web.cern.ch/gemdb/confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
 		      die();
 		 
 	  }
@@ -155,7 +155,7 @@ include "head.php";
 			       Chamber
 			       <span class="caret"></span>
 			   </button>
-			   <ul class="dropdown-menu scrollable-menu  aria-labelledby="dropdownMenu1">
+			   <ul class="dropdown-menu scrollable-menu  aria-labelledby='dropdownMenu1'">
 			      <?php 
 				list_chambers(); 
 				?>
@@ -206,7 +206,7 @@ include "head.php";
 				      <div class="form-group">
 				      <lable>Initiated by user:</lable><br>
 				       <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				      <input class="runinput" name='INITIATED_BY_USER' >
+				      <input class="runinput" name='INITIATED_BY_USER' required  >
 				      </div>
 				      
 				      <div class="form-group">
@@ -245,7 +245,7 @@ include "head.php";
 				      <input class="runinput" name='File_Name' >
 				      </div>
 			      <div class="form-group">
-				  <label for="comment"> Leave comment After the Test (Maximum 4000 characters):</label>
+				  <label for="comment"> Leave comment After the Test:</label>
 				  <textarea class="form-control" rows="5" id="comment" name="comment" > Please Make Summary of Your Detector: </textarea>
 			      </div>
 			  </div>

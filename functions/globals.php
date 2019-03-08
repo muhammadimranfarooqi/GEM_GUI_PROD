@@ -63,12 +63,18 @@ $FRAME_KIND_OF_PART_ID = $resultArr['GEM External Frame'];
 //Kind of part id for VFAT chips
 //$VFAT_KIND_OF_PART_ID = "10000000000001699";
 $VFAT_KIND_OF_PART_ID = $resultArr['GEM VFAT2'];
+$VFAT3_KIND_OF_PART_ID = $resultArr['GEM VFAT3'];
+
 //Kind of part id for Optohybrids
 //$OPTOHYBRID_KIND_OF_PART_ID = "10000000000002399";
 $OPTOHYBRID_KIND_OF_PART_ID = $resultArr['GEM Opto Hybrid'];
+$OPTOHYBRID_V3_KIND_OF_PART_ID = $resultArr['GEM Opto Hybrid V3'];
+
 //Kind of part id for AMCs
 //$AMC_KIND_OF_PART_ID = "10000000000002419";
 $AMC_KIND_OF_PART_ID = $resultArr['GEM AMC Gigabit Link Interface Board'];
+$GEM_AMC_KIND_OF_PART_ID = $resultArr['GEM AMC'];
+
 //Kind of part id for AMC13
 //$AMC13_KIND_OF_PART_ID = "10000000000002439";
 $AMC13_KIND_OF_PART_ID = $resultArr['GEM AMC13 Board'];
@@ -81,6 +87,15 @@ $MICROTCA_KIND_OF_PART_ID = $resultArr['GEM Micro TCA Crate'];
 //Kind of part id for GEBs
 //$GEB_KIND_OF_PART_ID = "10000000000002799"; 
 $GEB_KIND_OF_PART_ID = $resultArr['GEM Electronics Board'];
+$GEB_NARROW_KIND_OF_PART_ID = $resultArr['GEM Electronics Board Narrow'];
+$GEB_WIDE_KIND_OF_PART_ID = $resultArr['GEM Electronics Board Wide'];
+
+
+
+$COOLING_PLATE_KIND_OF_PART_ID = $resultArr['GEM Cooling Plate'];
+$TEMP_SENSOR_KIND_OF_PART_ID = $resultArr['GEM Temperature Sensor'];
+$RADMON_SENSOR_KIND_OF_PART_ID = $resultArr['GEM Radmon Sensor'];
+
  
 //Kind of part id for CEAN N1145
 $CEANN1145_KIND_OF_PART_ID = $resultArr['CAEN N1145 Scalar'];
@@ -111,10 +126,17 @@ $READOUT_KIND_OF_PART_NAME = "GEM Readout PCB";
 $FRAME_KIND_OF_PART_NAME = "GEM External Frame";
 //Kind of part name for VFAT chips
 $VFAT_KIND_OF_PART_NAME = "GEM VFAT2";
+$VFAT3_KIND_OF_PART_NAME = "GEM VFAT3";
+
 //Kind of part name for Optohybrids
+
 $OPTOHYBRID_KIND_OF_PART_NAME = "GEM Opto Hybrid";
+$OPTOHYBRID_V3_KIND_OF_PART_NAME = "GEM Opto Hybrid V3";
+
 //Kind of part name for AMCs
 $AMC_KIND_OF_PART_NAME = "GEM AMC Gigabit Link Interface Board";
+$GEM_AMC_KIND_OF_PART_NAME = "GEM AMC";
+
 //Kind of part name for AMC13
 $AMC13_KIND_OF_PART_NAME = "GEM AMC13 Board";
 //Kind of part name for HUBs
@@ -123,6 +145,15 @@ $HUB_KIND_OF_PART_NAME = "GEM Main Carrier HUB";
 $MICROTCA_KIND_OF_PART_NAME = "GEM Micro TCA Crate";
 //Kind of part name for GEBs
 $GEB_KIND_OF_PART_NAME = "GEM Electronics Board"; 
+$GEB_NARROW_KIND_OF_PART_NAME = "GEM Electronics Board Narrow";
+$GEB_WIDE_KIND_OF_PART_NAME = "GEM Electronics Board Wide";
+
+
+$COOLING_PLATE_KIND_OF_PART_NAME = "GEM Cooling Plate";
+
+$TEMP_SENSOR_KIND_OF_PART_NAME = "GEM Temperature Sensor";
+$RADMON_SENSOR_KIND_OF_PART_NAME = "GEM Radmon Sensor";
+
 
 //Kind of part name for CEAN N1145
 $CEANN1145_KIND_OF_PART_NAME = 'CAEN N1145 Scalar';
@@ -179,14 +210,29 @@ $MICROTCA_ID = "GEMMicroTCACrate";
 //Kind of part name for GEBs
 $GEB_ID = "GEMElectronicsBoard";
 
+$COOLING_PLATE_ID = "GEMCoolingPlate";
+$TEMP_SENSOR_ID = "GEMTempSensor";
+$RADMON_SENSOR_ID = "GEMRadmonSensor";
 
 
 /***** Part to Part Relationship IDs *****/
 //$VFAT2_TO_GEB="10000000000005639";
 $VFAT2_TO_GEB = $resultArr_p2pr['AutoAssigned: GEM VFAT2 --> GEM Electronics Board'];
+$VFAT3_TO_GEB = $resultArr_p2pr['AutoAssigned: GEM VFAT3 --> GEM Electronics Board'];
+
+
+
+$VFAT2_TO_GEB_NARROW = $resultArr_p2pr['GEM VFAT2 --> GEM Electronics Board Narrow'];
+$VFAT3_TO_GEB_NARROW = $resultArr_p2pr['GEM VFAT3 --> GEM Electronics Board Narrow'];
+
+$VFAT2_TO_GEB_WIDE = $resultArr_p2pr['GEM VFAT2 --> GEM Electronics Board Wide'];
+$VFAT3_TO_GEB_WIDE = $resultArr_p2pr['GEM VFAT3 --> GEM Electronics Board Wide'];
 
 //$OPTOHYBRID_TO_GEB="10000000000005239";
 $OPTOHYBRID_TO_GEB = $resultArr_p2pr['AutoAssigned: GEM Opto Hybrid --> GEM Electronics Board'];
+$OPTOHYBRID_TO_CHAMBER = $resultArr_p2pr['GEM Opto Hybrid --> GEM Chamber'];
+$OPTOHYBRID_V3_TO_CHAMBER = $resultArr_p2pr['GEM Opto Hybrid V3 --> GEM Chamber'];
+
 
 //$GEB_TO_READOUT="10000000000004839";
 $GEB_TO_READOUT = $resultArr_p2pr['AutoAssigned: GEM Electronics Board --> GEM Readout PCB'];
@@ -206,6 +252,16 @@ $DRIFT_TO_CHAMBER = $resultArr_p2pr['AutoAssigned: GEM Drift PCB --> GEM Chamber
 //
 $CHAMBER_TO_SUPER_CHAMBER = $resultArr_p2pr['AutoAssigned: GEM Chamber --> GEM Detector ROOT'];
 
+$GEB_NARROW_TO_CHAMBER = $resultArr_p2pr['GEM Electronics Board Narrow --> GEM Chamber'];
+
+$GEB_WIDE_TO_CHAMBER = $resultArr_p2pr['GEM Electronics Board Wide --> GEM Chamber'];
+
+
+$COOLING_PLATE_TO_CHAMBER = $resultArr_p2pr['GEM Cooling Plate --> GEM Chamber'];
+
+
+$TEMP_SENSOR_TO_CHAMBER = $resultArr_p2pr['GEM Temperature Sensor --> GEM Chamber'];
+$RADMON_SENSOR_TO_CHAMBER = $resultArr_p2pr['GEM Radmon Sensor --> GEM Chamber'];
 
 
 /**

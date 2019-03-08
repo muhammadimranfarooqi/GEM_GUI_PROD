@@ -11,7 +11,7 @@ include "head.php";
                     $temp =array();
                     $arr = array();
                     $temp[$SERIAL_NUMBER] = $_POST['serial'];
-                    $temp[$NAME_LABEL] = $_POST['serial'];
+//                    $temp[$NAME_LABEL] = $_POST['serial'];
                     if (isset($_POST['location']) && !empty($_POST['location'])) {
                         //echo $_POST['location'];
                         $temp[$LOCATION] = $_POST['location'];
@@ -24,11 +24,17 @@ include "head.php";
                         //echo $_POST['barcode'];
                         $temp[$BARCODE] = $_POST['barcode'];
                     }
-                    
-                        $kindOfPart = $VFAT_KIND_OF_PART_NAME;
+
+                    if (isset($_POST['vfattype']) && !empty($_POST['vfattype'])) {
+
+                      $temp[$KIND_OF_PART] = $_POST['vfattype'];
+
+                   }
+ 
+ //                       $kindOfPart = $VFAT_KIND_OF_PART_NAME;
                         //echo  $kindOfPart;
-                        $temp[$KIND_OF_PART] = $kindOfPart;
-                    
+//                        $temp[$KIND_OF_PART] = $kindOfPart;
+                  
                     
                     //if (isset($logName)) {
                         //echo $logName;
@@ -50,7 +56,7 @@ include "head.php";
       <strong>Well done!</strong> You successfully created XML file  for VFAT <strong>ID:</strong> ' . $_POST['serial'] .
                     '</div>';
                     // redirect to confirm page
-                    header('Location: https://gemdb-p5.web.cern.ch/gemdb-p5/confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
+                    header('Location: confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
                         die();
                 }
             } else {
@@ -118,6 +124,32 @@ if ($serial_num_of_newest_part) {    print_r($serial_num_of_newest_part);
                                         </ul>
                                     </div><br>
                                      <div class="dropdown">
+
+
+ <label> Select VFAT Type:</label><br>
+                                <select name="vfattype" class="form-group">
+        <option value = "GEM VFAT2" > GEM VFAT2</option>
+        <option value = "GEM VFAT3" > GEM VFAT3</option>
+
+
+</select><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                         <label> 4 digits Serial </label><br>
                                     <input placeholder="XXXX" class="serialValidation">
                                     <i class="ace-icon fa fa-times-circle alert-danger exist" style="display: none">Already in  Database</i>

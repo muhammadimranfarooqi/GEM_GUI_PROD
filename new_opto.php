@@ -12,7 +12,7 @@ include "head.php";
                     $temp =array();
                     $arr = array();
                     $temp[$SERIAL_NUMBER] = $_POST['serial'];
-                    $temp[$NAME_LABEL] = $_POST['serial'];
+//                    $temp[$NAME_LABEL] = $_POST['serial'];
                     if (isset($_POST['location']) && !empty($_POST['location'])) {
                         //echo $_POST['location'];
                         $temp[$LOCATION] = $_POST['location'];
@@ -26,10 +26,16 @@ include "head.php";
                         $temp[$BARCODE] = $_POST['barcode'];
                     }
                     
-                        $kindOfPart = $OPTOHYBRID_KIND_OF_PART_NAME;
+//                        $kindOfPart = $OPTOHYBRID_KIND_OF_PART_NAME;
                         //echo  $kindOfPart;
-                        $temp[$KIND_OF_PART] = $kindOfPart;
-                    
+  //                      $temp[$KIND_OF_PART] = $kindOfPart;
+
+		   if (isset($_POST['ohtype']) && !empty($_POST['ohtype'])) {
+
+                      $temp[$KIND_OF_PART] = $_POST['ohtype'];
+
+                   }
+                
                     
                     //if (isset($logName)) {
                         //echo $logName;
@@ -51,7 +57,7 @@ include "head.php";
       <strong>Well done!</strong> You successfully created XML file for OptoHybrid <strong>ID:</strong> ' . $_POST['serial'] .
                     '</div>';
                     // redirect to confirm page
-                    header('Location: https://gemdb-p5.web.cern.ch/gemdb-p5/confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
+                    header('Location: confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
                         die();
                 }
             } else {
@@ -120,7 +126,19 @@ if ($serial_num_of_newest_part) {    print_r($serial_num_of_newest_part);
                                         </ul>
                                     </div><br>
                                      <div class="dropdown">
-                                        <label> 4 digits Serial </label><br>
+                      
+ <label> Select Opto Hybrid Type:</label><br>
+                                <select name="ohtype" class="form-group">
+        <option value = "GEM Opto Hybrid" > GEM Opto Hybrid</option>
+        <option value = "GEM Opto Hybrid V3" > GEM Opto Hybrid V3</option>
+
+
+</select><br>
+
+
+
+
+                  <label> 4 digits Serial </label><br>
                                     <input placeholder="XXXX" class="serialValidation">
                                     <i class="ace-icon fa fa-times-circle alert-danger exist" style="display: none">Already in  Database</i>
                                     <i class="ace-icon fa fa-check-circle alert-success newId" style="display: none"> Valid Serial</i>

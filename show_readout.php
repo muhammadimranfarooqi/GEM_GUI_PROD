@@ -12,13 +12,13 @@ include "head.php";
         <?php include "side.php"; ?>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header"> <img src="images/c2.png" width="4%">Show Chamber  </h1>
+            <h1 class="page-header"> <img src="images/c2.png" width="4%">Show Readout </h1>
 
             <!--<a href="edit_chamber.php?id=<?php /*echo $_GET["id"];*/ ?>"><button class="btn btn-success" type="button">Edit</button></a>-->
-            <a href="list_chambers.php"><button class="btn btn-warning" type="button"><span aria-hidden="true" class="glyphicon glyphicon-backward"></span>Back to list</button></a>
+            <a href="list_parts_readout.php"><button class="btn btn-warning" type="button"><span aria-hidden="true" class="glyphicon glyphicon-backward"></span>Back to list</button></a>
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Chamber [<?php echo $_GET["id"]; ?>] </h3>
+                    <h3 class="panel-title">Readout [<?php echo $_GET["id"]; ?>] </h3>
                 </div>
                 <div class="panel-body">
                      <?php
@@ -168,7 +168,7 @@ include "head.php";
                    <div class="row">
                                 <div class="col-md-4"><div class="panel panel-info">
                                         <div class="panel-heading">
-                                            <h3 class="panel-title">Detector parts:</h3>
+                                            <h3 class="panel-title">Child parts:</h3>
                                         </div>
                                         <div class="panel-body">
                                             <ul class="list-group">
@@ -241,3 +241,14 @@ include "head.php";
 <?php
 include "foot.php";
 ?>
+<script>
+                 jQuery(document).ready(function($) {
+        $("#partslist").show();
+$("#<?= $READOUT_ID; ?>").attr("class","active");
+})
+
+
+
+</script>
+
+

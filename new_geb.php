@@ -11,7 +11,7 @@ include "head.php";
                     $temp =array();
                     $arr = array();
                     $temp[$SERIAL_NUMBER] = $_POST['serial'];
-                    $temp[$NAME_LABEL] = $_POST['serial'];
+//                    $temp[$NAME_LABEL] = $_POST['serial'];
                     if (isset($_POST['location']) && !empty($_POST['location'])) {
                         //echo $_POST['location'];
                         $temp[$LOCATION] = $_POST['location'];
@@ -25,11 +25,14 @@ include "head.php";
                         $temp[$BARCODE] = $_POST['barcode'];
                     }
                     
-                        $kindOfPart = $GEB_KIND_OF_PART_NAME;
+//                        $kindOfPart = $GEB_KIND_OF_PART_NAME;
                         //echo  $kindOfPart;
-                        $temp[$KIND_OF_PART] = $kindOfPart;
+  
+                    if (isset($_POST['gebtype']) && !empty($_POST['gebtype'])) {
+
+                      $temp[$KIND_OF_PART] = $_POST['gebtype'];
                     
-                    
+                   } 
                     //if (isset($logName)) {
                         //echo $logName;
                         $temp[$RECORD_INSERTION_USER] = $logName;
@@ -50,7 +53,7 @@ include "head.php";
       <strong>Well done!</strong> You successfully created XML file for GEM Electronic Board GEB <strong>ID:</strong> ' . $_POST['serial'] .
                     '</div>';
                     // redirect to confirm page
-                    header('Location: https://gemdb-p5.web.cern.ch/gemdb-p5/confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
+                    header('Location: confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
                         die();
                 }
             } else {
@@ -160,7 +163,17 @@ include "head.php";
                                         </ul>
                                     </div><br>
                                      <div class="dropdown">
-                                        <label> 4 digits Serial </label><br>
+                                  
+                                        <label> Select GEB Type:</label><br>
+				<select name="gebtype" class="form-group">
+	<option value = "GEM Electronics Board" > GEM Electronics Board</option>			
+        <option value = "GEM Electronics Board Narrow" > GEM Electronics Board Narrow</option>
+        <option value = "GEM Electronics Board Wide" > GEM Electronics Board Wide</option>
+
+
+</select><br>
+
+      <label> 4 digits Serial </label><br>
                                     <input placeholder="XXXX" class="serialValidation">
                                     <i class="ace-icon fa fa-times-circle alert-danger exist" style="display: none">Already in  Database</i>
                                     <i class="ace-icon fa fa-check-circle alert-success newId" style="display: none"> Valid Serial</i>

@@ -80,8 +80,53 @@ include "head.php";
                             <a href="list_parts_amc.php"><button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span> List</button></a>
                         </div>
                         </div>
+
+
+ <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                          <h4 class="sub-header"><img src="images/VFAT_1.png" width="20%"> <!--<span aria-hidden="true" class="glyphicon glyphicon-th-list"></span>--> GEM Cooling Plate </h4>
+
+                            <a href="new_cooling_plate.php"><button type="button" class="btn btn-success"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add new</button></a>
+                            <a href="list_parts_cooling_plate.php"><button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span> List</button></a>
+                        </div>
+
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                          <h4 class="sub-header"><img src="images/VFAT_1.png" width="20%"> <!--<span aria-hidden="true" class="glyphicon glyphicon-th-list"></span>--> Temperature Sensor </h4>
+
+                            <a href="new_temp_sensor.php"><button type="button" class="btn btn-success"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add new</button></a>
+                            <a href="list_parts_temp_sensor.php"><button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span> List</button></a>
+                        </div>
+
+                        </div>
+
+ <div class="row">
+
+
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                          <h4 class="sub-header"><img src="images/VFAT_1.png" width="20%"> <!--<span aria-hidden="true" class="glyphicon glyphicon-th-list"></span>--> Radmon Sensor </h4>
+
+                            <a href="new_radmon_sensor.php"><button type="button" class="btn btn-success"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add new</button></a>
+                            <a href="list_parts_radmon_sensor.php"><button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span> List</button></a>
+                        </div>
+
+</div>
+
+
                 </div>
 
+
+
+
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 center-block">
+
+                    <h1 class="page-header">Load Data Using XML/Zip Files</h1>
+
+                    <h2 class="sub-header"> <a href="loaddataxml.php"> Click here </a></h2>
+
+
+
+<!--
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 center-block">
 
                     <h1 class="page-header">Attach</h1>
@@ -101,7 +146,9 @@ include "head.php";
                     
                     
                 </div>
-            </div>
+-->    
+
+        </div>
         </div>
 
 <?php
