@@ -5,11 +5,11 @@ include_once "functions/generate_xml.php";
 include_once "functions/globals.php";
 include_once "functions/generate_xml.php";
 $conn = database_connection();
-$RUN_BEGIN_TIMESTAMP = date($_POST['RUN_BEGIN_TIMESTAMP'].':s');
-$RUN_END_TIMESTAMP = date($_POST['RUN_END_TIMESTAMP'].':s');
-$LOCATION = $_POST['LOCATION'];
-$INITIATED_BY_USER = $_POST['INITIATED_BY_USER'];
-$COMMENT_DESCRIPTION = $_POST['COMMENT_DESCRIPTION'];
+//$RUN_BEGIN_TIMESTAMP = date($_POST['RUN_BEGIN_TIMESTAMP'].':s');
+//$RUN_END_TIMESTAMP = date($_POST['RUN_END_TIMESTAMP'].':s');
+//$LOCATION = $_POST['LOCATION'];
+//$INITIATED_BY_USER = $_POST['INITIATED_BY_USER'];
+//$COMMENT_DESCRIPTION = $_POST['COMMENT_DESCRIPTION'];
 //$Elog= $_POST['Elog_Link'];
 $Files= $_POST['File_Name'];
 //$comments= $_POST['comment'];
@@ -29,7 +29,7 @@ if (!$FileTmp){
 ?>
 <?php
   include "head.php";
-$output=shell_exec("/afs/cern.ch/user/m/mimran/www/dev/my_env_new/bin/python qc8_alignment_test.py '$FileName' '$LOCATION' '$INITIATED_BY_USER' '$COMMENT_DESCRIPTION' '$RUN_BEGIN_TIMESTAMP' '$RUN_END_TIMESTAMP'");
+$output=shell_exec("my_env_new/bin/python qc8_alignment_test.py '$FileName' '' '' '' '' ''");
 
 $LocalFilePATH =  $FileName .".xml";
 $check = shell_exec ("zip  archive-$(date +'%Y-%m-%d-%H-%M-%S').zip $LocalFilePATH");

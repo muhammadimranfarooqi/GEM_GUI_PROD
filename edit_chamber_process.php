@@ -79,6 +79,23 @@
                         $child['KIND_OF_PART'] = $DRIFT_KIND_OF_PART_NAME;
                         $childs[] = $child;
                     }
+if (!empty($_POST['cooling_plate'])) {
+                        $child['SERIAL_NUMBER'] = $_POST['cooling_plate'];
+                        $child['KIND_OF_PART'] = $COOLING_PLATE_KIND_OF_PART_NAME;
+                        $childs[] = $child;
+                    }
+
+                 if (!empty($_POST['temp_sensor'])) {
+                        $child['SERIAL_NUMBER'] = $_POST['temp_sensor'];
+                        $child['KIND_OF_PART'] = $TEMP_SENSOR_KIND_OF_PART_NAME;
+                        $childs[] = $child;
+                    }
+                 if (!empty($_POST['redmon_sensor'])) {
+                        $child['SERIAL_NUMBER'] = $_POST['redmon_sensor'];
+                        $child['KIND_OF_PART'] = $RADMON_SENSOR_KIND_OF_PART_NAME;
+                        $childs[] = $child;
+                    }
+
                     if (!empty($_POST['foil1'])) {
                         $child['SERIAL_NUMBER'] = $_POST['foil1'];
                         $child['KIND_OF_PART'] = $FOIL_KIND_OF_PART_NAME;
@@ -104,22 +121,6 @@
                         $childs[] = $child;
                     }
 
- 		   if (!empty($_POST['cooling_plate'])) {
-                        $child['SERIAL_NUMBER'] = $_POST['cooling_plate'];
-                        $child['KIND_OF_PART'] = $COOLING_PLATE_KIND_OF_PART_NAME;
-                        $childs[] = $child;
-                    }
-
-		 if (!empty($_POST['temp_sensor'])) {
-                        $child['SERIAL_NUMBER'] = $_POST['temp_sensor'];
-                        $child['KIND_OF_PART'] = $TEMP_SENSOR_KIND_OF_PART_NAME;
-                        $childs[] = $child;
-                    }
-		 if (!empty($_POST['redmon_sensor'])) {
-                        $child['SERIAL_NUMBER'] = $_POST['redmon_sensor'];
-                        $child['KIND_OF_PART'] = $RADMON_SENSOR_KIND_OF_PART_NAME;
-                        $childs[] = $child;
-                    }
 
                     $temp['children'] = $childs;
                     $arr[] = $temp;

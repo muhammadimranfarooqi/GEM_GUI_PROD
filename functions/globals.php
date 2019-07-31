@@ -96,6 +96,9 @@ $COOLING_PLATE_KIND_OF_PART_ID = $resultArr['GEM Cooling Plate'];
 $TEMP_SENSOR_KIND_OF_PART_ID = $resultArr['GEM Temperature Sensor'];
 $RADMON_SENSOR_KIND_OF_PART_ID = $resultArr['GEM Radmon Sensor'];
 
+$FPGA_KIND_OF_PART_ID = $resultArr['GEM FPGA'];
+$GBT_KIND_OF_PART_ID = $resultArr['GEM GBT'];
+
  
 //Kind of part id for CEAN N1145
 $CEANN1145_KIND_OF_PART_ID = $resultArr['CAEN N1145 Scalar'];
@@ -153,6 +156,13 @@ $COOLING_PLATE_KIND_OF_PART_NAME = "GEM Cooling Plate";
 
 $TEMP_SENSOR_KIND_OF_PART_NAME = "GEM Temperature Sensor";
 $RADMON_SENSOR_KIND_OF_PART_NAME = "GEM Radmon Sensor";
+
+
+
+$FPGA_KIND_OF_PART_NAME = "GEM FPGA";
+$GBT_KIND_OF_PART_NAME = "GEM GBT";
+
+
 
 
 //Kind of part name for CEAN N1145
@@ -214,6 +224,8 @@ $COOLING_PLATE_ID = "GEMCoolingPlate";
 $TEMP_SENSOR_ID = "GEMTempSensor";
 $RADMON_SENSOR_ID = "GEMRadmonSensor";
 
+$FPGA_ID = "GEMFPGA";
+$GBT_ID = "GEMGBT";
 
 /***** Part to Part Relationship IDs *****/
 //$VFAT2_TO_GEB="10000000000005639";
@@ -232,6 +244,10 @@ $VFAT3_TO_GEB_WIDE = $resultArr_p2pr['GEM VFAT3 --> GEM Electronics Board Wide']
 $OPTOHYBRID_TO_GEB = $resultArr_p2pr['AutoAssigned: GEM Opto Hybrid --> GEM Electronics Board'];
 $OPTOHYBRID_TO_CHAMBER = $resultArr_p2pr['GEM Opto Hybrid --> GEM Chamber'];
 $OPTOHYBRID_V3_TO_CHAMBER = $resultArr_p2pr['GEM Opto Hybrid V3 --> GEM Chamber'];
+
+
+$FPGA_TO_OPTOHYBRID_V3 = $resultArr_p2pr['GEM FPGA --> GEM Opto Hybrid V3'];
+$GBT_TO_OPTOHYBRID_V3 = $resultArr_p2pr['GEM GBT --> GEM Opto Hybrid V3'];
 
 
 //$GEB_TO_READOUT="10000000000004839";

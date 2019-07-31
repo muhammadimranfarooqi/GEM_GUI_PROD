@@ -1,76 +1,3 @@
-<?php
-	  //  Form Submitted , need to generate XML 
-	 //if (isset($_POST['foilsnumbersubmitted'])) {
-	     if(isset($_POST["submit"])) {
-
-
-	      include_once "functions/functions.php";
-	      include_once "functions/generate_xml.php";
-	      include_once "functions/globals.php";
-		  $head = array();
-		  $headRun =array();
-		  $headType =array();
-		  $foils =array();
-		  $foil = array();
-		  $part = array();
-		  $partdata = array();
-		  $data = array();
-		  
-		  // Header Data
-		  $headType['EXTENSION_TABLE_NAME'] ="GEM_VFAT_STRIP_MASKING";
-		  $headType['NAME'] = "GEM VFAT STRIP MASKING"; 
-		  $head['TYPE'] = $headType;
-		  
-		  
-		  $headRun['RUN_NUMBER'] = $_POST['RUN_NUMBER'];
-		  $headRun['RUN_TYPE'] = $_POST['RUN_TYPE'];
-		  $headRun['RUN_BEGIN_TIMESTAMP'] = date($_POST['RUN_BEGIN_TIMESTAMP'].':s');
-		  $RUN = "check";
-		  $headRun['RUN_END_TIMESTAMP'] = date($_POST['RUN_END_TIMESTAMP'].':s');
-		  $headRun['LOCATION'] = $_POST['LOCATION'];
-		  $headRun['INITIATED_BY_USER'] = $_POST['INITIATED_BY_USER'];
-		  $headRun['COMMENT_DESCRIPTION'] = $_POST['COMMENT_DESCRIPTION'];
-		  $head['RUN'] = $headRun;
-		  
-		  
-		  //Foils Data
-	       for($i = 1; $i <= $_POST['foilsnumbersubmitted']; $i++){
-		  //$_POST['foil'.$i];   
-		  $foil['COMMENT_DESCRIPTION'] = $_POST['COMMENT_DESCRIPTION_foil'.$i];
-		  $foil['VERSION'] = $_POST['VERSION_foil'.$i];
-		  
-		  $part['SERIAL_NUMBER'] = $_POST['foil'.$i];
-		  $part['VERSION'] = "Batch ".$_POST['VERSIONbatch'.$i];
-		  $part['KIND_OF_PART'] = $FOIL_KIND_OF_PART_NAME;
-		  $foil['PART'] = $part;
-		  
-		  $partdata['TEST_TIME'] = $_POST['HUMIDITY_PERCENT_foil'.$i];
-		  $partdata['INCRMNT_SEC'] = $_POST['TEMP_DEG_CENT_foil'.$i];
-		  $partdata['MANF_PRSR_MBAR'] = $_POST['PRESSURE_MBAR_foil'.$i];
-		  $partdata['AMB_PRSR_MBAR'] = $_POST['PRESSURE_MBAR_foil'.$i];
-		  $partdata['TEMP_DEGC'] = $_POST['PRESSURE_MBAR_foil'.$i];
-		  $foil['DATA'] = $partdata;
-		  
-		  $foils['foil'.$i] = $foil;
-		
-		 }
-		 $data['head'] = $head;
-		 $data['foils'] = $foils;
-		 //print_r($data);
-		 $res_arr = generateDatasetXml($data);
-		  
-		  // Set session variables with the return 
-		  session_start() ;
-		  $_SESSION['post_return'] = $res_arr;
-		  $_SESSION['new_chamber_ntfy'] = '<div role="alert" class="alert alert-success">
-    <strong>Well done!</strong> You successfully generated XML file for a list of GEM FOIL(s) data 
-		  </div>';
-		  // redirect to confirm page
-		  header('Location: https://gemdb.web.cern.ch/gemdb/confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
-		      die();
-		 
-	  }
-	  ?>
 
 <?php
 include "head.php";
@@ -134,96 +61,432 @@ include "head.php";
 	      ?>
 
 	      <!--<form method="POST" action="qc3_leak_test.php" enctype='multipart/form-data'>-->
-	      <form method="POST" action="convert_qc8_geo_conf.php" enctype='multipart/form-data'>
-			<input type="hidden" name="submited" value="true" /><br>
-		  <div class="row">
-		      <div class="col-xs-6 panel-info panel" style="padding-left: 0px; padding-right: 0px;">
-			  <div class="panel-heading">
-			      <h3 class="panel-title" >  <span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span>Enter following details:</h3>
-			  </div>
-			  <div class="panel-body">
-		   <div class="form-group">
-			<div class="panel-body">
-				     <!-- <div class="form-group">
-				      <lable>RUN Number:</lable><br>
-				       <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				      <input class="runinput" name='RUN_NUMBER' >
-				      </div>
-				      
-				     <div class="form-group">
-				      <lable>RUN Type:</lable><br>
-				       <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				      <input class="runinput" name='RUN_TYPE' >
-				      </div>-->
-				      
-				      <div class="form-group">
-				      <lable>Test Begin:</lable><br>
-				      <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				      <input class="runinput date" name="RUN_BEGIN_TIMESTAMP"  >
-				      </div>
-				      
-				      <div class="form-group">
-				      <lable>Test End :</lable><br>
-				       <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				      <input class="runinput date" name='RUN_END_TIMESTAMP'  >
-				     </div>
-				      
-				      <div class="form-group">
-				      <lable>Location:</lable><br>
-				       <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				     <input class="runinput" name="LOCATION" value="" hidden > 
-				      <div class="dropdown" scrollable-menu>
-					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					      Choose Location
-					      <span class="caret"></span>
-					  </button>
-					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-					      <?php get_locations(); ?>
-					      <//?php list_chambers(); ?>
-					  </ul>
-				      </div>
-				      </div>
-				      
-				      <div class="form-group">
-				      <lable>Initiated by user:</lable><br>
-				       <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				      <input class="runinput" name='INITIATED_BY_USER' >
-				      </div>
-				      
-				      <div class="form-group">
-				      <lable>COMMENT_DESCRIPTION</lable><br>
-				      <textarea name='COMMENT_DESCRIPTION' > Please Put the comment of your detector:</textarea>
-				      </div>
-				      
-
-				  </div>
-			      </div>
-			  
-				  <div class="form-group">
-				      <label> Upload Data (EXCEL only) <i class="ace-icon glyphicon glyphicon-barcode"></i></label><br>
-					
-
-				      <!--<input type="file" name="file" id="file" required >
-				      <input type="file" name="file" accept=".xls,.xlsx,.xlsm" required >-->
-					<input type="file" name="file" id="file" onchange="checkfile(this);" required/>
-				  </div>
-				 </div>
-				</div> 
-			</div>
+	      <form method="POST" action="convert_qc8_geo_conf.php">
+                        <input type="hidden" name="submited" value="true" /><br>
 
 
 
+ <div class="row">
+                      <div class="col-xs-4 panel-info panel" style="padding-left: 0px; padding-right: 0px;">
+                          <div class="panel-heading">
+                              <h3 class="panel-title" align="center">Column 1:</h3>
+                          </div>
+     
+
+<div class="form-group">
+	<div class= "col-xs-8">
+		<span class="label label-primary">Super Chambers</span>
+	</div>
+	<div class= "col-xs-2">
+		<span class="label label-success">Flip</span>
+	</div>
+	<div class= "col-xs-2">
+		<span class="label label-danger">Flow</span>
+	</div>
+	
+</div>
+
+<br>
+<div class="form-group">
+
+	<div class= "col-xs-8">
+		<select name="superchamber5">
+                <option value="select" selected  >Select Super Chamber</option>
+	
+	<?php list_superchambers_combobox();
+?>
+
+
+
+	</select>
+	</div>
+
+	<div class= "col-xs-2">
+		<input type="checkbox" name="flip10" value="flip10">
+	</div>
+	<div class= "col-xs-2">
+		<input type="text" name="flow10" maxlength="4" size="2" >
+	</div>
+        
+</div>
+     
+
+
+
+ <div class="row">
+</div>
+<br>
+<div class="form-group">
+
+        <div class= "col-xs-8">
+                <select name="superchamber4">
+                <option value="select" selected  >Select Super Chamber</option>
+     
+                   <?php list_superchambers_combobox();?>
+</select>
+        </div>
+
+        <div class= "col-xs-2">
+                <input type="checkbox" name="flip8" value="flip8">
+        </div>
+        <div class= "col-xs-2">
+                <input type="text" name="flow8" maxlength="4" size="2"> 
+        </div>
+</div>
+
+<div class="row">
+</div>
+<br>
+<div class="form-group">
+
+        <div class= "col-xs-8">
+                <select name="superchamber3">
+                <option value="select" selected  >Select Super Chamber</option>
+
+                        <?php list_superchambers_combobox();?>
+</select>
+        </div>
+
+        <div class= "col-xs-2">
+                <input type="checkbox" name="flip6" value="flip6">
+        </div>
+        <div class= "col-xs-2">
+                <input type="text" name="flow6" maxlength="4" size="2" >
+        </div>
+</div>
+
+<div class="row">
+</div>
+<br>
+<div class="form-group">
+
+        <div class= "col-xs-8">
+                <select name="superchamber2">
+                <option value="select" selected  >Select Super Chamber</option>
+
+                        <?php list_superchambers_combobox();?>
+</select>
+        </div>
+
+        <div class= "col-xs-2">
+                <input type="checkbox" name="flip4" value="flip4">
+        </div>
+        <div class= "col-xs-2">
+                <input type="text" name="flow4" maxlength="4" size="2" >
+        </div>
+</div>
+
+
+<div class="row">
+</div>
+<br>
+<div class="form-group">
+
+        <div class= "col-xs-8">
+                <select name="superchamber1">
+                <option value="select" selected  >Select Super Chamber</option>
+
+                        <?php list_superchambers_combobox();?>
+</select>
+        </div>
+
+        <div class= "col-xs-2">
+                <input type="checkbox" name="flip2" value="flip2">
+        </div>
+        <div class= "col-xs-2">
+                <input type="text" name="flow2" maxlength="4" size="2" >
+        </div>
+</div>
+
+
+
+</div>
+
+
+ <div class="col-xs-4 panel-info panel" style="padding-left: 0px; padding-right: 0px;">
+                          <div class="panel-heading">
+                              <h3 class="panel-title" align="center">Column 2:</h3>
+                          
+
+</div>
+
+<div class="form-group">
+        <div class= "col-xs-8">
+                <span class="label label-primary">Super Chambers</span>
+        </div>
+        <div class= "col-xs-2">
+                <span class="label label-success">Flip</span>
+        </div>
+        <div class= "col-xs-2">
+                <span class="label label-danger">Flow</span>
+        </div>
+
+</div>
+<br>
+<div class="form-group">
+
+	<div class= "col-xs-8">
+		<select name="superchamber10">
+                <option value="select" selected  >Select Super Chamber</option>
+	
+	<?php list_superchambers_combobox();
+?>
+
+
+
+	</select>
+	</div>
+
+	<div class= "col-xs-2">
+		<input type="checkbox" name="flip20" value="flip20">
+	</div>
+	<div class= "col-xs-2">
+		<input type="text" name="flow20" maxlength="4" size="2" >
+	</div>
+        
+</div>
+     
+
+
+
+ <div class="row">
+</div>
+<br>
+<div class="form-group">
+
+        <div class= "col-xs-8">
+                <select name="superchamber9">
+                <option value="select" selected  >Select Super Chamber</option>
+
+                        <?php list_superchambers_combobox();?>
+</select>
+        </div>
+
+        <div class= "col-xs-2">
+                <input type="checkbox" name="flip18" value="flip18">
+        </div>
+        <div class= "col-xs-2">
+                <input type="text" name="flow18" maxlength="4" size="2" > 
+        </div>
+</div>
+
+<div class="row">
+</div>
+<br>
+<div class="form-group">
+
+        <div class= "col-xs-8">
+                <select name="superchamber8">
+                <option value="select" selected  >Select Super Chamber</option>
+
+                        <?php list_superchambers_combobox();?>
+</select>
+        </div>
+
+        <div class= "col-xs-2">
+                <input type="checkbox" name="flip16" value="flip16">
+        </div>
+        <div class= "col-xs-2">
+                <input type="text" name="flow16" maxlength="4" size="2" >
+        </div>
+</div>
+
+
+<div class="row">
+</div>
+<br>
+<div class="form-group">
+
+        <div class= "col-xs-8">
+                <select name="superchamber7">
+                <option value="select" selected  >Select Super Chamber</option>
+
+                        <?php list_superchambers_combobox();?>
+</select>
+        </div>
+
+        <div class= "col-xs-2">
+                <input type="checkbox" name="flip14" value="flip14">
+        </div>
+        <div class= "col-xs-2">
+                <input type="text" name="flow14" maxlength="4" size="2" >
+        </div>
+</div>
+
+
+<div class="row">
+</div>
+<br>
+<div class="form-group">
+
+        <div class= "col-xs-8">
+                <select name="superchamber6">
+                <option value="select" selected  >Select Super Chamber</option>
+
+                        <?php list_superchambers_combobox();?>
+</select>
+        </div>
+
+        <div class= "col-xs-2">
+                <input type="checkbox" name="flip12" value="flip12">
+        </div>
+        <div class= "col-xs-2">
+                <input type="text" name="flow12" maxlength="4" size="2" >
+        </div>
+</div>
+
+
+</div>
+
+ <div class="col-xs-4 panel-info panel" style="padding-left: 0px; padding-right: 0px;">
+                          <div class="panel-heading">
+                              <h3 class="panel-title" align="center">  Column 3:</h3>
+                          
+</div>
+
+<div class="form-group">
+        <div class= "col-xs-8">
+                <span class="label label-primary">Super Chambers</span>
+        </div>
+        <div class= "col-xs-2">
+                <span class="label label-success">Flip</span>
+        </div>
+        <div class= "col-xs-2">
+                <span class="label label-danger">Flow</span>
+        </div>
+
+</div>
+<br>
+<div class="form-group">
+
+	<div class= "col-xs-8">
+		<select name="superchamber15">
+                <option value="select" selected  >Select Super Chamber</option>
+	
+	<?php list_superchambers_combobox();
+?>
+
+
+
+	</select>
+	</div>
+
+	<div class= "col-xs-2">
+		<input type="checkbox" name="flip30" value="flip30">
+	</div>
+	<div class= "col-xs-2">
+		<input type="text" name="flow30" maxlength="4" size="1" >
+	</div>
+        
+</div>
+     
+
+
+
+ <div class="row">
+</div>
+<br>
+<div class="form-group">
+
+        <div class= "col-xs-8">
+                <select name="superchamber14">
+                <option value="select" selected  >Select Super Chamber</option>
+
+                        <?php list_superchambers_combobox();?>
+</select>
+        </div>
+
+        <div class= "col-xs-2">
+                <input type="checkbox" name="flip28" value="flip28">
+        </div>
+        <div class= "col-xs-2">
+                <input type="text" name="flow28" maxlength="4" size="1" >
+        </div>
+
+</div>
+<div class="row">
+</div>
+
+<br>
+<div class="form-group">
+
+        <div class= "col-xs-8">
+                <select name="superchamber13">
+                <option value="select" selected  >Select Super Chamber</option>
+
+                        <?php list_superchambers_combobox();?>
+</select>
+        </div>
+
+        <div class= "col-xs-2">
+                <input type="checkbox" name="flip26" value="flip26">
+        </div>
+        <div class= "col-xs-2">
+                <input type="text" name="flow26" maxlength="4" size="1" >
+        </div>
+</div>
+
+
+<div class="row">
+</div>
+<br>
+<div class="form-group">
+
+        <div class= "col-xs-8">
+                <select name="superchamber12">
+                <option value="select" selected  >Select Super Chamber</option>
+
+                        <?php list_superchambers_combobox();?>
+</select>
+        </div>
+
+        <div class= "col-xs-2">
+                <input type="checkbox" name="flip24" value="flip24">
+        </div>
+        <div class= "col-xs-2">
+                <input type="text" name="flow24" maxlength="4" size="1" >
+        </div>
+</div>
+<div class="row">
+</div>
+<br>
+<div class="form-group">
+
+        <div class= "col-xs-8">
+                <select name="superchamber11">
+                <option value="select" selected  >Select Super Chamber</option>
+
+                        <?php list_superchambers_combobox();?>
+</select>
+        </div>
+
+        <div class= "col-xs-2">
+                <input type="checkbox" name="flip22" value="flip22">
+        </div>
+        <div class= "col-xs-2">
+                <input type="text" name="flow22" maxlength="4" size="1" >
+        </div>
+</div>
+
+</div>
+
+
+</div>
+
+
+
+                  <button type="submit" class="btn btn-default subbutt">Submit</button>
+
+                      </div>
 
 
 
 
 
 
-		  <button type="submit" class="btn btn-default subbutt">Submit</button>   
+              </form>
 
 
-
-	      </form>
 
 
 <?php

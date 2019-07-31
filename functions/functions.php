@@ -59,13 +59,39 @@ function get_part_ID($part_id, $version = NULL) {
     }
 }
 
-/*
+/*i
  * Name: get_part_ID
  * Description: Get part id of latest inserted part by kind of part
  * Parameters: $part_id [ String ] kind of part id, $version [String] -L- or -S- means long or short 
  * Return: return ID [ String ] if exist otherwise return 0
  * Author: Ola Aboamer [o.aboamer@cern.ch]
  */
+
+
+function get_part_id_from_serial_number($serial_number) {
+
+    // Database connection
+    $conn = database_connection();
+
+
+    $sql = "SELECT part_id FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE SERIAL_NUMBER='" . $serial_number . "'"; //select data or inser
+ $query = oci_parse($conn, $sql);
+    //Oci_bind_by_name($query,':bind_name',$bind_para); //if needed
+    $arr = oci_execute($query);
+
+    $result = array();
+    while ($row = oci_fetch_array($query, OCI_ASSOC + OCI_RETURN_NULLS)) {
+        $result[] = $row;
+    }
+    return $result;
+
+
+
+
+
+}
+
+
 
 function get_list_part_ID($part_id) {
 
@@ -105,7 +131,7 @@ function get_part_by_ID_KIND($part_id,$kind_name) {
     // Database connection 
     $conn = database_connection();
 
-    $sql = "SELECT P.PART_ID,P.SERIAL_NUMBER,P.NAME_LABEL,P.BARCODE,P.RECORD_INSERTION_USER, P.COMMENT_DESCRIPTION,P.RECORD_INSERTION_TIME,P.MANUFACTURER_ID, P.LOCATION_ID, KP.DISPLAY_NAME  FROM  CMS_GEM_CORE_CONSTRUCT.KINDS_OF_PARTS KP INNER JOIN  CMS_GEM_CORE_CONSTRUCT.PARTS P  ON KP.KIND_OF_PART_ID = P.KIND_OF_PART_ID WHERE KP.DISPLAY_NAME = '" . $kind_name . "' AND P.SERIAL_NUMBER='" . $part_id . "' AND P.IS_RECORD_DELETED = 'F'"; //select data or insert data
+    $sql = "SELECT P.PART_ID,P.SERIAL_NUMBER,P.NAME_LABEL,P.BARCODE,P.RECORD_INSERTION_USER, P.COMMENT_DESCRIPTION,P.RECORD_INSERTION_TIME,P.MANUFACTURER_ID, P.LOCATION_ID, KP.DISPLAY_NAME  FROM  CMS_GEM_CORE_CONSTRUCT.KINDS_OF_PARTS KP INNER JOIN  CMS_GEM_CORE_CONSTRUCT.PARTS P  ON KP.KIND_OF_PART_ID = P.KIND_OF_PART_ID WHERE KP.DISPLAY_NAME = '" . $kind_name . "' AND P.SERIAL_NUMBER='" . $part_id . "' AND P.IS_RECORD_DELETED = 'F' order by P.SERIAL_NUMBER"; //select data or insert data
     // Execute query  
     $query = oci_parse($conn, $sql);
     //Oci_bind_by_name($query,':bind_name',$bind_para); //if needed
@@ -384,7 +410,7 @@ global $ROOT_PART_ID;
 // Database connection 
     $conn = database_connection();
 
-    $sql = "SELECT SERIAL_NUMBER FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $part_id . "' AND SERIAL_NUMBER LIKE '%" . $version . "%' AND IS_RECORD_DELETED = 'F' AND PART_ID not in (select PART_ID from CMS_GEM_CORE_CONSTRUCT.PHYSICAL_PARTS_TREE  WHERE PART_PARENT_ID != '".$ROOT_PART_ID."') ORDER BY SUBSTR(SERIAL_NUMBER, -4)  asc"; //select data or insert data 
+    $sql = "SELECT SERIAL_NUMBER FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $part_id . "' AND SERIAL_NUMBER LIKE '%" . $version . "%' AND IS_RECORD_DELETED = 'F' AND PART_ID not in (select PART_ID from CMS_GEM_CORE_CONSTRUCT.PHYSICAL_PARTS_TREE  WHERE PART_PARENT_ID != '".$ROOT_PART_ID."') ORDER BY SERIAL_NUMBER"; //select data or insert data 
 
 
     $query = oci_parse($conn, $sql);
@@ -414,7 +440,7 @@ function get_available_parts_nohtml($part_id, $version) {
     // Database connection 
     $conn = database_connection();
 
-    $sql = "SELECT SERIAL_NUMBER FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $part_id . "' AND SERIAL_NUMBER LIKE '%" . $version . "%' AND PART_ID not in (select PART_ID from CMS_GEM_CORE_CONSTRUCT.PHYSICAL_PARTS_TREE WHERE PART_PARENT_ID != '".$ROOT_PART_ID."') ORDER BY SUBSTR(SERIAL_NUMBER, -4)  asc"; //select data or insert data 
+    $sql = "SELECT SERIAL_NUMBER FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $part_id . "' AND SERIAL_NUMBER LIKE '%" . $version . "%' AND PART_ID not in (select PART_ID from CMS_GEM_CORE_CONSTRUCT.PHYSICAL_PARTS_TREE WHERE PART_PARENT_ID != '".$ROOT_PART_ID."') ORDER BY SERIAL_NUMBER"; //select data or insert data 
 
 
     $query = oci_parse($conn, $sql);
@@ -443,7 +469,7 @@ function get_available_parts_nohtml_noversion($part_id) {
     $conn = database_connection();
     global $ROOT_PART_ID;
 
-    $sql = "SELECT SERIAL_NUMBER FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $part_id . "' AND IS_RECORD_DELETED = 'F' AND PART_ID not in (select PART_ID from CMS_GEM_CORE_CONSTRUCT.PHYSICAL_PARTS_TREE WHERE PART_PARENT_ID != '".$ROOT_PART_ID."') ORDER BY SUBSTR(SERIAL_NUMBER, -4)  asc"; //select data or insert data 
+    $sql = "SELECT SERIAL_NUMBER FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $part_id . "' AND IS_RECORD_DELETED = 'F' AND PART_ID not in (select PART_ID from CMS_GEM_CORE_CONSTRUCT.PHYSICAL_PARTS_TREE WHERE PART_PARENT_ID != '".$ROOT_PART_ID."') ORDER BY SERIAL_NUMBER"; //select data or insert data 
 
 
     $query = oci_parse($conn, $sql);
@@ -519,12 +545,34 @@ function get_available_parts_nochild($part_id, $version, $relationID = "NA") {
  * Autor: Ola Aboamer [o.aboamer@cern.ch]
  */
 
+function get_qc_result_data ($serial_num){
+
+  // Database connection
+    $conn = database_connection();
+
+
+        $insertion = "INSERTION_DATE";
+    $sql = "SELECT QC_TEST, QC_RESULT, ELOG_LINK, COMMENTS, TO_CHAR(RECORD_INSERTION_TIME, 'YYYY/MM/DD hh:mm:ss') as " .$insertion. " FROM CMS_GEM_MUON_VIEW.GEM_CHMBR_QC_RESULT_V_RH  WHERE CHMBR_SER_NUMBR='" . $serial_num . "' ORDER BY QC_RESULT asc, RECORD_INSERTION_TIME DESC"; 
+    // Execute query
+    $query = oci_parse($conn, $sql);
+    //Oci_bind_by_name($query,':bind_name',$bind_para); //if needed
+    $arr = oci_execute($query);
+
+    $result = array();
+    while ($row = oci_fetch_array($query, OCI_ASSOC + OCI_RETURN_NULLS)) {
+        $result[] = $row;
+    }
+
+    return $result;
+
+
+}
 
 function get_attached_parts_show($part_id) {
 
-    global $VFAT2_TO_GEB;
-    global $VFAT2_TO_GEB_NARROW;
-    global $VFAT2_TO_GEB_WIDE;
+    global $VFAT3_TO_GEB;
+    global $VFAT3_TO_GEB_NARROW;
+    global $VFAT3_TO_GEB_WIDE;
 
     global $OPTOHYBRID_TO_GEB;
     global $OPTOHYBRID_TO_CHAMBER;
@@ -542,7 +590,7 @@ function get_attached_parts_show($part_id) {
     global $FOIL_KIND_OF_PART_NAME;
     global $READOUT_KIND_OF_PART_NAME;
     global $FRAME_KIND_OF_PART_NAME;
-    global $VFAT_KIND_OF_PART_NAME;
+    global $VFAT3_KIND_OF_PART_NAME;
     global $OPTOHYBRID_KIND_OF_PART_NAME;
     global $GEB_KIND_OF_PART_NAME;
     global $GEB_NARROW_KIND_OF_PART_NAME;
@@ -554,6 +602,8 @@ function get_attached_parts_show($part_id) {
  global $RADMON_SENSOR_TO_CHAMBER;
 
     global $COOLING_PLATE_KIND_OF_PART_NAME;
+  global $FPGA_TO_OPTOHYBRID_V3;
+    global $GBT_TO_OPTOHYBRID_V3;
 
     global $CHAMBER_TO_SUPER_CHAMBER;
 
@@ -634,14 +684,14 @@ function get_attached_parts_show($part_id) {
             echo '<li class="list-group-item" style="white-space:nowrap"><label> Optohybrid:</label> <a href="show_opto.php?id=' . $serial . '">' . $serial . '</a>  </li>';
         }
         // vfat -> geb
-        else if ($row['RELATIONSHIP_ID'] === $VFAT2_TO_GEB or $row['RELATIONSHIP_ID'] === $VFAT2_TO_GEB_NARROW or $row['RELATIONSHIP_ID'] === $VFAT2_TO_GEB_WIDE) {
+        else if ($row['RELATIONSHIP_ID'] === $VFAT3_TO_GEB or $row['RELATIONSHIP_ID'] === $VFAT3_TO_GEB_NARROW or $row['RELATIONSHIP_ID'] === $VFAT3_TO_GEB_WIDE) {
             $serialarr = getSerialById($row['PART_ID']);
             $serial = $serialarr[0]['SERIAL_NUMBER'];
 
  $result_arr = array();
 
 
-            $sqltemp = "select RELATIONSHIP_ID from CMS_GEM_CORE_CONSTRUCT.PART_TO_ATTR_RLTNSHPS  where DISPLAY_NAME = 'GEM VFAT2 to VFAT2 Position' AND IS_RECORD_DELETED = 'F'"; //sel
+            $sqltemp = "select RELATIONSHIP_ID from CMS_GEM_CORE_CONSTRUCT.PART_TO_ATTR_RLTNSHPS  where DISPLAY_NAME = 'GEM VFAT3 to VFAT3 Position' AND IS_RECORD_DELETED = 'F'"; //sel
 
             $querytemp = oci_parse($conn, $sqltemp);
     //Oci_bind_by_name($query,':bind_name',$bind_para); //if needed
@@ -659,7 +709,7 @@ function get_attached_parts_show($part_id) {
 
 
 
-            echo '<li class="list-group-item" style="white-space:nowrap"><label>    <font color="red">     VFAT2 at Position: </font>'. $position .'. </label> <a href="show_vfat.php?id=' . $serial . '">' . $serial . '</a> </li>';
+            echo '<li class="list-group-item" style="white-space:nowrap"><label>    <font color="red">     VFAT3 at Position: </font>'. $position .'. </label> <a href="show_vfat.php?id=' . $serial . '">' . $serial . '</a> </li>';
         }
 
 
@@ -712,6 +762,17 @@ else if ($row['RELATIONSHIP_ID'] === $RADMON_SENSOR_TO_CHAMBER) {
             echo '<li class="list-group-item" style="white-space:nowrap"><label>RADMON SENSOR:</label> <a href="show_radmon_sensor.php?id=' . $serial . '">' . $serial . '</a>  </li>';
         }
 
+else if ($row['RELATIONSHIP_ID'] === $FPGA_TO_OPTOHYBRID_V3) {
+            $serialarr = getSerialById($row['PART_ID']);
+            $serial = $serialarr[0]['SERIAL_NUMBER'];
+            echo '<li class="list-group-item" style="white-space:nowrap"><label>FPGA:</label> <a href="show_fpga.php?id=' . $serial . '">' . $serial . '</a> </li>';
+        }
+
+else if ($row['RELATIONSHIP_ID'] === $GBT_TO_OPTOHYBRID_V3) {
+            $serialarr = getSerialById($row['PART_ID']);
+            $serial = $serialarr[0]['SERIAL_NUMBER'];
+            echo '<li class="list-group-item" style="white-space:nowrap"><label>GBT:</label> <a href="show_gbt.php?id=' . $serial . '">' . $serial . '</a> </li>';
+        }
 
 
 
@@ -762,9 +823,9 @@ return 1;
 
 function get_attached_parts($part_id) {
 
-    global $VFAT2_TO_GEB;
-    global $VFAT2_TO_GEB_NARROW;
-    global $VFAT2_TO_GEB_WIDE;
+    global $VFAT3_TO_GEB;
+    global $VFAT3_TO_GEB_NARROW;
+    global $VFAT3_TO_GEB_WIDE;
 
     global $OPTOHYBRID_TO_GEB;
     global $OPTOHYBRID_TO_CHAMBER;
@@ -782,7 +843,7 @@ function get_attached_parts($part_id) {
     global $FOIL_KIND_OF_PART_NAME;
     global $READOUT_KIND_OF_PART_NAME;
     global $FRAME_KIND_OF_PART_NAME;
-    global $VFAT_KIND_OF_PART_NAME;
+    global $VFAT3_KIND_OF_PART_NAME;
     global $OPTOHYBRID_KIND_OF_PART_NAME;
     global $GEB_KIND_OF_PART_NAME;
     global $GEB_NARROW_KIND_OF_PART_NAME;
@@ -803,7 +864,10 @@ function get_attached_parts($part_id) {
 
     global $CHAMBER_TO_SUPER_CHAMBER;
 
-    // Database connection 
+    global $FPGA_TO_OPTOHYBRID_V3;
+    global $GBT_TO_OPTOHYBRID_V3;    
+
+// Database connection 
     $conn = database_connection();
 
     $sql = "select PART_ID, RELATIONSHIP_ID from CMS_GEM_CORE_CONSTRUCT.PHYSICAL_PARTS_TREE where PART_PARENT_ID='" . $part_id . "' AND IS_RECORD_DELETED = 'F'"; //select data or insert data 
@@ -880,14 +944,14 @@ function get_attached_parts($part_id) {
             echo '<li class="list-group-item" style="white-space:nowrap"><label> Optohybrid:</label> <a href="show_opto.php?id=' . $serial . '">' . $serial . '</a> <a style="color: red; padding-left:4em " href="javascript:void(0);" class="detach" id="' . $serial . '" kind="' . $OPTOHYBRID_KIND_OF_PART_NAME . '"><span aria-hidden="true" class="glyphicon glyphicon-resize-full"></span> Detach <span aria-hidden="true" class="glyphicon glyphicon-remove"></span></a> </li>';
         }
         // vfat -> geb
-        else if ($row['RELATIONSHIP_ID'] === $VFAT2_TO_GEB or $row['RELATIONSHIP_ID'] === $VFAT2_TO_GEB_NARROW or $row['RELATIONSHIP_ID'] === $VFAT2_TO_GEB_WIDE) {
+        else if ($row['RELATIONSHIP_ID'] === $VFAT3_TO_GEB or $row['RELATIONSHIP_ID'] === $VFAT3_TO_GEB_NARROW or $row['RELATIONSHIP_ID'] === $VFAT3_TO_GEB_WIDE) {
             $serialarr = getSerialById($row['PART_ID']);
             $serial = $serialarr[0]['SERIAL_NUMBER'];
 
  $result_arr = array();
 
 
-            $sqltemp = "select RELATIONSHIP_ID from CMS_GEM_CORE_CONSTRUCT.PART_TO_ATTR_RLTNSHPS  where DISPLAY_NAME = 'GEM VFAT2 to VFAT2 Position' AND IS_RECORD_DELETED = 'F'"; //sel
+            $sqltemp = "select RELATIONSHIP_ID from CMS_GEM_CORE_CONSTRUCT.PART_TO_ATTR_RLTNSHPS  where DISPLAY_NAME = 'GEM VFAT3 to VFAT3 Position' AND IS_RECORD_DELETED = 'F'"; //sel
 
             $querytemp = oci_parse($conn, $sqltemp);
     //Oci_bind_by_name($query,':bind_name',$bind_para); //if needed
@@ -905,7 +969,7 @@ function get_attached_parts($part_id) {
 
 
 
-            echo '<li class="list-group-item" style="white-space:nowrap"><label> <font color="red"> VFAT2 at Position: '. $position .'. </font> </label> <a href="show_vfat.php?id=' . $serial . '">' . $serial . '</a> <a style="color: red; padding-left:4em " href="javascript:void(0);" class="detach" id="' . $serial . '" kind="' . $VFAT_KIND_OF_PART_NAME . '"><span aria-hidden="true" class="glyphicon glyphicon-resize-full"></span> Detach <span aria-hidden="true" class="glyphicon glyphicon-remove"></span></a> </li>';
+            echo '<li class="list-group-item" style="white-space:nowrap"><label> <font color="red"> VFAT3 at Position: '. $position .'. </font> </label> <a href="show_vfat.php?id=' . $serial . '">' . $serial . '</a> <a style="color: red; padding-left:4em " href="javascript:void(0);" class="detach" id="' . $serial . '" kind="' . $VFAT3_KIND_OF_PART_NAME . '"><span aria-hidden="true" class="glyphicon glyphicon-resize-full"></span> Detach <span aria-hidden="true" class="glyphicon glyphicon-remove"></span></a> </li>';
         }
 
 
@@ -957,23 +1021,25 @@ else if ($row['RELATIONSHIP_ID'] === $RADMON_SENSOR_TO_CHAMBER) {
         }
 
 
+else if ($row['RELATIONSHIP_ID'] === $FPGA_TO_OPTOHYBRID_V3) {
+            $serialarr = getSerialById($row['PART_ID']);
+            $serial = $serialarr[0]['SERIAL_NUMBER'];
+            echo '<li class="list-group-item" style="white-space:nowrap"><label>FPGA:</label> <a href="show_redmon_sensor.php?id=' . $serial . '">' . $serial . '</a> <a style="color: red; padding-left:4em " href="javascript:void(0);" class="detach" id="' . $serial . '" kind="' . $FPGA_KIND_OF_PART_NAME . '"><span aria-hidden="true" class="glyphicon glyphicon-resize-full"></span> Detach <span aria-hidden="true" class="glyphicon glyphicon-remove"></span></a> </li>';
+        }
 
+else if ($row['RELATIONSHIP_ID'] === $GBT_TO_OPTOHYBRID_V3) {
+            $serialarr = getSerialById($row['PART_ID']);
+            $serial = $serialarr[0]['SERIAL_NUMBER'];
+            echo '<li class="list-group-item" style="white-space:nowrap"><label>GBT:</label> <a href="show_redmon_sensor.php?id=' . $serial . '">' . $serial . '</a> <a style="color: red; padding-left:4em " href="javascript:void(0);" class="detach" id="' . $serial . '" kind="' . $GBT_KIND_OF_PART_NAME . '"><span aria-hidden="true" class="glyphicon glyphicon-resize-full"></span> Detach <span aria-hidden="true" class="glyphicon glyphicon-remove"></span></a> </li>';
+        }
 
 
         // Chamber -> Super Chamber
         else if($row['RELATIONSHIP_ID'] === $CHAMBER_TO_SUPER_CHAMBER){
             $serialarr = getSerialById($row['PART_ID']);
             $serial = $serialarr[0]['SERIAL_NUMBER'];
-
-
-
-
-
-
 	    $result_arr = array();
-
-
-            $sqltemp = "select RELATIONSHIP_ID from CMS_GEM_CORE_CONSTRUCT.PART_TO_ATTR_RLTNSHPS  where DISPLAY_NAME = 'GEM Chamber to Depth' AND IS_RECORD_DELETED = 'F'"; //sel
+           $sqltemp = "select RELATIONSHIP_ID from CMS_GEM_CORE_CONSTRUCT.PART_TO_ATTR_RLTNSHPS  where DISPLAY_NAME = 'GEM Chamber to Depth' AND IS_RECORD_DELETED = 'F'"; //sel
 
             $querytemp = oci_parse($conn, $sqltemp);
     //Oci_bind_by_name($query,':bind_name',$bind_para); //if needed
@@ -986,16 +1052,9 @@ else if ($row['RELATIONSHIP_ID'] === $RADMON_SENSOR_TO_CHAMBER) {
                 //echo $relationship_id_foil_position;
             }
 
-
-
 //echo $relationship_id_foil_position;
            $positionarr = get_attribute_position($row['PART_ID'], $relationship_id_foil_position);
-            $position = $positionarr[0]['POSITION'];
-
-
-
-
-
+         $position = $positionarr[0]['POSITION'];
             echo '<li class="list-group-item" style="white-space:nowrap"><label> Chamber '. $position .':</label> <a href="show_chamber.php?id=' . $serial . '">' . $serial . '</a> <a style="color: red; padding-left:4em " href="javascript:void(0);" class="detach" id="' . $serial . '" kind="' . $CHAMBER_KIND_OF_PART_NAME . '"><span aria-hidden="true" class="glyphicon glyphicon-resize-full"></span> Detach <span aria-hidden="true" class="glyphicon glyphicon-remove"></span></a> </li>';
         }
     }
@@ -1037,12 +1096,55 @@ function getSerialById($id) {
  * Autor: Ola Aboamer [o.aboamer@cern.ch]
  */
 
+function list_chambers_combobox() {
+
+    // Database connection
+    $conn = database_connection($kindId);
+    global $CHAMBER_KIND_OF_PART_ID;
+    $sql = "SELECT SERIAL_NUMBER  FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $CHAMBER_KIND_OF_PART_ID . "' AND IS_RECORD_DELETED = 'F' order by serial_number"; //select data or insert data
+    //$sql = "SELECT SERIAL_NUMBER  FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $kindId . "' AND IS_RECORD_DELETED = 'F'"; //select data or insert data
+    // Execute query
+    $query = oci_parse($conn, $sql);
+    //Oci_bind_by_name($query,':bind_name',$bind_para); //if needed
+    $arr = oci_execute($query);
+
+    $result = array();
+    while ($row = oci_fetch_array($query, OCI_ASSOC + OCI_RETURN_NULLS)) {
+	echo '<option value="'.$row['SERIAL_NUMBER'].'">'.$row['SERIAL_NUMBER'].'</option>';
+
+
+    }
+    return 1;
+}
+
+function list_superchambers_combobox() {
+
+    // Database connection
+    $conn = database_connection($kindId);
+    global $SUPER_CHAMBER_KIND_OF_PART_ID;
+    $sql = "SELECT SERIAL_NUMBER  FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $SUPER_CHAMBER_KIND_OF_PART_ID . "' AND IS_RECORD_DELETED = 'F' order by serial_number"; //select data or insert data
+    //$sql = "SELECT SERIAL_NUMBER  FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $kindId . "' AND IS_RECORD_DELETED = 'F'"; //select data or insert data
+    // Execute query
+    $query = oci_parse($conn, $sql);
+    //Oci_bind_by_name($query,':bind_name',$bind_para); //if needed
+    $arr = oci_execute($query);
+
+    $result = array();
+    while ($row = oci_fetch_array($query, OCI_ASSOC + OCI_RETURN_NULLS)) {
+        echo '<option value="'.$row['SERIAL_NUMBER'].'">'.$row['SERIAL_NUMBER'].'</option>';
+
+
+    }
+    return 1;
+}
+
+
 function list_chambers() {
 
     // Database connection 
     $conn = database_connection($kindId);
     global $CHAMBER_KIND_OF_PART_ID;
-    $sql = "SELECT SERIAL_NUMBER  FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $CHAMBER_KIND_OF_PART_ID . "' AND IS_RECORD_DELETED = 'F'"; //select data or insert data
+    $sql = "SELECT SERIAL_NUMBER  FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $CHAMBER_KIND_OF_PART_ID . "' AND IS_RECORD_DELETED = 'F' order by serial_number"; //select data or insert data
     //$sql = "SELECT SERIAL_NUMBER  FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $kindId . "' AND IS_RECORD_DELETED = 'F'"; //select data or insert data
     // Execute query  
     $query = oci_parse($conn, $sql);
@@ -1065,10 +1167,41 @@ function list_chambers() {
  * Autor: Ola Aboamer [o.aboamer@cern.ch]
  */
 
+function list_parent($part_id) {
+// Database connection
+    $conn = database_connection();
+
+//echo $part_id;
+
+
+   $sql = "SELECT SERIAL_NUMBER FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE PART_ID = (SELECT PART_PARENT_ID FROM CMS_GEM_CORE_CONSTRUCT.PHYSICAL_PARTS_TREE WHERE PART_ID = " . $part_id . ") AND IS_RECORD_DELETED = 'F' " ;
+
+//echo $sql;
+    $query = oci_parse($conn, $sql);
+    //Oci_bind_by_name($query,':bind_name',$bind_para); //if needed
+    $arr = oci_execute($query);
+
+    $result_arr = array();
+  //      echo '<li><a class="CHAMBER" href="#"> test</a></li>';
+
+    while ($row = oci_fetch_array($query, OCI_ASSOC + OCI_RETURN_NULLS)) {
+
+        //    echo '<option>' . $row['SERIAL_NUMBER'] . '</option>';
+	if ($row['SERIAL_NUMBER'] != 'ROOT')
+        echo '<li><a class="CHAMBER" > ' . $row['SERIAL_NUMBER'] . '</a></li>';
+
+
+    }
+    return 1;
+
+}
+
 function list_parts($kindId) {
 // Database connection 
     $conn = database_connection();
-    
+   
+
+ 
    $sql = "SELECT SERIAL_NUMBER FROM CMS_GEM_CORE_CONSTRUCT.PARTS WHERE KIND_OF_PART_ID='" . $kindId . "' AND IS_RECORD_DELETED = 'F' " ;
 
     $query = oci_parse($conn, $sql);
@@ -1076,6 +1209,7 @@ function list_parts($kindId) {
     $arr = oci_execute($query);
 
     $result_arr = array();
+	
 
     while ($row = oci_fetch_array($query, OCI_ASSOC + OCI_RETURN_NULLS)) {
 

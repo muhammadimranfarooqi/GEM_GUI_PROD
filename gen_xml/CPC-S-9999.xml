@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<ROOT>
+  <PARTS>
+    <PART>
+      <SERIAL_NUMBER>CPC-S-9999</SERIAL_NUMBER>
+      <LOCATION>CERN</LOCATION>
+      <KIND_OF_PART>GEM Cooling Plate</KIND_OF_PART>
+      <RECORD_INSERTION_USER>mimran</RECORD_INSERTION_USER>
+      <MANUFACTURER>Micro Pack</MANUFACTURER>
+    </PART>
+  </PARTS>
+</ROOT>

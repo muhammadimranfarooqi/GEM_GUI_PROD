@@ -54,16 +54,16 @@
 
 		if (!empty($_POST['vfat0'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat0'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "0";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
                     }
                     if (!empty($_POST['vfat1'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat1'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "1";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
@@ -72,8 +72,8 @@
 
 		    if (!empty($_POST['vfat2'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat2'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "2";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
@@ -81,8 +81,8 @@
 
 		 if (!empty($_POST['vfat3'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat3'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "3";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
@@ -90,8 +90,8 @@
 
  if (!empty($_POST['vfat4'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat4'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "4";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
@@ -99,8 +99,8 @@
 
  if (!empty($_POST['vfat5'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat5'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "5";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
@@ -108,8 +108,8 @@
 
  if (!empty($_POST['vfat6'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat6'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "6";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
@@ -117,8 +117,8 @@
 
  if (!empty($_POST['vfat7'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat7'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "7";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
@@ -126,8 +126,8 @@
 
  if (!empty($_POST['vfat8'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat8'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "8";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
@@ -135,8 +135,8 @@
 
  if (!empty($_POST['vfat9'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat9'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "9";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
@@ -144,8 +144,8 @@
 
  if (!empty($_POST['vfat10'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat10'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "10";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
@@ -153,8 +153,8 @@
 
  if (!empty($_POST['vfat11'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat11'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "11";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
@@ -162,8 +162,8 @@
 
  if (!empty($_POST['vfat12'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat12'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "12";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
@@ -171,8 +171,8 @@
 
  if (!empty($_POST['vfat13'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat13'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "13";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
@@ -180,80 +180,80 @@
 
  if (!empty($_POST['vfat14'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat14'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "14";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
                     }
  if (!empty($_POST['vfat15'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat15'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "15";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
                     }
  if (!empty($_POST['vfat16'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat16'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "16";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
                     }
  if (!empty($_POST['vfat17'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat17'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "17";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
                     }
  if (!empty($_POST['vfat18'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat18'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "18";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
                     }
  if (!empty($_POST['vfat19'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat19'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "19";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
                     }
  if (!empty($_POST['vfat20'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat20'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "20";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
                     }
  if (!empty($_POST['vfat21'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat21'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "21";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
                     }
  if (!empty($_POST['vfat22'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat22'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "22";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;
                     }
  if (!empty($_POST['vfat23'])) {
                         $child['SERIAL_NUMBER'] = $_POST['vfat23'];
-                        $child['KIND_OF_PART'] = $VFAT_KIND_OF_PART_NAME;
-                        $subchild['NAME'] = "VFAT2 Position";
+                        $child['KIND_OF_PART'] = $VFAT3_KIND_OF_PART_NAME;
+                        $subchild['NAME'] = "VFAT3 Position";
                         $subchild['VALUE'] = "23";
                         $child ['attr'] = $subchild;
                         $childs[] = $child;

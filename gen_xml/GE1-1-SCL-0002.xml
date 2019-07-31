@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<ROOT>
+  <PARTS>
+    <PART>
+      <SERIAL_NUMBER>GE1/1-SCL-0002</SERIAL_NUMBER>
+      <KIND_OF_PART>GEM Super Chamber</KIND_OF_PART>
+      <CHILDREN>
+        <PART>
+          <SERIAL_NUMBER>GE1/1-X-L-CERN-0009</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
+          <PREDEFINED_ATTRIBUTES>
+            <ATTRIBUTE>
+              <NAME>Chamber Type</NAME>
+              <VALUE>L</VALUE>
+            </ATTRIBUTE>
+          </PREDEFINED_ATTRIBUTES>
+          <PREDEFINED_ATTRIBUTES>
+            <ATTRIBUTE>
+              <NAME>Depth</NAME>
+              <VALUE>1</VALUE>
+            </ATTRIBUTE>
+          </PREDEFINED_ATTRIBUTES>
+        </PART>
+        <PART>
+          <SERIAL_NUMBER>GE1/1-X-L-GHENT-0002</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
+          <PREDEFINED_ATTRIBUTES>
+            <ATTRIBUTE>
+              <NAME>Chamber Type</NAME>
+              <VALUE>L</VALUE>
+            </ATTRIBUTE>
+          </PREDEFINED_ATTRIBUTES>
+          <PREDEFINED_ATTRIBUTES>
+            <ATTRIBUTE>
+              <NAME>Depth</NAME>
+              <VALUE>2</VALUE>
+            </ATTRIBUTE>
+          </PREDEFINED_ATTRIBUTES>
+        </PART>
+      </CHILDREN>
+    </PART>
+  </PARTS>
+</ROOT>

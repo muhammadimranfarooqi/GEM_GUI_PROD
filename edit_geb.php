@@ -188,9 +188,14 @@ include "head.php";
 
 $GEB_TYPE_CHECK = $data[0]['DISPLAY_NAME'] ;
 
-	global $VFAT2_TO_GEB;
-        global $VFAT2_TO_GEB_NARROW;
-        global $VFAT2_TO_GEB_WIDE;
+//	global $VFAT2_TO_GEB;
+//        global $VFAT2_TO_GEB_NARROW;
+//        global $VFAT2_TO_GEB_WIDE;
+
+
+ global $VFAT3_TO_GEB;
+        global $VFAT3_TO_GEB_NARROW;
+        global $VFAT3_TO_GEB_WIDE;
 
 
 global $GEB_KIND_OF_PART_NAME;
@@ -203,6 +208,7 @@ global $GEB_KIND_OF_PART_NAME;
     global $GEB_WIDE_KIND_OF_PART_ID;
    global $VFAT_KIND_OF_PART_ID;
 
+   global $VFAT3_KIND_OF_PART_ID;
 
 
     // Database connection
@@ -218,9 +224,9 @@ global $GEB_KIND_OF_PART_NAME;
 //echo $FOIL_TO_CHAMBER;
 
 
- $sqltemp = "select RELATIONSHIP_ID from CMS_GEM_CORE_CONSTRUCT.PART_TO_ATTR_RLTNSHPS  where DISPLAY_NAME = 'GEM VFAT2 to VFAT2 Position' AND IS_RECORD_DELETED = 'F'"; //sel
+// $sqltemp = "select RELATIONSHIP_ID from CMS_GEM_CORE_CONSTRUCT.PART_TO_ATTR_RLTNSHPS  where DISPLAY_NAME = 'GEM VFAT2 to VFAT2 Position' AND IS_RECORD_DELETED = 'F'"; //sel
 
-//$sqltemp = "select RELATIONSHIP_ID from CMS_GEM_CORE_CONSTRUCT.PART_TO_ATTR_RLTNSHPS  where DISPLAY_NAME = 'GEM VFAT3 to VFAT3 Position' AND IS_RECORD_DELETED = 'F'"; //sel
+$sqltemp = "select RELATIONSHIP_ID from CMS_GEM_CORE_CONSTRUCT.PART_TO_ATTR_RLTNSHPS  where DISPLAY_NAME = 'GEM VFAT3 to VFAT3 Position' AND IS_RECORD_DELETED = 'F'"; //sel
 
 
  $querytemp = oci_parse($conn, $sqltemp);
@@ -243,7 +249,7 @@ $count = 0;
     while ($row = oci_fetch_array($query, OCI_ASSOC + OCI_RETURN_NULLS)) {
 
         // foil -> chamber
-        if ($row['RELATIONSHIP_ID'] === $VFAT2_TO_GEB) {
+        if ($row['RELATIONSHIP_ID'] === $VFAT3_TO_GEB) {
 
  	    $serialarr = getSerialById($row['PART_ID']);
             $serial = $serialarr[0]['SERIAL_NUMBER'];
@@ -254,7 +260,7 @@ $count = 0;
 //	    $count++;
 	}
 
-         if ($row['RELATIONSHIP_ID'] === $VFAT2_TO_GEB_NARROW) {
+         if ($row['RELATIONSHIP_ID'] === $VFAT3_TO_GEB_NARROW) {
 
             $serialarr = getSerialById($row['PART_ID']);
             $serial = $serialarr[0]['SERIAL_NUMBER'];
@@ -266,7 +272,7 @@ $count = 0;
         }
 
 
- if ($row['RELATIONSHIP_ID'] === $VFAT2_TO_GEB_WIDE) {
+ if ($row['RELATIONSHIP_ID'] === $VFAT3_TO_GEB_WIDE) {
 
             $serialarr = getSerialById($row['PART_ID']);
             $serial = $serialarr[0]['SERIAL_NUMBER'];
@@ -290,7 +296,7 @@ if (in_array("0", $positionarrp)){
 }
 else {
  
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
 
                                 if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
@@ -300,11 +306,11 @@ else {
 
 
 ?>
-<div class="col-sm-4">
-               <label id = "vfat0label" > Select VFAT 0: </label>
+<div class="col-sm-5">
+               <label id = "vfat0label" > Select VFAT3 for position 0: </label>
 
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 
 <select name="vfat0" id = "vfat0"  class="form-control">
 
@@ -328,15 +334,15 @@ if (in_array("1", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
 	 $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 1: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 1: </label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat1" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -359,15 +365,15 @@ if (in_array("2", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 2: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 2: </label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat2" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -389,15 +395,15 @@ if (in_array("3", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 3: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 3: </label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat3" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -420,15 +426,15 @@ if (in_array("4", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 4: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 4: </label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat4" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -451,15 +457,15 @@ if (in_array("5", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 5: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 5: </label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat5" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -482,15 +488,15 @@ if (in_array("6", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 6: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 6: </label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat6" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -513,15 +519,15 @@ if (in_array("7", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 7: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 7: </label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat7" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -543,15 +549,15 @@ if (in_array("8", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 8: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 8: </label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat8" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -573,15 +579,15 @@ if (in_array("9", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 9: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 9: </label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat9" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -605,15 +611,15 @@ if (in_array("10", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 10: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 10:</label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat10" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -635,15 +641,15 @@ if (in_array("11", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 11: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 11:</label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat11" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -664,15 +670,15 @@ if (in_array("12", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 12: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 12:</label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat12" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -696,15 +702,15 @@ if (in_array("13", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 13: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 13:</label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat13" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -726,15 +732,15 @@ if (in_array("14", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 14: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 14:</label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat14" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -756,15 +762,15 @@ if (in_array("15", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 15: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 15:</label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat15" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -786,15 +792,15 @@ if (in_array("16", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 16: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 16:</label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat16" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -817,15 +823,15 @@ if (in_array("17", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 17: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 17:</label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat17" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -849,15 +855,15 @@ if (in_array("18", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 18: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 18:</label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat18" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -880,15 +886,15 @@ if (in_array("19", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 19: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 19:</label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat19" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -911,15 +917,15 @@ if (in_array("20", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 20: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 20:</label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat20" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -942,15 +948,15 @@ if (in_array("21", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 21: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 21:</label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat21" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -973,15 +979,15 @@ if (in_array("22", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 22: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 22:</label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat22" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {
@@ -1004,15 +1010,15 @@ if (in_array("23", $positionarrp)){
 //      echo "true";
 }
 else {
- $parts_available_list = get_available_parts_nohtml_noversion($VFAT_KIND_OF_PART_ID);
+ $parts_available_list = get_available_parts_nohtml_noversion($VFAT3_KIND_OF_PART_ID);
     if (!empty($parts_available_list)) {
 //print_r ($parts_available_list);
          $count++;
 ?>
-<div class="col-sm-4">
-               <label > Select VFAT 23: </label>
+<div class="col-sm-5">
+               <label > Select VFAT3 for position 23:</label>
 </div>
-<div class="col-sm-8">
+<div class="col-sm-7">
 <select name="vfat23" class="form-control">
 <?php
 foreach($parts_available_list as $key => $value) {

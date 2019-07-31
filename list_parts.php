@@ -110,11 +110,29 @@ include "head.php";
                             <a href="list_parts_radmon_sensor.php"><button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span> List</button></a>
                         </div>
 
+ <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                          <h4 class="sub-header"><img src="images/VFAT_1.png" width="20%"> <!--<span aria-hidden="true" class="glyphicon glyphicon-th-list"></span>--> FPGA </h4>
+
+                            <a href="new_fpga.php"><button type="button" class="btn btn-success"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add new</button></a>
+                            <a href="list_fpga.php"><button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span> List</button></a>
+                        </div>
+
 </div>
 
 
-                </div>
+<div class="row">
 
+
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                          <h4 class="sub-header"><img src="images/VFAT_1.png" width="20%"> <!--<span aria-hidden="true" class="glyphicon glyphicon-th-list"></span>--> GBT </h4>
+
+                            <a href="new_gbt.php"><button type="button" class="btn btn-success"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add new</button></a>
+                            <a href="list_gbt.php"><button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span> List</button></a>
+                        </div>
+
+                </div>
+</div>
 
 
 

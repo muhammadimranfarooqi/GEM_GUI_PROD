@@ -62,6 +62,13 @@ include "head.php";
             </div>
             </a>
 
+ <a href="list_qc8.php">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="images/qc.png" class="img-responsive" alt="Generic placeholder thumbnail" style="width: 150px;">
+              <h4>QC8</h4>
+              <span class="text-muted">QC8 Test</span>
+            </div>
+            </a>
 
 <!--
  <a href="list_strip_masking.php">

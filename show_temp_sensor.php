@@ -160,6 +160,20 @@ include "head.php";
                                 }
                                 ?>
 
+<div class="row">
+<div class="col-md-4"><div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Parent Component:</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul class="list-group">
+                                                <?php list_parent($data[0]['PART_ID']); ?>
+                                            </ul>
+                                        </div>
+                                    </div></div>
+</div>
+
+
                    <div class="row">
                                 <div class="col-md-4"><div class="panel panel-info">
                                         <div class="panel-heading">

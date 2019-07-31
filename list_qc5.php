@@ -24,7 +24,17 @@ include "head.php";
               <span class="text-muted"> Effective Gain Test</span>
             </div>
             </a>
+
+            <a href="qc5_gain_unif.php">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="images/c1.bmp" class="img-responsive" alt="Generic placeholder thumbnail" style="width: 150px;">
+              <h4>Gain Uniformity Test</h4>
+              <span class="text-muted">Gain Uniformity Test</span>
+            </div>
+            </a>
           </div>
+
+
 <!--
                 <li class="list-group-item"><div class="panel panel-default">
                 <div class="panel-heading">

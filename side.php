@@ -14,6 +14,10 @@
                 <li id="<?= $COOLING_PLATE_ID; ?>" class=""><a href="list_parts_cooling_plate.php">COOLING PLATE CIRCUITs</a>
                 <li id="<?= $TEMP_SENSOR_ID; ?>" class=""><a href="list_parts_temp_sensor.php">TEMP SENSORs</a>
                 <li id="<?= $RADMON_SENSOR_ID; ?>" class=""><a href="list_parts_radmon_sensor.php">RADMON SENSORs</a>
+                <li id="<?= $FPGA_ID; ?>" class=""><a href="list_fpga.php">FPGAs</a>
+                <li id="<?= $GBT_ID; ?>" class=""><a href="list_gbt.php">GBTs</a>
+
+
             </ul>
         </li>
         <li id="chamber" class=""><a href="list_chambers.php"><i class="menu-icon fa fa-file-o"></i> Chambers</a></li>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ROOT>
+  <PARTS>
+    <PART>
+      <SERIAL_NUMBER>GE1/1-ExtFrame-B1-S-0005</SERIAL_NUMBER>
+      <LOCATION>LNF</LOCATION>
+      <COMMENT_DESCRIPTION>This is the frame with a crack in the groove that has been cured by painting it with Nuvovern. For reference please see https://indico.cern.ch/event/683187/contributions/2799537/attachments/1563260/2462225/AR_GE11-X-S-FRASCATI-0001_-_third_.pdf</COMMENT_DESCRIPTION>
+      <KIND_OF_PART>GEM External Frame</KIND_OF_PART>
+      <RECORD_INSERTION_USER>benussi</RECORD_INSERTION_USER>
+      <MANUFACTURER>Eltos</MANUFACTURER>
+    </PART>
+  </PARTS>
+</ROOT>

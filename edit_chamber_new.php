@@ -350,7 +350,7 @@ $count = 0;
            $serialarr = getSerialById($row['PART_ID']);
            $serial = $serialarr[0]['SERIAL_NUMBER'];
           $coolingplatecheck = $serial;
- //           $count++;
+  //          $count++;
 }
 else if ($row['RELATIONSHIP_ID'] === $TEMP_SENSOR_TO_CHAMBER) {
            $serialarr = getSerialById($row['PART_ID']);
@@ -369,7 +369,7 @@ else if ($row['RELATIONSHIP_ID'] === $RADMON_SENSOR_TO_CHAMBER) {
 
    }
 //print_r($positionarrp);
-
+//echo $count;
 if (in_array("GEM1", $positionarrp)){
 //	echo "true";
 }

@@ -5,13 +5,13 @@ include_once "functions/generate_xml.php";
 include_once "functions/globals.php";
 include_once "functions/generate_xml.php";
 $conn = database_connection();
-$CHAMBERS= $_POST['CHAMBER'];
-$CHAMBER= trim($CHAMBERS);
-$RUN_BEGIN_TIMESTAMP = date($_POST['RUN_BEGIN_TIMESTAMP'].':s');
-$RUN_END_TIMESTAMP = date($_POST['RUN_END_TIMESTAMP'].':s');
-$LOCATION = $_POST['LOCATION'];
-$INITIATED_BY_USER = $_POST['INITIATED_BY_USER'];
-$COMMENT_DESCRIPTION = $_POST['COMMENT_DESCRIPTION'];
+//$CHAMBERS= $_POST['CHAMBER'];
+//$CHAMBER= trim($CHAMBERS);
+//$RUN_BEGIN_TIMESTAMP = date($_POST['RUN_BEGIN_TIMESTAMP'].':s');
+//$RUN_END_TIMESTAMP = date($_POST['RUN_END_TIMESTAMP'].':s');
+//$LOCATION = $_POST['LOCATION'];
+//$INITIATED_BY_USER = $_POST['INITIATED_BY_USER'];
+//$COMMENT_DESCRIPTION = $_POST['COMMENT_DESCRIPTION'];
 //$Elog= $_POST['Elog_Link'];
 $Files= $_POST['File_Name'];
 //$comments= $_POST['comment'];
@@ -31,9 +31,13 @@ if (!$FileTmp){
 ?>
 <?php
   include "head.php";
-$output=shell_exec("/afs/cern.ch/user/m/mimran/www/dev/my_env_new/bin/python qc8_ch_vfat_efficiency.py '$FileName' '$LOCATION' '$INITIATED_BY_USER' '$COMMENT_DESCRIPTION' '$RUN_BEGIN_TIMESTAMP' '$RUN_END_TIMESTAMP' '$CHAMBER'");
+//echo $FileName;
+//$output=shell_exec("test/bin/python -V 2>&1 qc8_ch_vfat_efficiency.py '$FileName' '' '' '' '' '' ''");
+$output=shell_exec("my_env_new/bin/python qc8_ch_vfat_efficiency.py '$FileName' '' '' '' '' '' ''");
 
+//echo $output;
 $LocalFilePATH =  $FileName .".xml";
+//echo $LocalFilePATH;
 $check = shell_exec ("zip  archive-$(date +'%Y-%m-%d-%H-%M-%S').zip $LocalFilePATH");
 {
 foreach (glob("*.zip") as $filename) { 
@@ -73,9 +77,9 @@ unlinkr ($dir, "*.xlsm");
 unlinkr ($dir, "*.zip");
  $_SESSION['post_return'] = $res_arr;
                     $_SESSION['new_chamber_ntfy'] = '<div role="alert" class="alert alert-success">
-      <strong>Well done!</strong> Zip file for QC8 Ch VFAT Efficiency Test ID is : ' . $filename .
+      Zip file for QC8 Ch VFAT Efficiency Test ID is : ' . $filename .
                     '</div>';
-                    header('Location: confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
+                   header('Location: confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
                         die();
 
 ?>

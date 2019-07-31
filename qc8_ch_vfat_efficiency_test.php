@@ -139,83 +139,11 @@ include "head.php";
 		  <div class="row">
 		      <div class="col-xs-6 panel-info panel" style="padding-left: 0px; padding-right: 0px;">
 			  <div class="panel-heading">
-			      <h3 class="panel-title" >  <span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span>On which chamber test performed?</h3>
+			      <h3 class="panel-title" >  <span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span>Select file to be uploaded</h3>
 			  </div>
 			  <div class="panel-body">
 		 <div class="form-group">
-		       <label for="exampleInputEmail1">Choose Chamber:</label>
-			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		      <!-- <p class="help-block">help text here.</p>--> 
-		       <!--<input name="chamber1Id" &nbsp value=""  >-->
-		
-		       <input class="runinput" name="CHAMBER" &amp; value="" hidden  >
-		       <!--<input class="foils" href="#" name="SERIAL_NUMBER" value="" hidden/> -->
-			<div class="dropdown" >
-			   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"     aria-haspopup="true" aria-expanded="true">
-			       Chamber
-			       <span class="caret"></span>
-			   </button>
-			   <ul class="dropdown-menu scrollable-menu  aria-labelledby='dropdownMenu1'">
-			      <?php 
-				list_chambers(); 
-				?>
-			      <//?php get_locations(); ?>
-			  </ul>
-		       </div>
-			<div class="panel-body">
-				     <!-- <div class="form-group">
-				      <lable>RUN Number:</lable><br>
-				       <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				      <input class="runinput" name='RUN_NUMBER' >
-				      </div>
 				      
-				      <div class="form-group">
-				      <lable>RUN Type:</lable><br>
-				       <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				      <input class="runinput" name='RUN_TYPE' >
-				      </div>-->
-				      <div class="form-group">
-				      <lable>Location:</lable><br>
-				       <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				     <input class="runinput" name="LOCATION" value=""  hidden> 
-				      <div class="dropdown" scrollable-menu>
-					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					      Choose Location
-					      <span class="caret"></span>
-					  </button>
-					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-					      <?php get_locations(); ?>
-					      <//?php list_chambers(); ?>
-					  </ul>
-				      </div>
-				      </div>
-				      
-				      <div class="form-group">
-				      <lable>Test Begin:</lable><br>
-				      <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				      <input class="runinput date" name="RUN_BEGIN_TIMESTAMP"  >
-				      </div>
-				      
-				      <div class="form-group">
-				      <lable>Test End :</lable><br>
-				       <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				      <input class="runinput date" name='RUN_END_TIMESTAMP'  >
-				     </div>
-				      
-				      
-				      <div class="form-group">
-				      <lable>Initiated by user:</lable><br>
-				       <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				      <input class="runinput" name='INITIATED_BY_USER' required  >
-				      </div>
-				      
-				      <div class="form-group">
-				      <lable>Leave comment Before the Test:</lable><br>
-				      <textarea name='COMMENT_DESCRIPTION' > Please Put the comment of your detector:</textarea>
-				      </div>
-				      
-
-				  </div>
 			  
 				  <div class="form-group">
 				      <label> Upload Data (EXCEL only) <i class="ace-icon glyphicon glyphicon-barcode"></i></label><br>

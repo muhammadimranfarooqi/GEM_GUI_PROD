@@ -43,7 +43,20 @@ def generateXMLHeader(extensionTableNameText, nameText, runTypeText, runNumberTe
     user = SubElement(run,'INITIATED_BY_USER')
     user.text = userText
     return root
-
+def generateDataSetBlob(Set,descriptionText,file_nameText,versionText,kindText,serialText):
+    dataSet = SubElement(Set, 'DATA_SET')
+    description = SubElement(dataSet, 'COMMENT_DESCRIPTION')
+    description.text = descriptionText
+    file_name = SubElement(dataSet, 'DATA_FILE_NAME')
+    file_name.text = file_nameText
+    version = SubElement(dataSet,'VERSION')
+    version.text = versionText
+    part = SubElement(dataSet,"PART")
+    kind = SubElement(part,"KIND_OF_PART")
+    kind.text = kindText
+    serial = SubElement(part,"SERIAL_NUMBER")
+    serial.text = serialText
+    return dataSet
 def generateDataSet(Set,descriptionText,versionText,kindText,serialText):
     dataSet = SubElement(Set, 'DATA_SET')
     description = SubElement(dataSet, 'COMMENT_DESCRIPTION')
@@ -310,31 +323,45 @@ def generateXMLData5a(dataSetTag,userText,ampText,cgainText,fgainText,itimeText,
     collimatorstatus = SubElement(data, 'COLLIMATOR_STATUS')
     collimatorstatus.text = collimatorstatusText
 def generateXMLData5s(dataSetTag,timeText, AvgambText,AvgpreText,expofitText,expofit2Text,filesText,elogText,commentText, errorTempText, errorPressureText,p5p0Text,p5t0Text):
-	data = SubElement(dataSetTag, 'DATA')
-	time = SubElement(data, 'TEST_DATE')
-	time.text=timeText
-	Avgamb = SubElement(data, 'AVG_TEMP_DEGC')
-	Avgamb.text=AvgambText
-	Avgpre=SubElement(data,'AVG_PRESSURE_MBAR')
-	Avgpre.text=AvgpreText
-	expofit=SubElement(data,'EXPO_FIT1_PARA1')
-	expofit.text=expofitText
-	expofit2=SubElement(data,'EXPO_FIT1_PARA2')
-	expofit2.text=expofit2Text
-	files=SubElement(data,'FILE_NAME')
-	files.text=filesText
-	elog=SubElement(data,'ELOG_LINK')
-	elog.text=elogText
-	comment=SubElement(data,'COMMENTS')
-	comment.text=commentText
-	errorTempt=SubElement(data,'ERR_TEMP_DEGC')
-	errorTempt.text=errorTempText
-	errorPressure=SubElement(data,'ERR_PRESSURE_MBAR')
-	errorPressure.text=errorPressureText
-        p5p0=SubElement(data,'P5_P0')
-	p5p0.text=p5p0Text
-      	p5t0=SubElement(data,'P5_T0')
-	p5t0.text=p5t0Text
+    data = SubElement(dataSetTag, 'DATA')
+    time = SubElement(data, 'TEST_DATE')
+    time.text=timeText
+    Avgamb = SubElement(data, 'AVG_TEMP_DEGC')
+    Avgamb.text=AvgambText
+    Avgpre=SubElement(data,'AVG_PRESSURE_MBAR')
+    Avgpre.text=AvgpreText
+    expofit=SubElement(data,'EXPO_FIT1_PARA1')
+    expofit.text=expofitText
+    expofit2=SubElement(data,'EXPO_FIT1_PARA2')
+    expofit2.text=expofit2Text
+    files=SubElement(data,'FILE_NAME')
+    files.text=filesText
+    elog=SubElement(data,'ELOG_LINK')
+    elog.text=elogText
+    comment=SubElement(data,'COMMENTS')
+    comment.text=commentText
+    errorTempt=SubElement(data,'ERR_TEMP_DEGC')
+    errorTempt.text=errorTempText
+    errorPressure=SubElement(data,'ERR_PRESSURE_MBAR')
+    errorPressure.text=errorPressureText
+    p5p0=SubElement(data,'P5_P0')
+    p5p0.text=p5p0Text
+    p5t0=SubElement(data,'P5_T0')
+    p5t0.text=p5t0Text
+def generateXMLData5unif(dataSetTag,ROOT_DATA_FILE_Text,filesText,elogText,commentText):
+    data = SubElement(dataSetTag, 'DATA')
+    files=SubElement(data,'FILE_NAME')
+    files.text=filesText
+    elog=SubElement(data,'ELOG_LINK')
+    elog.text=elogText
+    comment=SubElement(data,'COMMENTS')
+    comment.text=commentText
+    root_file = SubElement(data, 'ROOT_DATA_FILE')
+    root_file.text = ROOT_DATA_FILE_Text
+def generateXMLData5unif_data(dataSetTag,PLOT_DATA_FILE_Text):
+    data = SubElement(dataSetTag, 'DATA')
+    plot_file = SubElement(data, 'PLOT_DATA_FILE')
+    plot_file.text = PLOT_DATA_FILE_Text
 def generateXMLData6s(dataSetTag,testperformText,VmaxText,CurrVmaxText,VdrftText,ReqmsrdText,ReqslpText,diffText,sprsglText,tripText,filenameText,elogText,commentText):
     data = SubElement(dataSetTag, 'DATA')
     testperform = SubElement(data, 'STARTING_TIME')
@@ -397,7 +424,21 @@ def generateXMLDataAlignment(dataSetTag,positionText,dxText,dyText,dzText,rxText
     ry.text=ryText
     rz=SubElement(data,'RZ')
     rz.text=rzText
-def generateXMLDataChVfatEfficiency(dataSetTag,vfat_posnText,efficiencyText,efficiency_errorText):
+def generateXMLDataQC8DeadStrips(dataSetTag,ch_serial_numberText,gem_numberText,positionText,vfatText,channelText,stripText):
+    data = SubElement(dataSetTag, 'DATA')
+    ch_serial_number = SubElement(data, 'CH_SERIAL_NUMBER')
+    ch_serial_number.text = ch_serial_numberText
+    gem_number = SubElement(data, 'GEM_NUMBER')
+    gem_number.text=gem_numberText
+    position = SubElement(data, 'POSITION')
+    position.text = positionText
+    vfat = SubElement(data, 'VFAT')
+    vfat.text=vfatText
+    channel=SubElement(data,'CHANNEL')
+    channel.text=channelText
+    strip=SubElement(data, 'STRIP')
+    strip.text=stripText
+def generateXMLDataChVfatEfficiency(dataSetTag,vfat_posnText,efficiencyText,efficiency_errorText, cluster_size_avgText,cluster_size_sigmaText, percent_maskedText):
     data = SubElement(dataSetTag, 'DATA')
     vfat_posn = SubElement(data, 'VFAT_POSN')
     vfat_posn.text = vfat_posnText
@@ -405,7 +446,13 @@ def generateXMLDataChVfatEfficiency(dataSetTag,vfat_posnText,efficiencyText,effi
     efficiency.text=efficiencyText
     efficiency_error = SubElement(data, 'EFFICIENCY_ERROR')
     efficiency_error.text = efficiency_errorText
-def generateXMLDataStandGeoConf(dataSetTag,ch_serialText,positionText,flowmeterText):
+    cluster_size_avg = SubElement(data, 'CLUSTER_SIZE_AVG')
+    cluster_size_avg.text = cluster_size_avgText
+    cluster_size_sigma = SubElement(data, 'CLUSTER_SIZE_SIGMA')
+    cluster_size_sigma.text = cluster_size_sigmaText
+    percent_masked = SubElement(data, 'PERCENT_MASKED')
+    percent_masked.text = percent_maskedText
+def generateXMLDataStandGeoConf(dataSetTag,ch_serialText,positionText,flowmeterText,gemnumberText,chtypeText,flipText,amcText,ohText):
     data = SubElement(dataSetTag, 'DATA')
     ch_serial_number = SubElement(data, 'CH_SERIAL_NUMBER')
     ch_serial_number.text = ch_serialText
@@ -413,6 +460,22 @@ def generateXMLDataStandGeoConf(dataSetTag,ch_serialText,positionText,flowmeterT
     position.text=positionText
     flowmeter = SubElement(data, 'FLOW_METER')
     flowmeter.text = flowmeterText
+    gemnumber = SubElement(data, 'GEM_NUMBER')
+    gemnumber.text = gemnumberText
+    chtype = SubElement(data, 'CH_TYPE')
+    chtype.text = chtypeText
+    flip = SubElement(data, 'FLIP')
+    flip.text = flipText
+    amc = SubElement(data, 'AMC')
+    amc.text = amcText
+    oh = SubElement(data, 'OH')
+    oh.text = ohText
+def generateXMLDataQuickEfficiencyQC8(dataSetTag,overall_efficiencyText,error_efficiencyText):
+    data = SubElement(dataSetTag, 'DATA')
+    overall_efficiency = SubElement(data, 'OVERALLEFFICIENCY')
+    overall_efficiency.text = overall_efficiencyText
+    error_efficiency = SubElement(data, 'ERROREFFICIENCY')
+    error_efficiency.text=error_efficiencyText
 def generateXMLData6a(dataSetTag,reqText):
     data = SubElement(dataSetTag, 'DATA')
     req = SubElement(data, 'REQUIV_MOHM_MSRD')

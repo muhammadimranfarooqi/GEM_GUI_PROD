@@ -2,74 +2,8 @@
 	  //  Form Submitted , need to generate XML 
 	 //if (isset($_POST['foilsnumbersubmitted'])) {
 	     if(isset($_POST["submit"])) {
+}
 
-
-	      include_once "functions/functions.php";
-	      include_once "functions/generate_xml.php";
-	      include_once "functions/globals.php";
-		  $head = array();
-		  $headRun =array();
-		  $headType =array();
-		  $foils =array();
-		  $foil = array();
-		  $part = array();
-		  $partdata = array();
-		  $data = array();
-		  
-		  // Header Data
-		  $headType['EXTENSION_TABLE_NAME'] ="GEM_VFAT_STRIP_MASKING";
-		  $headType['NAME'] = "GEM VFAT STRIP MASKING"; 
-		  $head['TYPE'] = $headType;
-		  
-		  
-		  $headRun['RUN_NUMBER'] = $_POST['RUN_NUMBER'];
-		  $headRun['RUN_TYPE'] = $_POST['RUN_TYPE'];
-		  $headRun['RUN_BEGIN_TIMESTAMP'] = date($_POST['RUN_BEGIN_TIMESTAMP'].':s');
-		  $RUN = "check";
-		  $headRun['RUN_END_TIMESTAMP'] = date($_POST['RUN_END_TIMESTAMP'].':s');
-		  $headRun['LOCATION'] = $_POST['LOCATION'];
-		  $headRun['INITIATED_BY_USER'] = $_POST['INITIATED_BY_USER'];
-		  $headRun['COMMENT_DESCRIPTION'] = $_POST['COMMENT_DESCRIPTION'];
-		  $head['RUN'] = $headRun;
-		  
-		  
-		  //Foils Data
-	       for($i = 1; $i <= $_POST['foilsnumbersubmitted']; $i++){
-		  //$_POST['foil'.$i];   
-		  $foil['COMMENT_DESCRIPTION'] = $_POST['COMMENT_DESCRIPTION_foil'.$i];
-		  $foil['VERSION'] = $_POST['VERSION_foil'.$i];
-		  
-		  $part['SERIAL_NUMBER'] = $_POST['foil'.$i];
-		  $part['VERSION'] = "Batch ".$_POST['VERSIONbatch'.$i];
-		  $part['KIND_OF_PART'] = $FOIL_KIND_OF_PART_NAME;
-		  $foil['PART'] = $part;
-		  
-		  $partdata['TEST_TIME'] = $_POST['HUMIDITY_PERCENT_foil'.$i];
-		  $partdata['INCRMNT_SEC'] = $_POST['TEMP_DEG_CENT_foil'.$i];
-		  $partdata['MANF_PRSR_MBAR'] = $_POST['PRESSURE_MBAR_foil'.$i];
-		  $partdata['AMB_PRSR_MBAR'] = $_POST['PRESSURE_MBAR_foil'.$i];
-		  $partdata['TEMP_DEGC'] = $_POST['PRESSURE_MBAR_foil'.$i];
-		  $foil['DATA'] = $partdata;
-		  
-		  $foils['foil'.$i] = $foil;
-		
-		 }
-		 $data['head'] = $head;
-		 $data['foils'] = $foils;
-		 //print_r($data);
-		 $res_arr = generateDatasetXml($data);
-		  
-		  // Set session variables with the return 
-		  session_start() ;
-		  $_SESSION['post_return'] = $res_arr;
-		  $_SESSION['new_chamber_ntfy'] = '<div role="alert" class="alert alert-success">
-    <strong>Well done!</strong> You successfully generated XML file for a list of GEM FOIL(s) data 
-		  </div>';
-		  // redirect to confirm page
-		  header('Location: https://gemdb.web.cern.ch/gemdb/confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
-		      die();
-		 
-	  }
 	  ?>
 
 <?php
@@ -139,65 +73,8 @@ include "head.php";
 		  <div class="row">
 		      <div class="col-xs-6 panel-info panel" style="padding-left: 0px; padding-right: 0px;">
 			  <div class="panel-heading">
-			      <h3 class="panel-title" >  <span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span>Enter following details:</h3>
+			      <h3 class="panel-title" >  <span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span>Select file to be uploaded:</h3>
 			  </div>
-			  <div class="panel-body">
-		   <div class="form-group">
-			<div class="panel-body">
-				     <!-- <div class="form-group">
-				      <lable>RUN Number:</lable><br>
-				       <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				      <input class="runinput" name='RUN_NUMBER' >
-				      </div>
-				      
-				     <div class="form-group">
-				      <lable>RUN Type:</lable><br>
-				       <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				      <input class="runinput" name='RUN_TYPE' >
-				      </div>-->
-				      
-				      <div class="form-group">
-				      <lable>Test Begin:</lable><br>
-				      <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				      <input class="runinput date" name="RUN_BEGIN_TIMESTAMP"  >
-				      </div>
-				      
-				      <div class="form-group">
-				      <lable>Test End :</lable><br>
-				       <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				      <input class="runinput date" name='RUN_END_TIMESTAMP'  >
-				     </div>
-				      
-				      <div class="form-group">
-				      <lable>Location:</lable><br>
-				       <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				     <input class="runinput" name="LOCATION" value="" hidden > 
-				      <div class="dropdown" scrollable-menu>
-					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					      Choose Location
-					      <span class="caret"></span>
-					  </button>
-					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-					      <?php get_locations(); ?>
-					      <//?php list_chambers(); ?>
-					  </ul>
-				      </div>
-				      </div>
-				      
-				      <div class="form-group">
-				      <lable>Initiated by user:</lable><br>
-				       <span class="alert-danger foilalert" hidden> <i class="ace-icon fa fa-times-circle alert-danger"></i> </span>
-				      <input class="runinput" name='INITIATED_BY_USER' >
-				      </div>
-				      
-				      <div class="form-group">
-				      <lable>COMMENT_DESCRIPTION</lable><br>
-				      <textarea name='COMMENT_DESCRIPTION' > Please Put the comment of your detector:</textarea>
-				      </div>
-				      
-
-				  </div>
-			      </div>
 			  
 				  <div class="form-group">
 				      <label> Upload Data (EXCEL only) <i class="ace-icon glyphicon glyphicon-barcode"></i></label><br>
@@ -208,7 +85,6 @@ include "head.php";
 					<input type="file" name="file" id="file" onchange="checkfile(this);" required/>
 				  </div>
 			  </div>
-		      </div>
 			</div>
 
 
@@ -222,7 +98,9 @@ include "head.php";
 
 
 	      </form>
-
+</div>
+</div>
+</div>
 
 <?php
 include "foot.php";

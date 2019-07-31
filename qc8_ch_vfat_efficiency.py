@@ -7,6 +7,7 @@ import time
 import xlrd
 from xlrd import xldate
 import re
+import datetime
 import sys
 #import statistics
 from xmlConversion import generateXMLHeader, generateDataSet, writeToFile,writeToFile1
@@ -15,31 +16,34 @@ from xmlConversion import generateXMLDatafastamb,generateXMLDatafast,generateXML
 
 #QC3
 def xml_from_excel3(excel_file):
-	
- 	wb = xlrd.open_workbook(excel_file)
-        sh = wb.sheet_by_index(0)
-        #user = sh.cell(0,1).value
-        user = sys.argv[3]
+	wb = xlrd.open_workbook(excel_file)
+	sh = wb.sheet_by_index(0)
+	user = ''#sys.argv[3]
         #chamber=sh.cell(10,1).value
 #       chamber=sys.argv[2]
 #       Run=sys.argv[3]
-        location=sys.argv[2]
-        Start=sys.argv[5]
-        Stop=sys.argv[6]
-        Date=str(Start[0:10])
-        comment=sys.argv[4]
-	chamber = sys.argv[7]
+	location=''#sys.argv[2]
+	Startdate=sh.cell(2,1).value#sys.argv[5]
+	Stopdate=sh.cell(3,1).value#sys.argv[6]
+	Start = datetime.datetime(*xlrd.xldate_as_tuple(Startdate, wb.datemode))
+	Stop = datetime.datetime(*xlrd.xldate_as_tuple(Stopdate, wb.datemode))
+	#Date=str(Start[0:10])
+	comment=''#sys.argv[4]
+	chamber = sh.cell(1,1).value#sys.argv[7]
         #Elog=sys.argv[7]
         #File=sys.argv[8]
         #Comment=sys.argv[9]
 	Run = sh.cell(0,1).value
 	root = generateXMLHeader("QC8_GEM_CH_VFAT_EFFICIENCY","GEM CH VFAT EFFICIENCY QC8","GEM CH VFAT EFFICIENCY",str(Run),str(Start),str(Stop),str(comment),str(location),str(user))
-	dataSet = generateDataSet(root,comment,"1","GEM Chamber",chamber)	
-	for row in range(3,sh.nrows):
+	dataSet = generateDataSet(root,comment,"1","GEM Chamber",str(chamber))	
+	for row in range(5,sh.nrows):
 		vfat_posn= sh.row_values(row)[0]
 		efficiency= sh.row_values(row)[1]
 		efficiency_error =sh.row_values(row)[2]
-		generateXMLDataChVfatEfficiency(dataSet,str(vfat_posn),str(efficiency), str(efficiency_error))
+		cluster_size_avg =sh.row_values(row)[3]
+		cluster_size_sigma =sh.row_values(row)[4]
+		percent_masked =sh.row_values(row)[5]
+		generateXMLDataChVfatEfficiency(dataSet,str(vfat_posn),str(efficiency), str(efficiency_error),str(cluster_size_avg),str(cluster_size_sigma), str(percent_masked))
 		writeToFile(fileName, tostring(root))
 if __name__ =="__main__":	
 	#fname=raw_input("Enter excel data file name:")

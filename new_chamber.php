@@ -15,7 +15,7 @@
       <strong>Well done!</strong> You successfully created Gem Chamber <strong>ID:</strong> ' . $_POST['serial'] .
                     '</div>';*/
                     $temp[$SERIAL_NUMBER] = $_POST['serial'];
-                    $temp[$NAME_LABEL] = $_POST['serial'];
+//                    $temp[$NAME_LABEL] = $_POST['serial'];
                     if (isset($_POST['location'])) {
                         //echo $_POST['location'];
                         $temp[$LOCATION] = $_POST['location'];

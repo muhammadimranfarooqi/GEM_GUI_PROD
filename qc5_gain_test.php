@@ -66,7 +66,7 @@
     <strong>Well done!</strong> You successfully generated XML file for a list of GEM FOIL(s) data 
 		  </div>';
 		  // redirect to confirm page
-		  header('Location: https://gemdb-p5.web.cern.ch/gemdb-p5/confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
+		  header('Location: confirmation.php'); //?msg='.$msg."&statusCode=".$statusCode."&return=".$return
 		      die();
 		 
 	  }
@@ -242,7 +242,7 @@ include "head.php";
 				      <input class="runinput" name='File_Name' >
 				      </div>
 			      <div class="form-group">
-				  <label for="comment"> Leave your comments (Maximum 4000 characters):</label>
+				  <label for="comment"> Leave your comment:</label>
 				  <textarea class="form-control" rows="5" id="comment" name="comment" > Please Make Summary of Your Detector: </textarea>
 			      </div>
 			  </div>

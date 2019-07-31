@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ROOT>
+  <PARTS>
+    <PART>
+      <BARCODE>CMS-GEM-ROOT</BARCODE>
+      <CHILDREN>
+        <PART>
+          <SERIAL_NUMBER>FOIL-B13-S-144</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
+        </PART>
+      </CHILDREN>
+    </PART>
+  </PARTS>
+</ROOT>
