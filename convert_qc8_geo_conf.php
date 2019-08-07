@@ -176,7 +176,7 @@ $ch16 = $data[2];
 }
 if($sch9 != 'select'){
 $sch9_idarr = get_part_id_from_serial_number($sch9);
-$sch9_id = $sch4_idarr[0]['PART_ID'];
+$sch9_id = $sch9_idarr[0]['PART_ID'];
 $data = getchambers($sch9_id);
 $ch17 = $data[1];
 $ch18 = $data[2];
