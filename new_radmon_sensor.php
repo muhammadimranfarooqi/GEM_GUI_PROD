@@ -2,6 +2,8 @@
 <?php
 include "head.php";
 ?>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <?php
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     include_once "functions/functions.php";
@@ -147,12 +149,12 @@ include "head.php";
                                 <div class="form-group">
                                     <label for="exampleInputEmail1" style="float: left;">Serial Number:&nbsp;</label>
                                     <!--<div class="serial"><span class="name">PCB-RO-VII-B<span class="batch">1</span>-</span><span id="vers" class="version" >VERSION</span><span class="id">-XXXX</span></div>-->
-                                    <div class="serial"><span class="name">RS<span class="batch"></span>-</span><span id="vers" class="version" >VERSION</span><span class="id">-XXXX</span></div>
+                                    <div class="serial"><span class="name">RS<span class="batch"></span>-</span><span class="id">XXX</span></div>
                                     <input class="serialInput" name="serial" value="" hidden>
                                 </div>
                                 <div class="form-group">
-                                    &nbsp;<b style=" color: red">*</b>
-                                    <div class="dropdown">
+                                 <!--         &nbsp;<b style=" color: red">*</b>
+                               <div class="dropdown">
                                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                             Choose Version
                                             <span class="caret"></span>
@@ -161,7 +163,7 @@ include "head.php";
                                             <li><a href="#">Long</a></li>
                                             <li><a href="#">Short</a></li>
                                         </ul>
-                                    </div><br>
+                                    </div>--><br>
                                    <!-- <div class="dropdown" scrollable-menu>
                                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                             Choose Batch Number
@@ -222,8 +224,8 @@ include "head.php";
                                         </ul>
                                     </div><br>-->
                                     <div class="dropdown">&nbsp;<b style=" color: red">*</b>
-                                    <label> 4 digits Serial </label><br>
-                                    <input placeholder="XXXX" class="serialValidation">
+                                    <label> 3 digits Serial </label><br>
+                                    <input placeholder="XXX" class="serialValidation" minlength="3" maxlength="3">
                                     <i class="ace-icon fa fa-times-circle alert-danger exist" style="display: none">Already in  Database</i>
                                     <i class="ace-icon fa fa-check-circle alert-success newId" style="display: none"> Valid Serial</i>
                                 </div><br>
@@ -231,7 +233,7 @@ include "head.php";
                                         <label> Barcode <i class="ace-icon glyphicon glyphicon-barcode"></i></label><br>
                                         <input name="barcode" >
                                     </div>-->
-                                    <div class="form-group">
+                                 <!--   <div class="form-group">
                                         <label for="exampleInputFile" >Location</label>
                                         <input name="location" value="" hidden>
                                         <div class="dropdown">
@@ -256,9 +258,9 @@ include "head.php";
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                                 <?php get_manufacturers(); ?>
                                             </ul>
-                                        </div>
+                                        </div><br>
 
-                                    </div>
+                                    </div>-->
                                     
                                 </div>
                                 <!--                                <div class="form-group">
@@ -318,7 +320,7 @@ include "head.php";
 
                                 <div class="form-group">
                                     <label for="comment"> Leave your comment:</label>
-                                    <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
+                                    <textarea class="form-control" rows="3" id="comment" name="comment"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -368,7 +370,7 @@ include "foot.php";
         //setInterval(ajaxCall, 7000); //7000 MS == 7s Seconds
 
         function ajaxCall() {
-            if ($("#vers").text() == "L-") {
+            if ($("#verss").text() == "L-") {
                 $.ajax({
                     url: 'functions/ajaxActions.php?kindid=<?= $READOUT_KIND_OF_PART_ID; ?>&version=-L-',
                     success: function (data) {
@@ -379,7 +381,7 @@ include "foot.php";
                 });
 
             }
-            else if ($("#vers").text() == "S-") {
+            else if ($("#verss").text() == "S-") {
                 $.ajax({
                     url: 'functions/ajaxActions.php?kindid=<?= $READOUT_KIND_OF_PART_ID; ?>&version=-S-',
                     success: function (data) {
@@ -420,7 +422,7 @@ include "foot.php";
 
         if ($(this).html() == "Long") {
             $('#preloader').fadeIn('fast', function () {});
-            $("#vers").text("L");
+            $("#verss").text("L");
             $(".serialInput").val($(".serial").text());
             validateInput($(".serial").text());
             $('#preloader').fadeOut('fast', function () {});
@@ -428,7 +430,7 @@ include "foot.php";
 
         if ($(this).html() == "Short") {
             $('#preloader').fadeIn('fast', function () {});
-            $("#vers").text("S");
+            $("#verss").text("S");
             $(".serialInput").val($(".serial").text());
             validateInput($(".serial").text());
             $('#preloader').fadeOut('fast', function () {});
@@ -450,7 +452,7 @@ include "foot.php";
         $(".serialValidation").on('blur', function(){
         if($(this).val() != "" ){
             $('#preloader').fadeIn('fast', function () {});
-            $('.id').html("-"+$(this).val());
+            $('.id').html(""+$(this).val());
             $(".serialInput").val($(".serial").text());
             validateInput($(".serial").text());
             $('#preloader').fadeOut('fast', function () {});

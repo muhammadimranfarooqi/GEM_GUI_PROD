@@ -266,11 +266,11 @@ $FOIL_TO_CHAMBER = $resultArr_p2pr['AutoAssigned: GEM Foil --> GEM Chamber'];
 $DRIFT_TO_CHAMBER = $resultArr_p2pr['AutoAssigned: GEM Drift PCB --> GEM Chamber'];
 
 //
-$CHAMBER_TO_SUPER_CHAMBER = $resultArr_p2pr['AutoAssigned: GEM Chamber --> GEM Detector ROOT'];
+$CHAMBER_TO_SUPER_CHAMBER = $resultArr_p2pr['AutoAssigned: GEM Chamber --> GEM Super Chamber'];
 
-$GEB_NARROW_TO_CHAMBER = $resultArr_p2pr['GEM Electronics Board Narrow --> GEM Chamber'];
+$GEB_NARROW_TO_CHAMBER = $resultArr_p2pr['GEM Electronics Board Narrow Long --> GEM Chamber'];
 
-$GEB_WIDE_TO_CHAMBER = $resultArr_p2pr['GEM Electronics Board Wide --> GEM Chamber'];
+$GEB_WIDE_TO_CHAMBER = $resultArr_p2pr['GEM Electronics Board Wide Long --> GEM Chamber'];
 
 
 $COOLING_PLATE_TO_CHAMBER = $resultArr_p2pr['GEM Cooling Plate --> GEM Chamber'];

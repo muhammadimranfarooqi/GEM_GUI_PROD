@@ -42,6 +42,17 @@ include "head.php";
             </div>
             </a>
           </div>
+<div class="col-sm-12 ">
+ <div class="row placeholders">
+<a href="gem_p5.php">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="images/qc.png" class="img-responsive" alt="Generic placeholder thumbnail" style="width: 150px;">
+              <h4>GEM in P5</h4>
+              <span class="text-muted">SC Inst Status/Operations/Issues</span>
+            </div>
+            </a>
+</div>
+</div>
 <!--          
           <div class="row placeholders">
               <a href="track_parts_step1.php">

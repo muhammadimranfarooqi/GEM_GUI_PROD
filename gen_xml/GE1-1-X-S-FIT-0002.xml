@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ROOT>
+  <PARTS>
+    <PART>
+      <SERIAL_NUMBER>GE1/1-X-S-FIT-0002</SERIAL_NUMBER>
+      <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
+      <CHILDREN>
+        <PART>
+          <SERIAL_NUMBER>TS-B-15</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Temperature Sensor</KIND_OF_PART>
+        </PART>
+      </CHILDREN>
+    </PART>
+  </PARTS>
+</ROOT>

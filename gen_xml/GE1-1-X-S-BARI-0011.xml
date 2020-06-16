@@ -6,12 +6,8 @@
       <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
       <CHILDREN>
         <PART>
-          <SERIAL_NUMBER>PCB-VIII-RO-S-0045</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Readout PCB</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>PCB-VIII-DR-S-0038</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Drift PCB</KIND_OF_PART>
+          <SERIAL_NUMBER>TS-R-14</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Temperature Sensor</KIND_OF_PART>
         </PART>
       </CHILDREN>
     </PART>

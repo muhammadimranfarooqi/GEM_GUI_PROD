@@ -6,18 +6,8 @@
       <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
       <CHILDREN>
         <PART>
-          <SERIAL_NUMBER>PCB-VIII-RO-S-0006</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Readout PCB</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>FOIL-B15-S-0168</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
-          <PREDEFINED_ATTRIBUTES>
-            <ATTRIBUTE>
-              <NAME>Foil Position</NAME>
-              <VALUE>GEM2</VALUE>
-            </ATTRIBUTE>
-          </PREDEFINED_ATTRIBUTES>
+          <SERIAL_NUMBER>TS-Y-07</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Temperature Sensor</KIND_OF_PART>
         </PART>
       </CHILDREN>
     </PART>

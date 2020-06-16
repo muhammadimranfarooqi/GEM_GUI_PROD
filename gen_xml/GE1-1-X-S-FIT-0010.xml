@@ -6,62 +6,8 @@
       <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
       <CHILDREN>
         <PART>
-          <SERIAL_NUMBER>PCB-VIII-RO-S-8989</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Readout PCB</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>GEB-RO-S-9999</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Electronics Board Narrow</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>GEB-RO-S-9998</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Electronics Board Wide</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>OPTO-RO-S-9999</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Opto Hybrid</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>GE1/1-ExtFrame-B1-S-0002</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM External Frame</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>PCB-DR-VII-B1-S-003</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Drift PCB</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>CPC-S-9999</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Cooling Plate</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>FOIL-B1-S-0010</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
-          <PREDEFINED_ATTRIBUTES>
-            <ATTRIBUTE>
-              <NAME>Foil Position</NAME>
-              <VALUE>GEM1</VALUE>
-            </ATTRIBUTE>
-          </PREDEFINED_ATTRIBUTES>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>FOIL-B11-S-0113</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
-          <PREDEFINED_ATTRIBUTES>
-            <ATTRIBUTE>
-              <NAME>Foil Position</NAME>
-              <VALUE>GEM2</VALUE>
-            </ATTRIBUTE>
-          </PREDEFINED_ATTRIBUTES>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>FOIL-B16-S-0187</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
-          <PREDEFINED_ATTRIBUTES>
-            <ATTRIBUTE>
-              <NAME>Foil Position</NAME>
-              <VALUE>GEM3</VALUE>
-            </ATTRIBUTE>
-          </PREDEFINED_ATTRIBUTES>
+          <SERIAL_NUMBER>TS-B-17</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Temperature Sensor</KIND_OF_PART>
         </PART>
       </CHILDREN>
     </PART>

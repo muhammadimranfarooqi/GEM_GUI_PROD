@@ -3,66 +3,11 @@
   <PARTS>
     <PART>
       <SERIAL_NUMBER>GE1/1-X-L-CERN-0042</SERIAL_NUMBER>
-      <NAME_LABEL>GE1/1-X-L-CERN-0042</NAME_LABEL>
-      <LOCATION>CERN</LOCATION>
-      <COMMENT_DESCRIPTION>27-11-2018&#xD;
-&#xD;
-GE1/1-X-L-CERN-0042&#xD;
-&#xD;
-GEM 1: 280/22&#xD;
-GEM 2: 278/22&#xD;
-GEM 3: 326/25&#xD;
-&#xD;
-Drift: 020&#xD;
-RO: 080&#xD;
-ExtFrame: 017&#xD;
-&#xD;
-Assembly:&#xD;
-Mohsin, Mohit, Ke, Francesco</COMMENT_DESCRIPTION>
       <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
-      <RECORD_INSERTION_USER>ffallavo</RECORD_INSERTION_USER>
       <CHILDREN>
         <PART>
-          <SERIAL_NUMBER>PCB-VIII-RO-L-0080</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Readout PCB</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>GE1/1-ExtFrame-B1-L-0017</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM External Frame</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>PCB-VIII-DR-L-0020</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Drift PCB</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>FOIL-B22-L-0280</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
-          <PREDEFINED_ATTRIBUTES>
-            <ATTRIBUTE>
-              <NAME>Foil Position</NAME>
-              <VALUE>GEM1</VALUE>
-            </ATTRIBUTE>
-          </PREDEFINED_ATTRIBUTES>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>FOIL-B22-L-0278</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
-          <PREDEFINED_ATTRIBUTES>
-            <ATTRIBUTE>
-              <NAME>Foil Position</NAME>
-              <VALUE>GEM2</VALUE>
-            </ATTRIBUTE>
-          </PREDEFINED_ATTRIBUTES>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>FOIL-B25-L-0326</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
-          <PREDEFINED_ATTRIBUTES>
-            <ATTRIBUTE>
-              <NAME>Foil Position</NAME>
-              <VALUE>GEM3</VALUE>
-            </ATTRIBUTE>
-          </PREDEFINED_ATTRIBUTES>
+          <SERIAL_NUMBER>RS-243</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Radmon Sensor</KIND_OF_PART>
         </PART>
       </CHILDREN>
     </PART>

@@ -3,78 +3,11 @@
   <PARTS>
     <PART>
       <SERIAL_NUMBER>GE1/1-X-S-CERN-0005</SERIAL_NUMBER>
-      <NAME_LABEL>GE1/1-X-S-CERN-0005</NAME_LABEL>
-      <LOCATION>CERN</LOCATION>
-      <COMMENT_DESCRIPTION>==============================================&#xD;
-         GE11-X-S-CERN-0005&#xD;
- Post Assembly Detector Information	&#xD;
-==============================================&#xD;
-&#xD;
-Assembly Date: 31/08/2017&#xD;
-&#xD;
--------------------------------&#xD;
-List of components:&#xD;
--------------------------------&#xD;
-&#xD;
-**GEM1: s/n FOIL 184/16;&#xD;
-&#xD;
-**GEM2: s/n FOIL 182/16;&#xD;
-&#xD;
-**GEM3: s/n FOIL 181/16;&#xD;
-&#xD;
-**Drift PCB: s/n S-016;&#xD;
-&#xD;
-**RO PCB: s/n S-005;&#xD;
-&#xD;
-**External Frame S-011;&#xD;
-&#xD;
-Assembly Crew			&#xD;
-----------------------------------&#xD;
-M.Bianco, M. Abbas, F. Fallavollita, Sohaib Hassan</COMMENT_DESCRIPTION>
       <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
-      <RECORD_INSERTION_USER>ffallavo</RECORD_INSERTION_USER>
       <CHILDREN>
         <PART>
-          <SERIAL_NUMBER>PCB-RO-VII-B1-S-005</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Readout PCB</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>GE1/1-ExtFrame-B1-S-0011</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM External Frame</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>PCB-VIII-DR-S-0016</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Drift PCB</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>FOIL-B16-S-0184</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
-          <PREDEFINED_ATTRIBUTES>
-            <ATTRIBUTE>
-              <NAME>Foil Position</NAME>
-              <VALUE>GEM1</VALUE>
-            </ATTRIBUTE>
-          </PREDEFINED_ATTRIBUTES>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>FOIL-B16-S-0182</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
-          <PREDEFINED_ATTRIBUTES>
-            <ATTRIBUTE>
-              <NAME>Foil Position</NAME>
-              <VALUE>GEM2</VALUE>
-            </ATTRIBUTE>
-          </PREDEFINED_ATTRIBUTES>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>FOIL-B16-S-0181</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
-          <PREDEFINED_ATTRIBUTES>
-            <ATTRIBUTE>
-              <NAME>Foil Position</NAME>
-              <VALUE>GEM3</VALUE>
-            </ATTRIBUTE>
-          </PREDEFINED_ATTRIBUTES>
+          <SERIAL_NUMBER>TS-Y-11</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Temperature Sensor</KIND_OF_PART>
         </PART>
       </CHILDREN>
     </PART>

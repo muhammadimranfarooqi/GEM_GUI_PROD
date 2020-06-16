@@ -3,52 +3,11 @@
   <PARTS>
     <PART>
       <SERIAL_NUMBER>GE1/1-X-S-LNF-0007</SERIAL_NUMBER>
-      <LOCATION>LNF</LOCATION>
-      <COMMENT_DESCRIPTION></COMMENT_DESCRIPTION>
       <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
-      <RECORD_INSERTION_USER>benussi</RECORD_INSERTION_USER>
       <CHILDREN>
         <PART>
-          <SERIAL_NUMBER>PCB-VIII-RO-S-0034</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Readout PCB</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>GE1/1-ExtFrame-B1-S-0055</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM External Frame</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>PCB-VIII-DR-S-0058</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Drift PCB</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>FOIL-B11-S-0126</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
-          <PREDEFINED_ATTRIBUTES>
-            <ATTRIBUTE>
-              <NAME>Foil Position</NAME>
-              <VALUE>GEM1</VALUE>
-            </ATTRIBUTE>
-          </PREDEFINED_ATTRIBUTES>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>FOIL-B11-S-0115</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
-          <PREDEFINED_ATTRIBUTES>
-            <ATTRIBUTE>
-              <NAME>Foil Position</NAME>
-              <VALUE>GEM2</VALUE>
-            </ATTRIBUTE>
-          </PREDEFINED_ATTRIBUTES>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>FOIL-B11-S-0114</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
-          <PREDEFINED_ATTRIBUTES>
-            <ATTRIBUTE>
-              <NAME>Foil Position</NAME>
-              <VALUE>GEM3</VALUE>
-            </ATTRIBUTE>
-          </PREDEFINED_ATTRIBUTES>
+          <SERIAL_NUMBER>TS-B-21</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Temperature Sensor</KIND_OF_PART>
         </PART>
       </CHILDREN>
     </PART>

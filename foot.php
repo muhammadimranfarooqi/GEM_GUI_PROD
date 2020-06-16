@@ -4,10 +4,10 @@
 
 <footer>
     <div class="footer text-center">
-        <p class="4">&copy; Copyright 2017</p>
+        <p class="4">&copy; Copyright 2017-2019</p>
 
 <p> NCP Team (Imran, Rao & Adeel) </p>
-<p> For any queries, requests may be sent to <a href="mailto:muhammad.imran@cern.ch" target="_top">muhammad.imran@ncp.edu.pk</a></p>
+<p> For any queries, requests may be sent to <a href="mailto:adeel@ncp.edu.pk" target="_top">adeel@ncp.edu.pk</a></p>
 
     </div>
 </footer>

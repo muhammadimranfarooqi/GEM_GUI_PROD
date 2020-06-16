@@ -6,8 +6,8 @@
       <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
       <CHILDREN>
         <PART>
-          <SERIAL_NUMBER>PCB-VIII-DR-L-0077</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Drift PCB</KIND_OF_PART>
+          <SERIAL_NUMBER>RS-319</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Radmon Sensor</KIND_OF_PART>
         </PART>
       </CHILDREN>
     </PART>

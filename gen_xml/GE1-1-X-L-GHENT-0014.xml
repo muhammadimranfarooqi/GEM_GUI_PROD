@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ROOT>
+  <PARTS>
+    <PART>
+      <SERIAL_NUMBER>GE1/1-X-L-GHENT-0014</SERIAL_NUMBER>
+      <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
+      <CHILDREN>
+        <PART>
+          <SERIAL_NUMBER>RS-317</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Radmon Sensor</KIND_OF_PART>
+        </PART>
+      </CHILDREN>
+    </PART>
+  </PARTS>
+</ROOT>

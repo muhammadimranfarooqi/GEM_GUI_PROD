@@ -23,6 +23,7 @@
         <li id="chamber" class=""><a href="list_chambers.php"><i class="menu-icon fa fa-file-o"></i> Chambers</a></li>
         <li id="schamber" class=""><a href="list_sup_chambers.php"><i class="menu-icon fa fa-file-o"></i> SuperChambers</a></li>
         <li id="qc" class=""><a href="list_qc.php"><i class="menu-icon fa fa-file-o"></i> Quality Controls</a></li>
+	<li id="p5" class=""><a href="gem_p5.php"><i class="menu-icon fa fa-file-o"></i> GEM in P5</a></li>
 <!--	<li id="conf" class=""><a href="conf_db.php"><i class="menu-icon fa fa-file-o"></i> Configuration</a></li>
 
         <li id="track" class=""><a href="track_parts_step1.php"><span aria-hidden="true" class="glyphicon glyphicon-globe"></span> Tracking Parts</a></li>

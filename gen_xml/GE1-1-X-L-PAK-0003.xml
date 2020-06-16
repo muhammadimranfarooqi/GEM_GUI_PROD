@@ -6,8 +6,8 @@
       <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
       <CHILDREN>
         <PART>
-          <SERIAL_NUMBER>PCB-VIII-RO-L-0030</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Readout PCB</KIND_OF_PART>
+          <SERIAL_NUMBER>RS-320</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Radmon Sensor</KIND_OF_PART>
         </PART>
       </CHILDREN>
     </PART>

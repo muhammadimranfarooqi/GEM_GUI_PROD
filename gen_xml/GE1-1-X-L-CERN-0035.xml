@@ -3,66 +3,11 @@
   <PARTS>
     <PART>
       <SERIAL_NUMBER>GE1/1-X-L-CERN-0035</SERIAL_NUMBER>
-      <NAME_LABEL>GE1/1-X-L-CERN-0035</NAME_LABEL>
-      <LOCATION>CERN</LOCATION>
-      <COMMENT_DESCRIPTION>15-05-2018&#xD;
-&#xD;
-GE1/1-X-L-CERN 0035&#xD;
-&#xD;
-GEM 1: 80/7&#xD;
-GEM 2: 300/23&#xD;
-GEM 3: 310/24&#xD;
-&#xD;
-Drift: 062&#xD;
-RO: 062&#xD;
-ExtFrame: 058&#xD;
-&#xD;
-Assembly:&#xD;
-Jeremie, H.Kumawat</COMMENT_DESCRIPTION>
       <KIND_OF_PART>GEM Chamber</KIND_OF_PART>
-      <RECORD_INSERTION_USER>ffallavo</RECORD_INSERTION_USER>
       <CHILDREN>
         <PART>
-          <SERIAL_NUMBER>PCB-VIII-RO-L-0062</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Readout PCB</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>GE1/1-ExtFrame-B1-L-0058</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM External Frame</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>PCB-VIII-DR-L-0062</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Drift PCB</KIND_OF_PART>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>FOIL-B7-L-0080</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
-          <PREDEFINED_ATTRIBUTES>
-            <ATTRIBUTE>
-              <NAME>Foil Position</NAME>
-              <VALUE>GEM1</VALUE>
-            </ATTRIBUTE>
-          </PREDEFINED_ATTRIBUTES>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>FOIL-B23-L-0300</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
-          <PREDEFINED_ATTRIBUTES>
-            <ATTRIBUTE>
-              <NAME>Foil Position</NAME>
-              <VALUE>GEM2</VALUE>
-            </ATTRIBUTE>
-          </PREDEFINED_ATTRIBUTES>
-        </PART>
-        <PART>
-          <SERIAL_NUMBER>FOIL-B24-L-0310</SERIAL_NUMBER>
-          <KIND_OF_PART>GEM Foil</KIND_OF_PART>
-          <PREDEFINED_ATTRIBUTES>
-            <ATTRIBUTE>
-              <NAME>Foil Position</NAME>
-              <VALUE>GEM3</VALUE>
-            </ATTRIBUTE>
-          </PREDEFINED_ATTRIBUTES>
+          <SERIAL_NUMBER>RS-313</SERIAL_NUMBER>
+          <KIND_OF_PART>GEM Radmon Sensor</KIND_OF_PART>
         </PART>
       </CHILDREN>
     </PART>

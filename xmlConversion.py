@@ -105,6 +105,38 @@ def generateXMLDatalongamb(dataSetTag,batchText,RelhumiText,TempdegText):
     Relhumi.text = RelhumiText
     Tempdeg = SubElement(data, 'TEMP_DEG_C')
     Tempdeg.text = TempdegText
+
+#Super chamber Installation Status
+def generateXMLDataSCInstStatus(dataSetTag,installation_locationText,super_chamberText,cooling_closedText,lv_connectedText,hv_connectedText,fibres_connectedText,gas_connectedText, daq_connectedText,sc_insertedText,gas_leak_test_passedText,cooling_pressure_test_passedText,temp_chain_connectedText,radmon_connectedText,installation_dateText):
+    data = SubElement(dataSetTag, 'DATA')
+    super_chamber = SubElement(data, 'SC_SERIAL_NO')
+    super_chamber.text = super_chamberText
+    cooling_closed = SubElement(data, 'COOLING_CLOSED')
+    cooling_closed.text = cooling_closedText
+    lv_connected = SubElement(data, 'LV_CONNECTED')
+    lv_connected.text = lv_connectedText
+    hv_connected = SubElement(data, 'HV_CONNECTED')
+    hv_connected.text = hv_connectedText
+    fibres_connected = SubElement(data, 'FIBRES_CONNECTED')
+    fibres_connected.text = fibres_connectedText
+    installation_date = SubElement(data, 'INSTALLATION_DATE')
+    installation_date.text = installation_dateText
+    installation_location = SubElement(data, 'INSTALLATION_LOCATION')
+    installation_location.text = installation_locationText
+    gas_connected = SubElement(data, 'GAS_CONNECTION_CLOSED')
+    gas_connected.text = gas_connectedText
+    daq_connected = SubElement(data, 'DAQ_CONNECTION_CLOSED')
+    daq_connected.text = daq_connectedText
+    sc_inserted = SubElement(data, 'SC_INSERTED')
+    sc_inserted.text=sc_insertedText
+    gas_leak_test_passed = SubElement(data, 'GAS_LEAK_TEST_PASSED')
+    gas_leak_test_passed.text=gas_leak_test_passedText
+    cooling_pressure_test_passed = SubElement(data, 'COOLING_PRESSURE_TEST_PASSED')
+    cooling_pressure_test_passed.text=cooling_pressure_test_passedText
+    temp_chain_connected = SubElement(data, 'TEMP_CHAIN_CONNECTED')
+    temp_chain_connected.text=temp_chain_connectedText
+    radmon_connected = SubElement(data, 'RADMON_CONNECTED')
+    radmon_connected.text=radmon_connectedText
    
 def generateXMLDatalong(dataSetTag,timesecext,appliedVoltageText,errvoltText,currentText,ErrText):
     data = SubElement(dataSetTag, 'DATA')

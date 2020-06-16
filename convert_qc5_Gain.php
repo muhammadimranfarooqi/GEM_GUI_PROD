@@ -36,8 +36,11 @@ if (!$FileTmp){
 ?>
 <?php
   include "head.php";
+//echo $CHAMBER;
+
  $out = shell_exec("python QC5_test.py '$CHAMBER' " );
 $outs = trim($out);
+//echo $outs;
 //$test=null;
 $output=shell_exec("/afs/cern.ch/user/m/mimran/www/prod/my_env_new/bin/python QC5_Gain_Data.py '$FileName' '$CHAMBER' '$outs' '$LOCATION' '$INITIATED_BY_USER' '$COMMENT_DESCRIPTION' '$RUN_BEGIN_TIMESTAMP' '$RUN_END_TIMESTAMP' '$Elog' '$Files' '$comments'");
 

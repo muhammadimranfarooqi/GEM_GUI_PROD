@@ -2,6 +2,8 @@
 <?php
 include "head.php";
 ?>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <?php
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     include_once "functions/functions.php";
@@ -146,20 +148,22 @@ include "head.php";
                             <!-- <span class="text-muted">List single chambers</span> -->
                                 <div class="form-group">
                                     <label for="exampleInputEmail1" style="float: left;">Serial Number:&nbsp;</label>
-                                    <!--<div class="serial"><span class="name">PCB-RO-VII-B<span class="batch">1</span>-</span><span id="vers" class="version" >VERSION</span><span class="id">-XXXX</span></div>-->
-                                    <div class="serial"><span class="name">TS<span class="batch"></span>-</span><span id="vers" class="version" >VERSION</span><span class="id">-XXXX</span></div>
+                                    <!--<div class="serial"><span class="name">PCB-RO-VII-B<span class="batch">1</span>-</span><span class="id">-XXXX</span></div>-->
+                                    <div class="serial"><span class="name">TS<span class="batch"></span>-</span><span id="vers" class="version" >ColorChain</span><span class="id">-XX</span></div>
                                     <input class="serialInput" name="serial" value="" hidden>
                                 </div>
                                 <div class="form-group">
                                     &nbsp;<b style=" color: red">*</b>
                                     <div class="dropdown">
                                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            Choose Version
+                                            Choose Color Chain
                                             <span class="caret"></span>
                                         </button> 
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                            <li><a href="#">Long</a></li>
-                                            <li><a href="#">Short</a></li>
+                                            <li><a href="#">Yellow</a></li>
+                                            <li><a href="#">Red</a></li>
+					    <li><a href="#">Green</a></li>
+                                            <li><a href="#">Blue</a></li>
                                         </ul>
                                     </div><br>
                                    <!-- <div class="dropdown" scrollable-menu>
@@ -222,8 +226,8 @@ include "head.php";
                                         </ul>
                                     </div><br>-->
                                     <div class="dropdown">&nbsp;<b style=" color: red">*</b>
-                                    <label> 4 digits Serial </label><br>
-                                    <input placeholder="XXXX" class="serialValidation">
+                                    <label> 2 digits Serial </label><br>
+                                    <input type="text" placeholder="XX" class="serialValidation"  minlength="2" maxlength="2" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" pattern="^(\d{13})?$">
                                     <i class="ace-icon fa fa-times-circle alert-danger exist" style="display: none">Already in  Database</i>
                                     <i class="ace-icon fa fa-check-circle alert-success newId" style="display: none"> Valid Serial</i>
                                 </div><br>
@@ -231,7 +235,7 @@ include "head.php";
                                         <label> Barcode <i class="ace-icon glyphicon glyphicon-barcode"></i></label><br>
                                         <input name="barcode" >
                                     </div>-->
-                                    <div class="form-group">
+                                 <!--     <div class="form-group">
                                         <label for="exampleInputFile" >Location</label>
                                         <input name="location" value="" hidden>
                                         <div class="dropdown">
@@ -258,7 +262,7 @@ include "head.php";
                                             </ul>
                                         </div>
 
-                                    </div>
+                                    </div> -->
                                     
                                 </div>
                                 <!--                                <div class="form-group">
@@ -418,22 +422,36 @@ include "foot.php";
      */
     $('.dropdown-menu a').on('click', function () {
 
-        if ($(this).html() == "Long") {
+        if ($(this).html() == "Yellow") {
             $('#preloader').fadeIn('fast', function () {});
-            $("#vers").text("L");
+            $("#vers").text("Y");
             $(".serialInput").val($(".serial").text());
             validateInput($(".serial").text());
             $('#preloader').fadeOut('fast', function () {});
         }
 
-        if ($(this).html() == "Short") {
+        if ($(this).html() == "Red") {
             $('#preloader').fadeIn('fast', function () {});
-            $("#vers").text("S");
+            $("#vers").text("R");
             $(".serialInput").val($(".serial").text());
             validateInput($(".serial").text());
             $('#preloader').fadeOut('fast', function () {});
         }
 
+if ($(this).html() == "Green") {
+            $('#preloader').fadeIn('fast', function () {});
+            $("#vers").text("G");
+            $(".serialInput").val($(".serial").text());
+            validateInput($(".serial").text());
+            $('#preloader').fadeOut('fast', function () {});
+        }
+if ($(this).html() == "Blue") {
+            $('#preloader').fadeIn('fast', function () {});
+            $("#vers").text("B");
+            $(".serialInput").val($(".serial").text());
+            validateInput($(".serial").text());
+            $('#preloader').fadeOut('fast', function () {});
+        }
         if ($(this).attr('class') == "batchnum") {
             $('#preloader').fadeIn('fast', function () {});
             $(".batch").text($(this).html());
